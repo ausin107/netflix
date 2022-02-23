@@ -20,7 +20,11 @@ module.exports = {
         'bermuda': '#78dcca',
       },
       padding: {
-        '15': '3.75rem'
+        '15': '3.75rem',
+        '0.2': '0.2vw',
+      },
+      inset: {
+        '19vh': '19vh',
       },
       text: {
         '1.4': '1.4vw'
