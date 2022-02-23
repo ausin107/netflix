@@ -21,6 +21,9 @@ module.exports = {
       },
       padding: {
         '15': '3.75rem'
+      },
+      text: {
+        '1.4': '1.4vw'
       }
     },
   },

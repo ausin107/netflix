@@ -6,7 +6,9 @@ import { Routes, Route, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import Home from './Pages/Home';
 import logo from './assets/Netflix_logo.png'
+import Row from './Components/Row';
 import user from './assets/user_accout.png'
+import requests from './Pages/request';
 function App() {
   const navigate = useNavigate()
   return (
