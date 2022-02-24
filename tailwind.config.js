@@ -19,7 +19,7 @@ module.exports = {
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
       },
-      padding: {
+      spacing: {
         '15': '3.75rem',
         '0.2': '0.2vw',
       },
@@ -28,6 +28,9 @@ module.exports = {
       },
       text: {
         '1.4': '1.4vw'
+      },
+      colors: {
+        'buttonColor' : 'rgba(109,109,110,0.7)'
       }
     },
   },

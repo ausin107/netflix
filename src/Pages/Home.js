@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Row from "../Components/Row"
 import requests from "./request"
 import axios from "axios"
+import Button from "../Components/Button"
 function Home() {
     const [banner, setBanner] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
@@ -18,10 +19,14 @@ function Home() {
         <>
             <div className="relative">
                 <div>
-                    <img className='bg-center bg-cover w-full h-screen ' src={bannerUrl + banner} alt='Banner image' />
+                    <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
+                    <div className="flex flex-row absolute bottom-1/3 ml-15 ">
+                        <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1}/>
+                        <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
+                    </div>
                     <div className="banner-fade absolute bottom-0 w-screen" />
                 </div>
-                <div className="absolute" style={{background: '#0d0e0e'}}>
+                <div className="absolute" style={{ background: '#0d0e0e' }}>
                     <Row title='Phổ biến trên Netflix' fetchUrl={requests.fetchTrending} className='my-9 mt-0' />
                     <Row title='Phim chiếu rạp' fetchUrl={requests.fetchCinemaMovies} className='my-9' />
                     <Row title='Chỉ có trên Netflix' fetchUrl={requests.fetchNetflixOriginals} className='my-9' />
