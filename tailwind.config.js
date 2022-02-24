@@ -22,12 +22,16 @@ module.exports = {
       spacing: {
         '15': '3.75rem',
         '0.2': '0.2vw',
+        '1.5vw': '1.5vw',
+        '0.5': '0.5vw'
       },
       inset: {
         '19vh': '19vh',
+        '45': '45%'
       },
-      text: {
-        '1.4': '1.4vw'
+      fontSize: {
+        '1.4': '1.4vw',
+        '5.5': '5.5vw'
       },
       colors: {
         'buttonColor' : 'rgba(109,109,110,0.7)'

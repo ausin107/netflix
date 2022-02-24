@@ -15,9 +15,14 @@
 }
 
 .navbar-background{
-  background-image: -webkit-linear-gradient(top,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
+  background-image: -webkit-linear-gradient(top,rgba(0,0,0,.7) 20%,rgba(0,0,0,0));
 }
 .banner-fade{
   height: 7.4rem;
   background-image: linear-gradient(180deg,transparent,rgba(37,37,37,.61),#111);
+}
+.title-banner{
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #333;
+  line-height: 1;
 }
