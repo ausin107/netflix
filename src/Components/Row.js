@@ -1,7 +1,28 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import requests from "../Pages/request";
-function Row({ title, fetchUrl,className }) {
+import Carousel from "react-multi-carousel";
+import { Image } from "semantic-ui-react";
+import 'react-multi-carousel/lib/styles.css';
+import './Components.css'
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 6.5,
+        paritialVisibilityGutter: 100
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 4.5,
+        paritialVisibilityGutter: 50
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 3.5,
+        paritialVisibilityGutter: 30
+    }
+};
+function Row({ title, fetchUrl, className }) {
+    const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
@@ -14,18 +35,26 @@ function Row({ title, fetchUrl,className }) {
         fetchMovie()
     }, [fetchUrl])
 
-
-
     return (
-        <div className={className}>
-            <h1 className="text-neutral-200 pl-15 text-xl font-bold">{title}</h1>
-            <div className="flex flex-row px-15 mt-4">
+        <div className={className} >
+            <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
+            <Carousel
+                ssr
+                slidesToSlide={6}
+                // infinite={infinite}
+                itemClass="image-item mt-4 "
+                responsive={responsive}
+                className="pl-4vw"
+                swipeable
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+            >
                 {
                     movies.map(movie => {
-                        return <img className="w-1/6 px-0.2 rounded-md cursor-pointer" src={imgUrl+movie.poster_path} key={movie.id} />
+                        return <Image draggable={false} style={{ width: "100%", height: "100%", }} key={movie.id} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
+                        // return <img className="w-1/6 px-0.2 rounded-md cursor-pointer" src={imgUrl + movie.poster_path} key={movie.id} />
                     })
                 }
-            </div>
+            </Carousel>
         </div>
     )
 }

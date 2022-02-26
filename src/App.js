@@ -1,6 +1,5 @@
 import './App.css';
 import { ChevronDownIcon, SearchIcon, BellIcon } from '@heroicons/react/solid'
-import {  } from '@heroicons/react/outline'
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
