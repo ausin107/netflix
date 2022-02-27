@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Row from "../Components/Row"
 import requests from "./request"
 import axios from "axios"
@@ -8,6 +8,7 @@ function Home() {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
+    const ref = useRef()
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
         async function getBanner() {
@@ -36,9 +37,10 @@ function Home() {
                     </div>
                     <div className="banner-fade absolute bottom-0 w-full" />
                 </div>
-                <div className="absolute overflow-hidden w-full" style={{ background: '#0d0e0e' }}>
+                <div className="absolute overflow-hidden w-full" style={{ top: '43vw' }}>
+                    <div className="w-full absolute h-full bg-backgroundColor -z-10" />
                     <Row title='Phổ biến trên Netflix' fetchUrl={requests.fetchTrending} className='my-9 w-screen mt-0' />
-                    <Row title='Phim chiếu rạp' fetchUrl={requests.fetchCinemaMovies} className='my-9 w-screen' />
+                    <Row title='Phim chiếu rạp' fetchUrl={requests.fetchCinemaMovies} className='my-9 w-screen ' />
                     <Row title='Chỉ có trên Netflix' fetchUrl={requests.fetchNetflixOriginals} className='my-9 w-screen' />
                     <Row title='Phim hành động, kịch tính' fetchUrl={requests.fetchActionMovies} className='my-9 w-screen' />
                     <Row title='Phim hoạt hình' fetchUrl={requests.fetchAnimationMovies} className='my-9 w-screen' />

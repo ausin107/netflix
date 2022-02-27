@@ -39,12 +39,12 @@ function Row({ title, fetchUrl, className }) {
         <div className={className} >
             <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
             <Carousel
-                ssr
+                ssr={true}
                 slidesToSlide={6}
                 // infinite={infinite}
                 itemClass="image-item mt-4 "
                 responsive={responsive}
-                className="pl-4vw"
+                className="pl-3.4vw"
                 swipeable
                 removeArrowOnDeviceType={["tablet", "mobile"]}
             >

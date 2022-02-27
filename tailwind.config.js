@@ -25,7 +25,7 @@ module.exports = {
         '1.5vw': '1.5vw',
         '0.5': '0.5vw',
         '1.6vw': '1.6vw',
-        '4vw': '4vw'
+        '3.4vw': '3.4vw'
       },
       inset: {
         '19vh': '19vh',
@@ -36,7 +36,8 @@ module.exports = {
         '5.5': '5.5vw'
       },
       colors: {
-        'buttonColor' : 'rgba(109,109,110,0.7)'
+        'buttonColor' : 'rgba(109,109,110,0.7)',
+        'backgroundColor':  '#0d0e0e',
       }
     },
   },
