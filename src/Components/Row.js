@@ -41,8 +41,9 @@ function Row({ title, fetchUrl, className }) {
             <Carousel
                 ssr={true}
                 slidesToSlide={6}
+                containerClass="mt-4"
                 // infinite={infinite}
-                itemClass="image-item mt-4 "
+                itemClass="image-item"
                 responsive={responsive}
                 className="pl-3.4vw"
                 swipeable
