@@ -21,7 +21,7 @@ function Home() {
         }
         getBanner()
     }, [])
-    
+
     return (
         <>
             <div className="relative">
@@ -47,6 +47,9 @@ function Home() {
                     <Row title='Khoa học viễn tưởng & siêu nhiên' fetchUrl={requests.fetchSienceFictionMovies} className='my-9 w-screen' />
                     <Row title='Phim kinh dị' fetchUrl={requests.fetchHorrorMovies} className='my-9 w-screen' />
                     <Row title='Chương trình truyền hình hành động & phiêu lưu kịch tính' fetchUrl={requests.fetchDramaMovies} className='my-9 w-screen' />
+                    <div className=" h-1/3vh w-full mx-9 mt-6 px-4vw bg-backgroundColor flex flex-row">
+
+                    </div>
                 </div>
             </div>
         </>
