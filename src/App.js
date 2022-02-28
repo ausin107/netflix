@@ -1,6 +1,6 @@
 import './App.css';
 import { ChevronDownIcon, SearchIcon, BellIcon } from '@heroicons/react/solid'
-import React from 'react';
+import { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import Home from './Pages/Home';
@@ -9,10 +9,25 @@ import Row from './Components/Row';
 import user from './assets/user_accout.png'
 import requests from './Pages/request';
 function App() {
+  const [height, setHeight] = useState(0)
+  const ref = useRef()
   const navigate = useNavigate()
+  useLayoutEffect(() => {
+    const updatePosition = () => {
+        setHeight(window.scrollY)
+        console.log(height)
+    }
+    window.addEventListener('scroll', updatePosition )
+    updatePosition()
+    if(height > 0){
+      ref.current.classList.add('navbar-color') 
+    }else ref.current.classList.remove('navbar-color')
+    return () => window.removeEventListener('scroll', updatePosition) // tránh memory leak
+}, [height])
+
   return (
     <div className='font-sans'>
-      <nav className='fixed z-10 px-15 flex w-screen h-17 navbar-background justify-between'>
+      <nav ref={ref} className='fixed z-10 px-15 flex w-screen h-17 navbar-background justify-between'>
         <div className='flex items-center text-neutral-200 text-base'>
           <Link to='/browse' className='mr-1'>
             <img className='h-7 w-24' src={logo} />

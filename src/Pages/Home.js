@@ -8,7 +8,6 @@ function Home() {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
-    const ref = useRef()
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
         async function getBanner() {
@@ -22,6 +21,7 @@ function Home() {
         }
         getBanner()
     }, [])
+    
     return (
         <>
             <div className="relative">

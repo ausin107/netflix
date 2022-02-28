@@ -16,6 +16,10 @@
 
 .navbar-background{
   background-image: -webkit-linear-gradient(top,rgba(0,0,0,.7) 20%,rgba(0,0,0,0));
+  -webkit-transition: background-color .4s;
+  -o-transition: background-color .4s;
+  -moz-transition: background-color .4s;
+  transition: background-color .4s;
 }
 .banner-fade{
   height: 7.4rem;
@@ -25,4 +29,11 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #333;
   line-height: 1;
+}
+.navbar-color{
+  background-color: rgb(20, 20, 20);
+  -webkit-transition: background-color .4s;
+  -o-transition: background-color .4s;
+  -moz-transition: background-color .4s;
+  transition: background-color .4s;
 }

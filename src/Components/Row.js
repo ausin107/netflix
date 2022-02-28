@@ -34,7 +34,7 @@ function Row({ title, fetchUrl, className }) {
         }
         fetchMovie()
     }, [fetchUrl])
-
+    
     return (
         <div className={className} >
             <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>

@@ -38,6 +38,7 @@ module.exports = {
       colors: {
         'buttonColor' : 'rgba(109,109,110,0.7)',
         'backgroundColor':  '#0d0e0e',
+        
       }
     },
   },
