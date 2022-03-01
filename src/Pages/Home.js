@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import Row from "../Components/Row"
+import Footer from "../Components/Footer"
 import requests from "./request"
 import axios from "axios"
 import Button from "../Components/Button"
-
 function Home() {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
@@ -46,10 +46,8 @@ function Home() {
                     <Row title='Phim hoạt hình' fetchUrl={requests.fetchAnimationMovies} className='my-9 w-screen' />
                     <Row title='Khoa học viễn tưởng & siêu nhiên' fetchUrl={requests.fetchSienceFictionMovies} className='my-9 w-screen' />
                     <Row title='Phim kinh dị' fetchUrl={requests.fetchHorrorMovies} className='my-9 w-screen' />
-                    <Row title='Chương trình truyền hình hành động & phiêu lưu kịch tính' fetchUrl={requests.fetchDramaMovies} className='my-9 w-screen' />
-                    <div className=" h-1/3vh w-full mx-9 mt-6 px-4vw bg-backgroundColor flex flex-row">
-
-                    </div>
+                    <Row title='Chương trình truyền hình hành động & phiêu lưu kịch tính' fetchUrl={requests.fetchDramaMovies} className='my-9 w-screen pb-7vw' />
+                    <Footer />
                 </div>
             </div>
         </>

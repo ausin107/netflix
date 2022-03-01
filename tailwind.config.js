@@ -27,7 +27,11 @@ module.exports = {
         '1.6vw': '1.6vw',
         '3.4vw': '3.9vw',
         '1/3vh': '33.333vh',
-        '4vw': '4vw'
+        '4vw': '4vw',
+        '1/2vh': '50vh',
+        '40vh': '40vh',
+        '37vh': '37vh',
+        '7vw': '7vw'
       },
       inset: {
         '19vh': '19vh',

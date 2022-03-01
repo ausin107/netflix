@@ -15,7 +15,6 @@ function App() {
   useLayoutEffect(() => {
     const updatePosition = () => {
         setHeight(window.scrollY)
-        console.log(height)
     }
     window.addEventListener('scroll', updatePosition )
     updatePosition()
