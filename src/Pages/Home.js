@@ -4,6 +4,8 @@ import Footer from "../Components/Footer"
 import requests from "./request"
 import axios from "axios"
 import Button from "../Components/Button"
+
+
 function Home() {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
