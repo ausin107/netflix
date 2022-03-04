@@ -43,7 +43,7 @@ function Row({ title, fetchUrl, className }) {
                 slidesToSlide={6}
                 containerClass="mt-4"
                 // infinite={infinite}
-                itemClass="image-item"
+                itemClass="image-item movie "
                 responsive={responsive}
                 className="pl-3.4vw"
                 swipeable
@@ -51,7 +51,7 @@ function Row({ title, fetchUrl, className }) {
             >
                 {
                     movies.map(movie => {
-                        return <Image draggable={false} style={{ width: "100%", height: "100%", }} key={movie.id} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
+                        return <Image draggable={false}  key={movie.id} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
                         // return <img className="w-1/6 px-0.2 rounded-md cursor-pointer" src={imgUrl + movie.poster_path} key={movie.id} />
                     })
                 }

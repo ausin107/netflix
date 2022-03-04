@@ -7,7 +7,9 @@ Giải pháp: Bạn có thể sử dụng phần mềm 1.1.1.1 để thay đổi
 trang web phổ biến trên GG Chrome, phần mềm có thể giúp bạn fake IP, ngoài ra còn giúp bạn kết nối internet
 an toàn hơn)(không có lag wifi khi xài fake IP như các ứng dụng khác)
 
+### API sử dụng
 Nguồn API: https://www.themoviedb.org/
+
 
 ### `npm start` Start chương trình ngay tại đây
 

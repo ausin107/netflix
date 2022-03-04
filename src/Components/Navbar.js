@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import logo from '../assets/Netflix_logo.png'
 import user from '../assets/user_accout.png'
+
+
 function Navbar() {
     const [height, setHeight] = useState(0)
     const ref = useRef()

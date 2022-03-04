@@ -34,7 +34,7 @@ function Footer() {
                 </ul>
             </div>
             <div className="mb-4 ">
-                <button className="bg-transparent  text-gray-400 font-semibold hover:text-white py-2 px-4 border border-gray-400 hover:border-white">
+                <button className="bg-transparent text-gray-400 font-semibold hover:text-white py-2 px-4 border border-gray-400 hover:border-white">
                     Mã dịch vụ
                 </button>
             </div>
