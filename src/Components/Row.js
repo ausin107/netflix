@@ -40,9 +40,9 @@ function Row({ title, fetchUrl, className }) {
             <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
             <Carousel
                 ssr={true}
-                slidesToSlide={6}
+                slidesToSlide={5.75}
                 containerClass="mt-4"
-                // infinite={infinite}
+                // infinite={true}
                 itemClass="image-item movie "
                 responsive={responsive}
                 className="pl-3.4vw"

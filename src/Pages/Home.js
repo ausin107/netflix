@@ -31,7 +31,7 @@ function Home() {
                     <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
                     <div className="flex flex-col absolute bottom-1/3 ml-15">
                         <div className="text-white text-5.5 font-bold w-5/12 title-banner">{title}</div>
-                        <div className="text-white font-normal w-1/3 text-1.4 mt-1.5vw">{overView}</div>
+                        <div className="text-white font-normal w-1/3 text-1.4 mt-1vw">{overView}</div>
                         <div className="flex flex-row mt-1.5vw">
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} />
                             <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
@@ -39,9 +39,9 @@ function Home() {
                     </div>
                     <div className="banner-fade absolute bottom-0 w-full" />
                 </div>
-                <div className="absolute overflow-hidden w-full" style={{ top: '43vw' }}>
+                <div className="absolute overflow-hidden w-full" style={{ top: '40vw' }}>
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />
-                    <Row title='Phổ biến trên Netflix' fetchUrl={requests.fetchTrending} className='my-9 w-screen mt-0' />
+                    <Row title='Phổ biến trên Netflix' fetchUrl={requests.fetchTrending} className='my-9 w-screen pt-4' />
                     <Row title='Phim chiếu rạp' fetchUrl={requests.fetchCinemaMovies} className='my-9 w-screen ' />
                     <Row title='Chỉ có trên Netflix' fetchUrl={requests.fetchNetflixOriginals} className='my-9 w-screen' />
                     <Row title='Phim hành động, kịch tính' fetchUrl={requests.fetchActionMovies} className='my-9 w-screen' />
