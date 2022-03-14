@@ -12,6 +12,10 @@ function Home() {
     const [title, setTitle] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
+        const title = 'Home'
+        document.title = `${title} - Netflix`
+    })
+    useEffect(() => {
         async function getBanner() {
             const randomBanner = Math.floor(Math.random() * 20)
             const baseUrl = 'https://api.themoviedb.org/3'
@@ -21,7 +25,7 @@ function Home() {
             // setTitle(data.title.toUpperCase()) // các api khác
             setTitle(data.name.toUpperCase()) //trường hợp Netflix original
             setOverView(data.overview)
-            console.log(data)
+            // console.log(data)
         }
         getBanner()
     }, [])
