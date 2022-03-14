@@ -8,16 +8,25 @@
 }
 .react-multiple-carousel__arrow--left{
     left: 0vw;
+    background: linear-gradient(271deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.45) 44%,hsla(0,0%,8%,.5));
+}
+.react-multiple-carousel__arrow--left:hover{
+    background: linear-gradient(271deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.45) 44%,hsla(0,0%,8%,.5));
 }
 .react-multiple-carousel__arrow--right{
     right: 0vw;
-    min-width: 4.7vw !important;
+    background: linear-gradient(90deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.45) 44%,hsla(0,0%,8%,.5));
+}
+.react-multiple-carousel__arrow--right:hover{
+    right: 0vw;
+    background: linear-gradient(90deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.45) 44%,hsla(0,0%,8%,.5));
 }
 .react-multiple-carousel__arrow{
     border-radius: 0rem;
     height: 100%;
-    min-width: 3.9vw;
+    min-width: 6vw;
 }
+
 .react-multiple-carousel__arrow:hover:before{
     transform: scale(2);
     font-weight: bold;

@@ -16,10 +16,12 @@ function Home() {
             const randomBanner = Math.floor(Math.random() * 20)
             const baseUrl = 'https://api.themoviedb.org/3'
             const results = await axios.get(baseUrl + requests.fetchNetflixOriginals)
-            const data = results.data.results[randomBanner != 10 ? randomBanner : 12]
+            const data = results.data.results[randomBanner]
             setBanner(data.backdrop_path)
-            setTitle(data.name.toUpperCase())
+            // setTitle(data.title.toUpperCase()) // các api khác
+            setTitle(data.name.toUpperCase()) //trường hợp Netflix original
             setOverView(data.overview)
+            console.log(data)
         }
         getBanner()
     }, [])
@@ -32,7 +34,7 @@ function Home() {
                     <div className="flex flex-col absolute bottom-1/3 ml-15">
                         <div className="text-white text-5.5 font-bold w-5/12 title-banner">{title}</div>
                         <div className="text-white font-normal w-1/3 text-1.4 mt-1vw">{overView}</div>
-                        <div className="flex flex-row mt-1.5vw">
+                        <div className="flex flex-row mt-1.5vw z-10">
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} />
                             <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
                         </div>

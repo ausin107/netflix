@@ -22,8 +22,9 @@
   transition: background-color .4s;
 }
 .banner-fade{
-  height: 7.4rem;
+  height: 45vh;
   background-image: linear-gradient(180deg,transparent,rgba(37,37,37,.61),#111);
+  z-index: 0;
 }
 .title-banner{
   -webkit-text-stroke-width: 1px;
