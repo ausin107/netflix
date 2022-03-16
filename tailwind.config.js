@@ -32,7 +32,10 @@ module.exports = {
         '1/2vh': '50vh',
         '40vh': '40vh',
         '37vh': '37vh',
-        '7vw': '7vw'
+        '7vw': '7vw',
+        '4.5vw': '4.5vw',
+        '3vw': '3vw',
+        '3.vw': '3.vw',
       },
       inset: {
         '19vh': '19vh',

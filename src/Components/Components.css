@@ -52,3 +52,14 @@
 .image{
     height: 100%;
 }
+.react-player{
+    width: 100% !important;
+    height: 100% !important;
+}
+.soundClass{
+    right: 7vw;
+    bottom: 17.5vw;
+    padding: 0.5vw;
+    border: white solid;
+    border-radius: 40px;
+}
