@@ -10,7 +10,7 @@ function Home() {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
-    const [videoId, setVideoId] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     const ref = useRef()
     useEffect(() => {
@@ -22,6 +22,7 @@ function Home() {
             const randomBanner = Math.floor(Math.random() * 20)
             const baseUrl = 'https://api.themoviedb.org/3'
             const tvVideoUrl = 'https://api.themoviedb.org/3/tv/'
+            const baseVideoEmbed = 'https://www.youtube.com/embed/'
             // const movieVideoUrl = 'https://api.themoviedb.org/3/moive/'
             const results = await axios.get(baseUrl + requests.fetchNetflixOriginals)
             const data = results.data.results[randomBanner]
@@ -34,13 +35,12 @@ function Home() {
             const trailerIndex = videoResult.data.results.find((item, index) => {
                 return item.type == "Trailer";
             })
-            setVideoId(trailerIndex.key)
+            setVideoUrl(baseVideoEmbed + trailerIndex.key)
             // console.log(videoResult.data.results)
             // console.log(trailerIndex)
         }
         getBanner()
     }, [])
-
     return (
         <>
             <div className="relative">
@@ -48,14 +48,14 @@ function Home() {
                     <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
                     <div className="flex flex-col absolute bottom-1/3 ml-15 z-10">
                         <div className="text-white text-5.5 font-bold w-5/12 title-banner">{title}</div>
-                        <div className="text-white font-normal w-1/3 text-1.4 mt-1vw">{overView}</div>
+                        <div ref={ref} className="text-white font-normal w-1/3 text-1.4 mt-1vw">{overView}</div>
                         <div className="flex flex-row mt-1.5vw">
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} />
                             <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
                         </div>
                     </div>
                     <div className="banner-fade absolute bottom-0 w-full" />
-                    <Video className='' videoId={videoId} />
+                    <Video className='' videoUrl={videoUrl} />
                 </div>
                 <div className="absolute overflow-hidden w-full" style={{ top: '40vw' }}>
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />

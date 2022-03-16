@@ -62,4 +62,5 @@
     padding: 0.5vw;
     border: white solid;
     border-radius: 40px;
+    position: absolute;
 }
