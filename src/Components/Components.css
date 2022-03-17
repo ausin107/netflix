@@ -64,3 +64,22 @@
     border-radius: 40px;
     position: absolute;
 }
+.bannerOverView{
+    visibility: hidden !important;
+    display: none;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+.bannerOverViewA{
+    visibility: visible;
+    opacity: 1;
+}
+.bannerText{
+    font-size: 3vw;
+    width: 100%;
+    /* transform: translateY(10vw); */
+    transition: font-size .6s linear, width .6s linear;
+}
+.bannerTextA{
+    transition: font-size .6s linear;
+}

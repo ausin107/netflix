@@ -12,7 +12,8 @@ function Home() {
     const [title, setTitle] = useState('')
     const [videoUrl, setVideoUrl] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
-    const ref = useRef()
+    const overViewRef = useRef()
+    const textRef = useRef()
     useEffect(() => {
         const title = 'Home'
         document.title = `${title} - Netflix`
@@ -47,15 +48,15 @@ function Home() {
                 <div>
                     <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
                     <div className="flex flex-col absolute bottom-1/3 ml-15 z-10">
-                        <div className="text-white text-5.5 font-bold w-5/12 title-banner">{title}</div>
-                        <div ref={ref} className="text-white font-normal w-1/3 text-1.4 mt-1vw">{overView}</div>
+                        <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner">{title}</div>
+                        <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{overView}</div>
                         <div className="flex flex-row mt-1.5vw">
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} />
                             <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
                         </div>
                     </div>
                     <div className="banner-fade absolute bottom-0 w-full" />
-                    <Video className='' videoUrl={videoUrl} />
+                    <Video className='' videoUrl={videoUrl} overViewRef={overViewRef.current} textRef={textRef.current} />
                 </div>
                 <div className="absolute overflow-hidden w-full" style={{ top: '40vw' }}>
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />
