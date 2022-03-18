@@ -81,5 +81,6 @@
     transition: font-size .6s linear, width .6s linear;
 }
 .bannerTextA{
-    transition: font-size .6s linear;
+    transition: font-size .6s linear, width .6s linear;
+
 }
