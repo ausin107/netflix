@@ -45,9 +45,9 @@
     transform: scale(1.4);
 }
 .trailer-modal{
-    -webkit-box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+    /* -webkit-box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
     -moz-box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
-    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px; */
 }
 .react-multi-carousel-list{
     overflow: unset !important;    
@@ -92,4 +92,9 @@
 .bannerTextA{
     transition: font-size .6s linear, width .6s linear;
 
+}
+.traileModalBtn{
+    /* padding: 4px 6px; */
+    border: rgba(255,255,255,.5) solid 2px;
+    border-radius: 15px;
 }

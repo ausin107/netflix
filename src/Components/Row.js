@@ -54,7 +54,7 @@ function Row({ title, fetchUrl, className }) {
                     movies.map(movie => {
                         return <div key={movie.id}>
                             <Image draggable={false} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
-                            <TrailerModal url={imgUrl + movie.backdrop_path} />
+                            <TrailerModal url={imgUrl + movie.backdrop_path} title={movie.title || movie.name} />
                         </div>
                     })
                 }
