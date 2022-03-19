@@ -39,7 +39,7 @@ function Home() {
                 else return videoResult.data.results[0]
             })
             setVideoUrl(baseVideoEmbed + trailerItem.key)
-            // console.log(movieVideoUrl + data.id + requests.fetchVideoOnly)
+            // console.log(videoUrl)
         }
         getBanner()
     }, [])

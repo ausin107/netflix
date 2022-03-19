@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import { Image } from "semantic-ui-react";
 import 'react-multi-carousel/lib/styles.css';
 import './Components.css'
+import TrailerModal from "./TrailerModal";
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -34,7 +35,7 @@ function Row({ title, fetchUrl, className }) {
         }
         fetchMovie()
     }, [fetchUrl])
-    
+
     return (
         <div className={className} >
             <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
@@ -51,8 +52,10 @@ function Row({ title, fetchUrl, className }) {
             >
                 {
                     movies.map(movie => {
-                        return <Image draggable={false}  key={movie.id} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
-                        // return <img className="w-1/6 px-0.2 rounded-md cursor-pointer" src={imgUrl + movie.poster_path} key={movie.id} />
+                        return <div key={movie.id}>
+                            <Image draggable={false} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
+                            <TrailerModal url={imgUrl + movie.backdrop_path} />
+                        </div>
                     })
                 }
             </Carousel>

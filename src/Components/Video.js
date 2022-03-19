@@ -16,6 +16,7 @@ function Video({ videoUrl, className, overViewRef, textRef }) {
     setVolume(0.3)
   }
   const handleProgress = () => {
+    // console.log(state.getDuration() - state.getCurrentTime())
     if (state.getDuration() - state.getCurrentTime() < 10) {
       setUrl('')
       overViewRef.classList.remove('bannerOverView')
@@ -34,8 +35,9 @@ function Video({ videoUrl, className, overViewRef, textRef }) {
   const handleError = () => {
     setUrl('')
   }
+  const newClass = `absolute w-full top-0 h-full ${className}`
   return (
-    <div className='absolute w-full top-0 h-full'>
+    <div className={newClass} >
       <ReactPlayer
         ref={videoRef}
         className="absolute react-player bottom-4vw pointer-events-none"
