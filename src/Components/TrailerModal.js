@@ -28,27 +28,27 @@ function TrailerModal({ className, imgUrl, title, movieId }) {
     return (
         <div className={newClass} >
             {/* <Video videoUrl={video + id} className='w-full h-full' /> */}
-            <img src={imgUrl} className='w-full rounded absolute top-0' />
-            <div className='w-full rounded bg-black' style={{ height: '86%' }}>
-                <div className='text-white absolute text-base font-sans font-bold pl-5' style={{ top: '39%' }}>{title}</div>
-                <div className='flex w-full h-1/2 absolute p-5' style={{ top: '42%' }}>
-                    <div className=' w-full h-full'>
-                        <FontAwesomeIcon icon={faPlay} size='sm' className=" text-black bg-white mr-2 cursor-pointer hover:opacity-70 traileModalBtn" style={{ padding: '4px 6px' }} />
-                        <FontAwesomeIcon icon={faPlus} size='sm' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
-                        <FontAwesomeIcon icon={faThumbsUp} size='sm' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
-                        <FontAwesomeIcon icon={faThumbsDown} size='sm' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
+            <div className='w-full rounded bg-black h-full flex flex-col'>
+                <img src={imgUrl} className='w-full rounded h-fit ' />
+                <div className='text-white text-2xl font-sans font-bold pl-5'>{title}</div>
+                <div className='flex w-full p-5' >
+                    <div className=' w-full'>
+                        <FontAwesomeIcon icon={faPlay} size='xl' className=" text-black bg-white mr-2 cursor-pointer hover:opacity-70 traileModalBtn" style={{ padding: '4px 6px' }} />
+                        <FontAwesomeIcon icon={faPlus} size='xl' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
+                        <FontAwesomeIcon icon={faThumbsUp} size='xl' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
+                        <FontAwesomeIcon icon={faThumbsDown} size='xl' className=" text-white p-1 mr-2 cursor-pointer hover:opacity-70 traileModalBtn" />
                     </div>
-                    <FontAwesomeIcon icon={faAngleDown} size='sm' className=" text-white cursor-pointer hover:opacity-70 traileModalBtn" style={{ padding: '4px 6px' }} />
+                    <FontAwesomeIcon icon={faAngleDown} size='xl' className=" text-white cursor-pointer hover:opacity-70 traileModalBtn" style={{ padding: '4px 6px' }} />
                 </div>
-                <div className='flex absolute pl-5' style={{ top: '60%' }}  >
-                    <div className=' text-xs text-green-500 font-bold' >Vote average: {vote * 10}%</div>
-                    <div className=' text-xs text-white ml-2 font-normal' >{runtime}</div>
+                <div className='flex pl-5' >
+                    <div className=' text-lg text-green-500 font-bold' >Vote average: {vote * 10}%</div>
+                    <div className=' text-lg text-white ml-2 font-normal tracking-wide' >{runtime}</div>
                 </div>
-                <ul className='flex absolute pl-5' style={{ top: '70%' }}  >
+                <ul className='flex pl-5 mt-5' >
                     {filmType.map((item, index) => {
                         if (index < 3) return (
-                            <li className='text-xs text-white font-semibold mr-1' key={item.id}>{item.name}
-                                <span className='text-xs text-white font-semibold'>{index != (filmType.length - 1) && index != 2 && ' -'}</span>
+                            <li className='text-base text-white font-semibold mr-1 tracking-wide' key={item.id}>{item.name}
+                                <span className='text-base text-white font-semibold'>{index != (filmType.length - 1) && index != 2 && ' -'}</span>
                             </li>
                         )
                     })}

@@ -1,7 +1,6 @@
-import { useEffect, useState, Suspense, useRef, lazy } from "react";
+import { useEffect, useState, useRef, } from "react";
 import axios from 'axios'
 import Carousel from "react-multi-carousel";
-import { Image } from "semantic-ui-react";
 import 'react-multi-carousel/lib/styles.css';
 import './Components.css'
 import TrailerModal from "./TrailerModal";
@@ -26,8 +25,8 @@ function Row({ title, fetchUrl, className }) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
+    const [delay, setDelay] = useState()
     const traileModalRef = useRef([])
-    const childRef = useRef([])
     const [hover, setHover] = useState(false)
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
@@ -50,7 +49,7 @@ function Row({ title, fetchUrl, className }) {
                 slidesToSlide={5.75}
                 containerClass="mt-4"
                 // infinite={true}
-                itemClass="image-item movie "
+                itemClass="image-item movie"
                 responsive={responsive}
                 className="pl-3.4vw"
                 swipeable
@@ -58,16 +57,24 @@ function Row({ title, fetchUrl, className }) {
             >
                 {
                     movies.map((movie, index) => {
+
                         const handleHover = () => {
-                            setHover(true)
+                            setTimeout(() => {
+                                setHover(true)
+                            }, 1000)
                         }
-                        return <div key={movie.id} onMouseOver={() => handleHover()} >
-                            <div ref={ref => traileModalRef.current[index] = ref}>
-                                <Image draggable={false} className="rounded-md cursor-pointer" src={imgUrl + movie.poster_path} />
-                                {/* <span ref={ref => childRef.current[index] = ref}  className=" hidden">{movie.name || movie.title}</span> */}
+                        const handleNotHover = () => {
+                            // clearTimeout(delay)
+                            // setHover(false) 
+                        }
+                        return (
+                            <div key={movie.id} onMouseOver={() => handleHover()} onMouseOut={() => handleNotHover()} className='test'>
+                                <div className={hover && 'image'} >
+                                    <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
+                                </div>
                                 {hover && <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} />}
                             </div>
-                        </div>
+                        )
                     })
                 }
             </Carousel>
