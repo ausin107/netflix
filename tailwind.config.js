@@ -43,7 +43,11 @@ module.exports = {
       },
       fontSize: {
         '1.4': '1.4vw',
-        '5.5': '5.5vw'
+        '5.5': '5.5vw',
+        '1.5vw': '1.5vw',
+        '1vw': '1vw',
+        '1.2vw': '1.2vw',
+        '1.3vw': '1.3vw',
       },
       colors: {
         'buttonColor' : 'rgba(109,109,110,0.7)',

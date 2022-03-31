@@ -25,7 +25,7 @@ function Row({ title, fetchUrl, className }) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
-    const [delay, setDelay] = useState()
+    const [handleDelay, setHandleDelay] = useState()
     const traileModalRef = useRef([])
     const [hover, setHover] = useState(false)
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
@@ -40,6 +40,15 @@ function Row({ title, fetchUrl, className }) {
     }, [fetchUrl])
 
     // console.log(traileModalRef.current) 
+    const handleHover = () => {
+        setHandleDelay(setTimeout(() => {
+           setHover(true)
+        }, 600))
+    }
+    const handleNotHover = () => {
+        clearTimeout(handleDelay)
+        setHover(false)
+    }
     return (
         <div className={className} >
             <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
@@ -57,18 +66,8 @@ function Row({ title, fetchUrl, className }) {
             >
                 {
                     movies.map((movie, index) => {
-
-                        const handleHover = () => {
-                            setTimeout(() => {
-                                setHover(true)
-                            }, 1000)
-                        }
-                        const handleNotHover = () => {
-                            // clearTimeout(delay)
-                            // setHover(false) 
-                        }
                         return (
-                            <div key={movie.id} onMouseOver={() => handleHover()} onMouseOut={() => handleNotHover()} className='test'>
+                            <div key={movie.id} onMouseEnter={() => handleHover()} onMouseLeave={() => handleNotHover()}>
                                 <div className={hover && 'image'} >
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                 </div>
