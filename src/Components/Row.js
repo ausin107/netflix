@@ -31,18 +31,22 @@ function Row({ title, fetchUrl, className }) {
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
         async function fetchMovie() {
-            const baseUrl = 'https://api.themoviedb.org/3'
-            const request = await axios.get(baseUrl + fetchUrl)
-            setMovies(request.data.results)
-            // console.log(movies) 
+            try{
+                const baseUrl = 'https://api.themoviedb.org/3'
+                const request = await axios.get(baseUrl + fetchUrl)
+                setMovies(request.data.results)
+                // console.log(movies) 
+            } catch(error){
+                // console.log(error)
+            }
         }
         fetchMovie()
     }, [fetchUrl])
 
-    // console.log(traileModalRef.current) 
-    const handleHover = () => {
+    // console.log(typeof className) 
+    const handleHover = (movieId) => {
         setHandleDelay(setTimeout(() => {
-           setHover(true)
+           setHover(movieId)
         }, 600))
     }
     const handleNotHover = () => {
@@ -66,12 +70,14 @@ function Row({ title, fetchUrl, className }) {
             >
                 {
                     movies.map((movie, index) => {
+                        
                         return (
-                            <div key={movie.id} onMouseEnter={() => handleHover()} onMouseLeave={() => handleNotHover()}>
-                                <div className={hover && 'image'} >
+                            <div key={movie.id} onMouseEnter={() => handleHover(movie.id)} onMouseLeave={() => handleNotHover()}>
+                                <div className={hover ==movie.id ? 'image' : ''} >
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                 </div>
-                                {hover && <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} />}
+                                {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
+                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id    } /> : ''}
                             </div>
                         )
                     })

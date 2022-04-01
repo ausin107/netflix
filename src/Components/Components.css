@@ -54,13 +54,15 @@
         transform: scale(0.5);
     }
 }
-/* .image-item{
+.test{
     transform-origin: center center;
     animation: trailerModalClose ease .3s;
     will-change: transform,opacity;
-} */
+
+}
 .image-item:hover .trailer-modal{
     display: block ;
+    
 }
 
 .trailer-modal{

@@ -4,7 +4,6 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
 import requests, { baseUrl } from '../Pages/request'
-// import { v4 as uuidv4 } from 'uuid';
 
 function TrailerModal({ className, imgUrl, title, movieId }) {
     const [runtime, setRuntime] = useState()
@@ -15,16 +14,20 @@ function TrailerModal({ className, imgUrl, title, movieId }) {
     // console.log(`${baseUrl}/movie/${movieId}${requests.fetchMovieDetail}`)
     useEffect(() => {
         async function getDetail() {
-            const results = await axios.get(url)
-            const data = results.data
-            const finalTime = `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m`
-            setFilmType(data.genres)
-            setRuntime(finalTime)
-            setVote(data.vote_average)
-            // console.log(filmType)
+            try{
+                const results = await axios.get(url)
+                const data = results.data
+                const finalTime = `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m`
+                setFilmType(data.genres)
+                setRuntime(finalTime)
+                setVote(data.vote_average)
+                // console.log(filmType)
+            } catch(error){
+                // console.log(error)
+            }
         }
         getDetail()
-    })
+    }, [movieId])
     return (
         <div className={newClass} >
             {/* <Video videoUrl={video + id} className='w-full h-full' /> */}
