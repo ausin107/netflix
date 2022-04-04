@@ -1,13 +1,13 @@
 import './Components.css'
-import { VolumeUpIcon, VolumeOffIcon } from '@heroicons/react/outline'
-import { useReducer, useRef, useState } from "react";
+import { VolumeUpIcon, VolumeOffIcon, ViewGridIcon } from '@heroicons/react/outline'
+import { useReducer, useRef, useState,forwardRef } from "react";
 import ReactPlayer from "react-player";
 
-function Video({ videoUrl, className, overViewRef, textRef }) {
+function Video({ videoUrl, className, overViewRef, textRef }, ref) {
   const [mute, setMute] = useState(true);
   const [volume, setVolume] = useState(0);
   const [url, setUrl] = useState()
-  const videoRef = useRef();
+  const videoRef = useRef()
   const volumeRef = useRef()
   const state = videoRef.current
   const handleClick = () => {
@@ -60,4 +60,6 @@ function Video({ videoUrl, className, overViewRef, textRef }) {
     </div>
   )
 }
-export default Video
+const videoRef = forwardRef(Video)
+export default videoRef
+// export default Video

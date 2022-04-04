@@ -11,13 +11,16 @@ function Home() {
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
     const [videoUrl, setVideoUrl] = useState('')
+    const [playVideo, setPlayVideo] = useState(false)
+    var [runtime, setRunTime] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     const overViewRef = useRef()
     const textRef = useRef()
+    const videoRef = useRef()
     useEffect(() => {
         const title = 'Home'
         document.title = `${title} - Netflix`
-    })
+    }, [])
     useEffect(() => {
         async function getBanner() {
             try {
@@ -41,12 +44,16 @@ function Home() {
                 })
                 setVideoUrl(baseVideoEmbed + trailerItem.key)
                 // console.log(videoResult)
-            }catch(error){
+            } catch (error) {
                 // console.log(error)
             }
         }
         getBanner()
     }, [])
+    const handlePlay = () => {
+        setPlayVideo(true)
+    }
+
     return (
         <>
             <div className="relative">
@@ -56,12 +63,12 @@ function Home() {
                         <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner bannerTextA">{title}</div>
                         <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{overView}</div>
                         <div className="flex flex-row mt-1.5vw">
-                            <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} />
+                            <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
                             <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
                         </div>
                     </div>
                     <div className="banner-fade absolute bottom-0 w-full" />
-                    <Video className='' videoUrl={videoUrl} overViewRef={overViewRef.current} textRef={textRef.current} />
+                    <Video className='' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} ref={videoRef}/>
                 </div>
                 <div className="absolute overflow-hidden w-full" style={{ top: '40vw' }}>
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />

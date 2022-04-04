@@ -77,7 +77,7 @@ function Row({ title, fetchUrl, className }) {
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                 </div>
                                 {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
-                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id    } /> : ''}
+                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} /> : ''}
                             </div>
                         )
                     })
