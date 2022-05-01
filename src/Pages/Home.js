@@ -3,7 +3,7 @@ import Row from "../Components/Row"
 import Footer from "../Components/Footer"
 import requests from "./request"
 import Banner from "../Components/Banner"
-
+import DetailModal from "../Components/DetailModal"
 function Home() {
     
     useEffect(() => {
@@ -27,6 +27,7 @@ function Home() {
                     <Row title='Chương trình truyền hình hành động & phiêu lưu kịch tính' fetchUrl={requests.fetchDramaMovies} className='my-9 w-screen pb-7vw' />
                     <Footer />
                 </div>
+                <DetailModal />
             </div>
         </>
     )

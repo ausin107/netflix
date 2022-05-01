@@ -36,12 +36,12 @@ function TrailerModal({ className, imgUrl, title, movieId }) {
                 <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw'>{title}</div>
                 <div className='flex w-full p-1.5vw' >
                     <div className=' w-full'>
-                        <FontAwesomeIcon icon={faPlay} className=" text-black mr-0.5 cursor-pointer hover:opacity-70 traileModalBtn bg-white text-1.5vw" style={{ padding: '4px 6px' }} />
-                        <FontAwesomeIcon icon={faPlus} className=" text-white p-1 mr-0.5 cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
-                        <FontAwesomeIcon icon={faThumbsUp} className=" text-white p-1 mr-0.5 cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
-                        <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-1 mr-0.5 cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
+                        <FontAwesomeIcon icon={faPlay} className=" text-black p-0.5vw px-0.7vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn bg-white text-1.5vw" />
+                        <FontAwesomeIcon icon={faPlus} className=" text-white p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
+                        <FontAwesomeIcon icon={faThumbsUp} className=" text-white p-0.5vw px-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
+                        <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                     </div>
-                    <FontAwesomeIcon icon={faAngleDown} className=" text-white cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" style={{ padding: '4px 6px' }} />
+                    <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                 </div>
                 <div className='flex pl-1.5vw ' >
                     <div className=' text-1.2vw text-green-500 font-bold' >Vote average: {vote * 10}%</div>
