@@ -39,6 +39,7 @@ module.exports = {
         '7vw': '7vw',
         '4.5vw': '4.5vw',
         '3vw': '3vw',
+        '2vw': '2vw',
         '3.vw': '3.vw',
         '3/5vw': '60vw',
         '65vh': '65vh',

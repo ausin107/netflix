@@ -21,7 +21,7 @@ const responsive = {
         paritialVisibilityGutter: 30
     }
 };
-function Row({ title, fetchUrl, className }) {
+function Row({ title, fetchUrl, className, apiType }) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
@@ -35,7 +35,6 @@ function Row({ title, fetchUrl, className }) {
                 const baseUrl = 'https://api.themoviedb.org/3'
                 const request = await axios.get(baseUrl + fetchUrl)
                 setMovies(request.data.results)
-                // console.log(movies) 
             } catch(error){
                 // console.log(error)
             }
@@ -65,7 +64,7 @@ function Row({ title, fetchUrl, className }) {
                 itemClass="image-item movie"
                 responsive={responsive}
                 className="pl-3.4vw"
-                swipeable
+                // swipeable
                 removeArrowOnDeviceType={["tablet", "mobile"]}
             >
                 {
@@ -77,7 +76,7 @@ function Row({ title, fetchUrl, className }) {
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                 </div>
                                 {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
-                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} /> : ''}
+                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> : ''}
                             </div>
                         )
                     })
