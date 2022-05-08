@@ -17,15 +17,15 @@ function Home() {
                 <Banner />
                 <div className="absolute w-full overflow-hidden" style={{ top: '40vw' }}>
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />
-                    <Row title='Phổ biến trên Netflix' fetchUrl={requests.fetchTrending} apiType='movieApi' className='my-9 w-screen pt-4' />
-                    <Row title='Phim chiếu rạp' fetchUrl={requests.fetchCinemaMovies} apiType='movieApi' className='my-9 w-screen ' />
-                    <Row title='Chỉ có trên Netflix' fetchUrl={requests.fetchNetflixOriginals} apiType='tvApi' className='my-9 w-screen' /> 
+                    <Row title='Trending Now' fetchUrl={requests.fetchTrending} apiType='movieApi' className='my-9 w-screen pt-4' />
+                    <Row title='Cinema Movies' fetchUrl={requests.fetchCinemaMovies} apiType='movieApi' className='my-9 w-screen ' />
+                    <Row title='Only on Netflix' fetchUrl={requests.fetchNetflixOriginals} apiType='tvApi' className='my-9 w-screen' /> 
                     {/* Netflix originals apiType == tv other == movie */}
-                    <Row title='Phim hành động, kịch tính' fetchUrl={requests.fetchActionMovies} apiType='movieApi' className='my-9 w-screen' />
-                    <Row title='Phim hoạt hình' fetchUrl={requests.fetchAnimationMovies} apiType='movieApi' className='my-9 w-screen' />
-                    <Row title='Khoa học viễn tưởng & siêu nhiên' fetchUrl={requests.fetchSienceFictionMovies} apiType='movieApi' className='my-9 w-screen' />
-                    <Row title='Phim kinh dị' fetchUrl={requests.fetchHorrorMovies} apiType='movieApi' className='my-9 w-screen' />
-                    <Row title='Chương trình truyền hình hành động & phiêu lưu kịch tính' fetchUrl={requests.fetchDramaMovies} apiType='movieApi' className='my-9 w-screen pb-7vw' />
+                    <Row title='Action Movies' fetchUrl={requests.fetchActionMovies} apiType='movieApi' className='my-9 w-screen' />
+                    <Row title='Children & Family TV' fetchUrl={requests.fetchAnimationMovies} apiType='movieApi' className='my-9 w-screen' />
+                    <Row title='Sci-Fi & Supernatural' fetchUrl={requests.fetchSienceFictionMovies} apiType='movieApi' className='my-9 w-screen' />
+                    <Row title='Horror Movies' fetchUrl={requests.fetchHorrorMovies} apiType='movieApi' className='my-9 w-screen' />
+                    <Row title='Drama Movies' fetchUrl={requests.fetchDramaMovies} apiType='movieApi' className='my-9 w-screen pb-7vw' />
                     <Footer />
                 </div>
             </div>

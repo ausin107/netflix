@@ -47,10 +47,11 @@ function Row({ title, fetchUrl, className, apiType }) {
         setHandleDelay(setTimeout(() => {
            setHover(movieId)
         }, 600))
+        
     }
     const handleNotHover = () => {
         clearTimeout(handleDelay)
-        setHover(false)
+        // setHover(false)
     }
     return (
         <div className={className} >
@@ -77,6 +78,7 @@ function Row({ title, fetchUrl, className, apiType }) {
                                 </div>
                                 {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
                                 {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> : ''}
+                                {/* <TrailerModal hover={movie.id} handleNotHover={handleNotHover} className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> x */}
                             </div>
                         )
                     })

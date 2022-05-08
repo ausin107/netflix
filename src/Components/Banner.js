@@ -54,12 +54,12 @@ function Banner() {
                 <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner bannerTextA">{title}</div>
                 <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{overView}</div>
                 <div className="flex flex-row mt-1.5vw">
-                    <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
-                    <Button className='text-white bg-buttonColor font-semibold' title='Thông tin khác' icon={2} />
+                    <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
+                    <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />
                 </div>
             </div>
             <div className="banner-fade absolute bottom-0 w-full" />
-            <Video className='' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} ref={videoRef} />
+            <Video className='' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} />
         </div>
     )
 }

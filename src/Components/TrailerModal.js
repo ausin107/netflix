@@ -34,11 +34,11 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType }) {
     }, [movieId])
     const handleClick = () => {
         setIsShow(true)
-        document.getElementById('container').classList.add('overflow-y-hidden','h-screen')
+        document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
     }
     const handleClose = () => {
         setIsShow(false)
-        document.getElementById('container').classList.remove('overflow-y-hidden','h-screen')
+        document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
     }
     return (
         <div className={newClass} >
@@ -53,7 +53,7 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType }) {
                         <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                     </div>
                     <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" onClick={handleClick} />
-                    <DetailModal detailUrl={url} apiType={apiType} onShow={isShow} onClose={handleClose} /> 
+                    <DetailModal detailUrl={url} apiType={apiType} onShow={isShow} onClose={handleClose} />
                 </div>
                 <div className='flex pl-1.5vw ' >
                     <div className=' text-1.2vw text-green-500 font-bold' >Vote average: {vote * 10}%</div>

@@ -1,6 +1,6 @@
 import './Components.css'
 import { VolumeUpIcon, VolumeOffIcon, ViewGridIcon } from '@heroicons/react/outline'
-import { useReducer, useRef, useState,forwardRef } from "react";
+import { useReducer, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
@@ -55,7 +55,7 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
         onError={handleError}
         onPause={handleError}
       />
-      <button ref={volumeRef} className={volumnClassName}  onClick={handleClick}>
+      <button ref={volumeRef} className={volumnClassName} onClick={handleClick}>
         {
           mute == true ? <VolumeOffIcon  className='w-1.5vw' /> : <VolumeUpIcon className=' w-1.5vw' />
         }
@@ -63,6 +63,6 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
     </div>
   )
 }
-const videoRef = forwardRef(Video)
-export default videoRef
-// export default Video
+// const videoRef = forwardRef(Video)
+// export default videoRef
+export default Video

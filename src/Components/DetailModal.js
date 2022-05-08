@@ -54,11 +54,11 @@ function DetailModal({ detailUrl, apiType, onClose, onShow }) {
     }
     if (!onShow) return null
     return ReactDom.createPortal(
-        <div className='fixed w-screen flex h-screen justify-center bg-backgroundColorOpa top-0 '>
-            <div className=' w-3/5vw bg-backgroundColor h-65vh mt-2vw flex relative overflow-hidden rounded-md'>
+        <div className='fixed w-screen flex h-screen justify-center bg-backgroundColorOpa top-0' onClick={onClose}>
+            <div className=' w-3/5vw bg-backgroundColor h-65vh mt-2vw flex relative overflow-hidden rounded-md' onClick={(e) => e.stopPropagation(e)}>
                 <div className=' absolute'>
                     <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
-                    <FontAwesomeIcon icon={faXmark} className="absolute top-0 right-0 text-slate-300 p-0.5vw cursor-pointer hover:opacity-70 bg-black rounded-full z-50" style={{ width: '1.5vw', height: '1.5vw', margin: '1vw' }} onClick={onClose}/>
+                    <FontAwesomeIcon icon={faXmark} onClick={onClose} className="absolute top-0 right-0 text-slate-300 p-0.5vw cursor-pointer hover:opacity-70 bg-black rounded-full z-50" style={{ width: '1.5vw', height: '1.5vw', margin: '1vw' }}/>
                     <div className="detailModalFade absolute bottom-0 w-full" />
                 </div>
                 <div className="flex flex-col absolute bottom-1/5 ml-15 z-10">
@@ -69,7 +69,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow }) {
                         <FontAwesomeIcon icon={faThumbsUp} className=" text-slate-100 p-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw" />
                     </div>
                 </div>
-                <Video className='customVideo' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} volumnClass={volumeClassName} ref={videoRef} />
+                <Video className='customVideo' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} volumnClass={volumeClassName} />
             </div>
         </div>, document.getElementById('DetailModal')
     )

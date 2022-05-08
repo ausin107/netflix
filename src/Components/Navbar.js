@@ -26,15 +26,15 @@ function Navbar() {
                 <Link to='/browse' className='mr-1'>
                     <img className='h-7 w-24' src={logo} />
                 </Link>
-                <Link to='/browse' className='ml-4 text-white'>Trang chủ</Link>
-                <Link to='/browse' className='ml-4'>Phim T.hình</Link>
-                <Link to='/browse' className='ml-4'>Phim</Link>
-                <Link to='/browse' className='ml-4'>Mới & Phổ biến</Link>
-                <Link to='/browse' className='ml-4'>Danh sách của tôi</Link>
+                <Link to='/browse' className='ml-4 text-white'>Home</Link>
+                <Link to='/browse' className='ml-4'>TV Shows</Link>
+                <Link to='/browse' className='ml-4'>Movies</Link>
+                <Link to='/browse' className='ml-4'>New & Popular</Link>
+                <Link to='/browse' className='ml-4'>My List</Link>
             </div>
             <div className='flex items-center text-neutral-200 justify-end w-80'>
                 <SearchIcon className='font-bold h-7 mr-4' />
-                <Link to='/browse' className='mr-4'>Trẻ em</Link>
+                <Link to='/browse' className='mr-4'>Kids</Link>
                 <BellIcon className='font-bold h-7 mr-4' />
                 <div className='flex flex-row items-center'>
                     <img className='rounded' src={user} />
