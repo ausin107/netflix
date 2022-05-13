@@ -10,7 +10,7 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
   const videoRef = useRef()
   const volumeRef = useRef()
   const state = videoRef.current
-  const containerClass = `absolute w-full bottom-4vw h-full ${className}`
+  const containerClass = `absolute w-full h-full ${className}`
   const volumnClassName = `text-white text-lg z-20 soundClass hidden ${volumnClass}`
   const handleClick = () => {
     const check = mute == true ? false : true;

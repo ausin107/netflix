@@ -144,6 +144,6 @@
     bottom: 0;
 }
 .customVideo div{
-    height: 120% !important;
-    top: -120px;
+    height: 100%;
+    
 }

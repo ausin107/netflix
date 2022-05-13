@@ -59,7 +59,7 @@ function Banner() {
                 </div>
             </div>
             <div className="banner-fade absolute bottom-0 w-full" />
-            <Video className='' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} />
+            <Video className='bottom-4vw' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} />
         </div>
     )
 }

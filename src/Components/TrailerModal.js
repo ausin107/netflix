@@ -13,6 +13,7 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType }) {
     const [onClick, setOnClick] = useState(false)
     const [isShow, setIsShow] = useState(false)
     const url = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}${requests.fetchVideoDetail}`
+    const creditsUrl = apiType == 'movieApi' ? `${baseUrl}/movie/credits${movieId}${requests.fetchVideoDetail}` : `${baseUrl}/tv/credits${movieId}${requests.fetchVideoDetail}`
     const newClass = `trailer-modal hidden absolute top-0 h-full w-full ${className}`
     useEffect(() => {
         async function getDetail() {
@@ -53,7 +54,7 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType }) {
                         <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                     </div>
                     <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" onClick={handleClick} />
-                    <DetailModal detailUrl={url} apiType={apiType} onShow={isShow} onClose={handleClose} />
+                    <DetailModal detailUrl={url} creditsUrl={creditsUrl} apiType={apiType} onShow={isShow} onClose={handleClose} />
                 </div>
                 <div className='flex pl-1.5vw ' >
                     <div className=' text-1.2vw text-green-500 font-bold' >Vote average: {vote * 10}%</div>
