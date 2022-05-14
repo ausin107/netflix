@@ -21,7 +21,7 @@ const responsive = {
         paritialVisibilityGutter: 30
     }
 };
-function Row({ title, fetchUrl, className, apiType }) {
+function Row({ title, fetchUrl, className, apiType, moviesGenre }) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
@@ -77,7 +77,7 @@ function Row({ title, fetchUrl, className, apiType }) {
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                 </div>
                                 {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
-                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> : ''}
+                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} moviesRank={index} moviesGenre={moviesGenre} /> : ''}
                                 {/* <TrailerModal hover={movie.id} handleNotHover={handleNotHover} className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> x */}
                             </div>
                         )

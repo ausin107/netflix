@@ -2,6 +2,9 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
+      width: {
+        '7/20': '35%',
+      },
       height: {
         '8vh': '80vh',
         '17': '4.25rem',
@@ -21,7 +24,7 @@ module.exports = {
       },
       spacing: {
         '15': '3.75rem',
-        '0.2': '0.2vw',
+        '0.2vw': '0.2vw',
         '1.5vw': '1.5vw',
         '1vw': '1vw',
         '0.5vw': '0.5vw',
@@ -33,6 +36,7 @@ module.exports = {
         '3.4vw': '3.9vw',
         '1/3vh': '33.333vh',
         '4vw': '4vw',
+        '5vw': '5vw',
         '1/2vh': '50vh',
         '40vh': '40vh',
         '37vh': '37vh',
