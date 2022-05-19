@@ -25,13 +25,15 @@ module.exports = {
       spacing: {
         '15': '3.75rem',
         '0.2vw': '0.2vw',
-        '1.5vw': '1.5vw',
-        '1vw': '1vw',
+        '0.3vw': '0.3vw',
+        '0.4vw': '0.4vw',
         '0.5vw': '0.5vw',
         '0.6vw': '0.6vw',
         '0.7vw': '0.7vw',
         '0.8vw': '0.8vw',
         '0.9vw': '0.9vw',
+        '1vw': '1vw',
+        '1.5vw': '1.5vw',
         '1.6vw': '1.6vw',
         '3.4vw': '3.9vw',
         '1/3vh': '33.333vh',
@@ -65,7 +67,9 @@ module.exports = {
       colors: {
         'buttonColor' : 'rgba(109,109,110,0.7)',
         'backgroundColor':  '#0d0e0e',
-        'backgroundColorOpa': 'rgba(	13, 14, 14,0.7)'
+        'backgroundColorOpa': 'rgba(	13, 14, 14,0.7)',
+        'detailModalVideoColor': '#2f2f2f',
+        'detailModalBGColor': '#181818'
       }
     },
   },
