@@ -4,7 +4,7 @@ function VideoCard({videoInfor}){
     
     return (
         <div>
-
+            
         </div>
     )
 }

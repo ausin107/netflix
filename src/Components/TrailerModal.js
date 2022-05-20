@@ -42,11 +42,14 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
         setIsShow(false)
         document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
     }
+    const handleTitle = () => {
+        return title.length < 20 ? title : `${title.slice(0,20)}...`
+    }
     return (
         <div className={newClass} >
             <div className='w-full rounded bg-black h-full flex flex-col'>
                 <img src={imgUrl} className='w-full rounded h-fit ' />
-                <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw'>{title}</div>
+                <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw'>{handleTitle()}</div>
                 <div className='flex w-full p-1.5vw' >
                     <div className=' w-full'>
                         <FontAwesomeIcon icon={faPlay} className=" text-black p-0.5vw px-0.7vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn bg-white text-1.5vw" />

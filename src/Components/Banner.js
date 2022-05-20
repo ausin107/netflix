@@ -47,12 +47,15 @@ function Banner() {
     const handlePlay = () => {
         setPlayVideo(true)
     }
+    const handleOverView = () => {
+        return overView.length > 150 ? `${overView.slice(0,`150`)}...` : overView
+    }
     return (
         <div>
             <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
             <div className="flex flex-col absolute bottom-1/3 ml-15 z-10">
                 <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner bannerTextA">{title}</div>
-                <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{overView}</div>
+                <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{handleOverView()}</div>
                 <div className="flex flex-row mt-1.5vw">
                     <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
                     <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />

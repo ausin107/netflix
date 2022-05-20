@@ -66,7 +66,6 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
         setVolumeClassName('DetailVolumnClass')
     }
     const handleDate = () => {
-
         if (apiType == 'movieApi') {
             releaseDate = data.release_date
         } else {
