@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import './Components.css'
 import TrailerModal from "./TrailerModal";
+import logo from '../assets/netflixLogo2.png'
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -21,7 +22,7 @@ const responsive = {
         paritialVisibilityGutter: 30
     }
 };
-function Row({ title, fetchUrl, className, apiType, moviesGenre }) {
+function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix}) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
@@ -31,27 +32,25 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre }) {
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
         async function fetchMovie() {
-            try{
+            try {
                 const baseUrl = 'https://api.themoviedb.org/3'
                 const request = await axios.get(baseUrl + fetchUrl)
                 setMovies(request.data.results)
-            } catch(error){
-                // console.log(error)
+            } catch (error) {
+
             }
         }
         fetchMovie()
     }, [fetchUrl])
 
-    // console.log(typeof className) 
     const handleHover = (movieId) => {
         setHandleDelay(setTimeout(() => {
-           setHover(movieId)
+            setHover(movieId)
         }, 600))
-        
+
     }
     const handleNotHover = () => {
         clearTimeout(handleDelay)
-        // setHover(false)
     }
     return (
         <div className={className} >
@@ -70,15 +69,13 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre }) {
             >
                 {
                     movies.map((movie, index) => {
-                        
                         return (
                             <div key={movie.id} onMouseEnter={() => handleHover(movie.id)} onMouseLeave={() => handleNotHover()}>
-                                <div className={hover ==movie.id ? 'image' : ''} >
+                                <div className={hover == movie.id ? 'image' : ''} style={{position: 'relative'}} >
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
+                                    {isNetflix == true ? <img src={logo} className='absolute top-0 left-0 mx-0.1vw my-0.4vw' style={{width: '1.4vw', height: '1.2vw'}} /> : '' }
                                 </div>
-                                {/* TrailerModal fetch when hover === movie.id (each movie will return their unique id) => decrease times of fecth data*/}
                                 {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} moviesRank={index} moviesGenre={moviesGenre} /> : ''}
-                                {/* <TrailerModal hover={movie.id} handleNotHover={handleNotHover} className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} /> x */}
                             </div>
                         )
                     })

@@ -19,7 +19,7 @@ function Home() {
                     <div className="w-full absolute h-full bg-backgroundColor -z-10" />
                     <Row title='Trending Now' fetchUrl={requests.fetchTrending} apiType='movieApi' moviesGenre='Trending Movie' className='my-9 w-screen pt-4' />
                     <Row title='Cinema Movies' fetchUrl={requests.fetchCinemaMovies} apiType='movieApi' moviesGenre='Cinema Movie' className='my-9 w-screen ' />
-                    <Row title='Only on Netflix' fetchUrl={requests.fetchNetflixOriginals} apiType='tvApi' moviesGenre='Netflix TV Shows' className='my-9 w-screen' /> 
+                    <Row title='Only on Netflix' fetchUrl={requests.fetchNetflixOriginals} apiType='tvApi' moviesGenre='Netflix TV Shows' className='my-9 w-screen' isNetflix={true} /> 
                     {/* Netflix originals apiType == tv other == movie */}
                     <Row title='Action Movies' fetchUrl={requests.fetchActionMovies} apiType='movieApi' moviesGenre='Action Movie' className='my-9 w-screen' />
                     <Row title='Children & Family TV' fetchUrl={requests.fetchAnimationMovies} apiType='movieApi' moviesGenre='Children & Family TV Shows' className='my-9 w-screen' />

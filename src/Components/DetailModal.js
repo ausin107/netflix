@@ -37,7 +37,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                 setRelatedUrl(similarUrl)
                 // const creditsData = creditsResult.data.cast
                 setActors(creditsResult.data.cast)
-                // console.log(creditsResult.data.cast)
+                console.log(creditsResult)
                 const data = results.data
                 setGenres(data.genres)
                 setBanner(data.backdrop_path)
@@ -88,7 +88,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
         <div className='fixed top-0 w-screen h-screen flex justify-center bg-backgroundColorOpa overflow-y-scroll' onClick={onClose}>
             <div className='w-3/5vw mt-2vw flex relative top-0 h-fit flex-col rounded-md bg-detailModalBGColor ' onClick={(e) => e.stopPropagation(e)}>
                 <div className='relative'>
-                    <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
+                    <img className='bg-center bg-cover w-full max-h-full rounded' src={bannerUrl + banner} alt='Banner image' />
                     <div className='flex flex-col absolute bottom-1/5 ml-15 z-10'>
                         <div ref={textRef} className='text-white font-bold w-full title-banner bannerTextA' style={{ fontSize: '2vw' }}>{title}</div>
                         <div className='flex flex-row mt-1.5vw items-center'>
@@ -103,10 +103,11 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                 </div>
                 <div className='z-10 mx-4vw flex flex-row mt-0.5vw'>
                     <div className='w-3/5 h-full flex flex-col justify-evenly'>
-                        <div className='flex flex-row my-0.2vw'>
+                        <div className='flex flex-row my-0.2vw items-center'>
                             <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
                             <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{releaseDate.slice(0, 4)}</div>
-                            <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{handleTime()}</div>
+                            <div className='text-white px-0.5vw mx-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}>{data.adult == true ? '18+' : '16+'}</div>
+                            <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
                         </div>
                         {
                             moviesRank < 9 ?
@@ -159,6 +160,56 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                     </div>
                 </div>
                 <RelatedVideo relatedUrl={relatedUrl} />
+                <div className='mx-4vw mt-4vw mb-2vw'>
+                    <div className='text-2xl text-white font-semibold'>About
+                        <span className='font-bold ml-0.5vw'>
+                            {title}
+                        </span>
+                    </div>
+                    <div className='w-full h-full flex flex-col justify-between'>
+                        <div className='font-normal mb-0.5vw mt-1vw' style={{ color: '#777' }}>
+                            Director:
+                            <span className='text-white font-normal hover:cursor-pointer hover:decoration-2 hover:underline'>
+                                {' Null'}
+                            </span>
+                        </div>
+                        <div className='font-normal my-0.5vw' style={{ color: '#777' }}>
+                            Cast:
+                            <span className='text-white font-normal hover:cursor-pointer'>
+                                {
+                                    actors.map((actor, index) => {
+                                        if (index == 9) {
+                                            return <span key={index}>
+                                                <span className=' hover:decoration-2 hover:underline'>{actor.name}, </span>
+                                                <i className=' hover:decoration-2 hover:underline'>more</i>
+                                            </span>
+                                        }
+                                        else if (index < 10) return <span className=' hover:decoration-2 hover:underline' key={index}> {actor.name}, </span>
+                                    })
+                                }
+                            </span>
+                        </div>
+                        <div className='font-normal my-0.5vw' style={{ color: '#777' }}>
+                            Genres:
+                            <span className='text-white font-normal hover:cursor-pointer'>
+                                {
+                                    genres.map((genre, index) => {
+                                        return index != genres.length - 1 ? <span className=' hover:decoration-2 hover:underline' key={index}> {genre.name}, </span> : <span className=' hover:decoration-2 hover:underline' key={index}>{genre.name}</span>
+                                    })
+                                }
+                            </span>
+                        </div>
+                        <div className='font-normal my-0.5vw' style={{ color: '#777' }}>
+                            This show is:
+                            <span className='text-white font-normal'> {data?.status}</span>
+                        </div>
+                        <div className='font-normal my-0.5vw' style={{ color: '#777' }}>
+                            Maturity rating:
+                            <span className='text-white px-0.5vw mx-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}>{data.adult == true ? '18+' : '16+'}</span>
+                            <span className='text-white font-normal'>Recommended for ages {data.adult == true ? '18' : '16'} and up</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>, document.getElementById('DetailModal')
     )
