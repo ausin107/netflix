@@ -1,43 +1,56 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import Banner from "./Banner";
 function RelatedVideo({ className, relatedUrl }) {
     const [data, setData] = useState([])
+    const [isShow, SetShow] = useState(false)
+    const ref = useRef([])
+    const buttonRef = useRef()
+    const buttonClass = 'text-slate-100 p-0.7vw px-0.8vw cursor-pointer hover:opacity-70 detailModalBtn text-1vw absolute top-4vw z-10'
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     useEffect(() => {
         async function getVideo() {
             try {
                 const similarVideo = await axios.get(relatedUrl)
                 setData(similarVideo.data.results)
-                console.log(similarVideo.data.results)
+                // console.log(similarVideo.data.results)
             } catch (error) {
 
             }
         }
         getVideo()
     }, [relatedUrl])
+    const handleShow = () => {
+        ref.current.map((item, index) => {
+            if (index > 8) {
+                item.classList.toggle('hidden')
+                isShow == false ? SetShow(true) : SetShow(false)
+                if(!isShow){
+                    buttonRef.current.classList.add('mt-5vw')
+                }else buttonRef.current.classList.remove('mt-5vw')
+            }
+        })
+    }
     return (
         <div className='mx-4vw'>
-            <div className='text-2xl text-white mt-2vw mb-1vw font-bold' >
+            <div className='text-xl text-white mt-2vw mb-1vw' >
                 More Like This
             </div>
             <div className='grid w-full gap-1.2vw' style={{ gridTemplateColumns: 'auto auto auto' }}>
                 {data.map((item, index) => {
-                    const handleTitle = () => {
-                        return item.title.length < 22 ? item.title : `${item.title.slice(0, 22)}...`
-                    }
+                    const className = index > 8 ? 'rounded bg-detailModalVideoColor h-full hidden' : 'rounded bg-detailModalVideoColor h-full'
                     return (
-                        <div className=' rounded bg-detailModalVideoColor h-full' key={item.id}>
+                        <div className={className} key={item.id} ref={el => ref.current[index] = el}>
                             <img className=' bg-cover bg-center w-full rounded' style={{ height: '18vh' }} src={(bannerUrl + item.backdrop_path)} alt="Banner Image" />
                             <div className="mx-1vw">
-                                <div className='text-white text-base font-bold mt-0.3vw'>{handleTitle()}</div>
+                                <div className='text-white text-base font-bold mt-0.3vw'>{item.title}</div>
                                 <div className="flex flex-row justify-between items-center mt-0.2vw">
                                     <div className="flex flex-col">
                                         <div className='text-base text-green-500 font-bold'>Vote average: {Math.round(item.vote_average * 10)}%</div>
                                         <div className='flex flex-row'>
-                                            <div className='text-base text-white font-semibold px-0.3vw mr-0.5vw' style={{border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.2rem'}}>{item.adult == true ? '18+' : '16+'}</div>
+                                            <div className='text-base text-white font-semibold px-0.3vw mr-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.2rem' }}>{item.adult == true ? '18+' : '16+'}</div>
                                             <div className='text-base text-white font-semibold'>{item.release_date.slice(0, 4)}</div>
                                         </div>
                                     </div>
@@ -48,6 +61,11 @@ function RelatedVideo({ className, relatedUrl }) {
                         </div>
                     )
                 })}
+            </div>
+            <div className='h-0'>
+                <div className='h-5vw w-full collapsedBG flex justify-center items-end' ref={buttonRef}>
+                    {isShow == true ? <FontAwesomeIcon icon={faChevronUp} onClick={handleShow} className={buttonClass} /> : <FontAwesomeIcon icon={faChevronDown} onClick={handleShow} className={buttonClass} />}
+                </div>
             </div>
         </div>
     )

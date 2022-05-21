@@ -147,3 +147,9 @@
     height: 100%;
     
 }
+.collapsedBG{
+    background: -webkit-gradient(linear,left bottom,left top,from(#181818),color-stop(20%,rgba(24,24,24,.7)),color-stop(30%,rgba(24,24,24,.4)),color-stop(50%,transparent));
+    position: relative;
+    top: -5vw;
+    border-bottom: 2px solid #404040;
+}

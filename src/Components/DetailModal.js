@@ -37,7 +37,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                 setRelatedUrl(similarUrl)
                 // const creditsData = creditsResult.data.cast
                 setActors(creditsResult.data.cast)
-                console.log(creditsResult)
+                // console.log(creditsResult)
                 const data = results.data
                 setGenres(data.genres)
                 setBanner(data.backdrop_path)
