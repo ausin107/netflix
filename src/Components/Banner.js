@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import Button from './Button'
 import axios from 'axios'
 import Video from "../Components/Video"
-import requests from '../Pages/request'
+import requests, { baseUrl } from '../Pages/request'
 
 
 function Banner() {
@@ -11,6 +11,7 @@ function Banner() {
     const [title, setTitle] = useState('')
     const [videoUrl, setVideoUrl] = useState('')
     const [playVideo, setPlayVideo] = useState(false)
+    const [adult, setAdult] = useState('')
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     const overViewRef = useRef()
     const textRef = useRef()
@@ -26,6 +27,8 @@ function Banner() {
                 // const results = await axios.get(baseUrl + requests.fetchTrending)
                 const results = await axios.get(baseUrl + requests.fetchNetflixOriginals)
                 const data = results.data.results[randomBanner]
+                const videoDetail = await axios.get(`${baseUrl}/tv/${data.id}${requests.fetchVideoDetail}`)
+                setAdult(videoDetail.data.adult == true ? '18+' : '16+')
                 setBanner(data.backdrop_path)
                 // setTitle(data.title?.toUpperCase()) // Trường hợp movie api
                 setTitle(data.name.toUpperCase()) //trường hợp Netflix original
@@ -48,7 +51,7 @@ function Banner() {
         setPlayVideo(true)
     }
     const handleOverView = () => {
-        return overView.length > 150 ? `${overView.slice(0,`150`)}...` : overView
+        return overView.length > 150 ? `${overView.slice(0, `150`)}...` : overView
     }
     return (
         <div>
@@ -56,9 +59,12 @@ function Banner() {
             <div className="flex flex-col absolute bottom-1/3 ml-15 z-10">
                 <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner bannerTextA">{title}</div>
                 <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{handleOverView()}</div>
-                <div className="flex flex-row mt-1.5vw">
-                    <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
-                    <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />
+                <div className='flex items-end justify-between' style={{width: '95vw'}}>
+                    <div className="flex flex-row mt-1.5vw">
+                        <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
+                        <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />
+                    </div>
+                    <div className='flex items-center w-6vw h-2.5vw text-white font-semibold text-lg border-l-3 pl-0.7vw tracking-wider' style={{backgroundColor: 'rgba(51,51,51,.6)', borderColor: '#dcdcdc', color: '#dcdcdc'}}>{adult}</div>
                 </div>
             </div>
             <div className="banner-fade absolute bottom-0 w-full" />

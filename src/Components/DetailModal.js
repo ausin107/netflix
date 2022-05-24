@@ -5,10 +5,11 @@ import Banner from './Banner'
 import Button from './Button'
 import Video from './Video'
 import RelatedVideo from './RelatedVideo'
+import VideoEpisodes from './VideoEpisodes'
 import requests from '../Pages/request'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
-function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRank, moviesGenre, similarUrl }) {
+function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRank, moviesGenre, similarUrl, episodesUrl }) {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
@@ -31,31 +32,24 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                 const tvVideoUrl = 'https://api.themoviedb.org/3/tv/'
                 const baseVideoEmbed = 'https://www.youtube.com/embed/'
                 const movieVideoUrl = 'https://api.themoviedb.org/3/movie/'
-                // const results = await axios.get(baseUrl + requests.fetchTrending)
                 const results = await axios.get(detailUrl)
                 const creditsResult = await axios.get(creditsUrl)
                 setRelatedUrl(similarUrl)
-                // const creditsData = creditsResult.data.cast
                 setActors(creditsResult.data.cast)
-                // console.log(creditsResult)
                 const data = results.data
                 setGenres(data.genres)
                 setBanner(data.backdrop_path)
-                // setTitle(data.title?.toUpperCase()) // Trường hợp movie api
                 apiType == 'movieApi' ? setTitle(data.title.toUpperCase()) : setTitle(data.name.toUpperCase())
-                // console.log(data)
                 setData(data)
                 setOverView(data.overview)
-                // const videoResult = await axios.get(tvVideoUrl + data.id + requests.fetchVideoOnly)
                 const videoResult = await axios.get(movieVideoUrl + data.id + requests.fetchVideoOnly)
                 const trailerItem = videoResult.data.results.find((item, index) => {
                     if (item.type == 'Trailer') return item.type
                     else return videoResult.data.results[0]
                 })
                 setVideoUrl(baseVideoEmbed + trailerItem.key)
-                // console.log(videoResult)
             } catch (error) {
-                // console.log(error)
+
             }
         }
         getBanner()
@@ -159,7 +153,8 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                         </div>
                     </div>
                 </div>
-                <RelatedVideo relatedUrl={relatedUrl} />
+                {apiType != 'movieApi' ? <VideoEpisodes episodesUrl={episodesUrl} /> : ''}
+                <RelatedVideo relatedUrl={relatedUrl} apiType={apiType} />
                 <div className='mx-4vw mt-4vw mb-2vw'>
                     <div className='text-2xl text-white font-semibold'>About
                         <span className='font-bold ml-0.5vw'>
@@ -210,6 +205,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>, document.getElementById('DetailModal')
     )

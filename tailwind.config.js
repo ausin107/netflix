@@ -1,6 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
+    borderWidth: {
+      '1': '1px',
+      '2': '2px',
+      '3': '3px',
+    },
     extend: {
       width: {
         '7/20': '35%',
@@ -36,10 +41,12 @@ module.exports = {
         '1.2vw': '1.2vw',
         '1.5vw': '1.5vw',
         '1.6vw': '1.6vw',
+        '2.5vw': '2.5vw',
         '3.4vw': '3.9vw',
         '1/3vh': '33.333vh',
         '4vw': '4vw',
         '5vw': '5vw',
+        '6vw': '6vw',
         '1/2vh': '50vh',
         '40vh': '40vh',
         '37vh': '37vh',
@@ -70,7 +77,8 @@ module.exports = {
         'backgroundColor':  '#0d0e0e',
         'backgroundColorOpa': 'rgba(	13, 14, 14,0.7)',
         'detailModalVideoColor': '#2f2f2f',
-        'detailModalBGColor': '#181818'
+        'detailModalBGColor': '#181818',
+        'borderColor': '#d2d2d2'
       }
     },
   },

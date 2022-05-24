@@ -16,6 +16,7 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
     const url = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}${requests.fetchVideoDetail}`
     const creditsUrl = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/credits${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}/credits${requests.fetchVideoDetail}`
     const similarUrl = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/similar${requests.fetchSimilarVideo}` : `${baseUrl}/tv/${movieId}/similar${requests.fetchSimilarVideo}`
+    const episodesUrl = `${baseUrl}/tv/${movieId}/season/1${requests.fetchVideoDetail}`
     const newClass = `trailer-modal hidden absolute top-0 h-full w-full ${className}`
     useEffect(() => {
         async function getDetail() {
@@ -45,7 +46,6 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
         document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
     }
     const handleTitle = () => {
-        // return title.length < 20 ? title : `${title.slice(0, 20)}...`
         return title
     }
     return (
@@ -61,7 +61,7 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
                         <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                     </div>
                     <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" onClick={handleClick} />
-                    <DetailModal detailUrl={url} creditsUrl={creditsUrl} apiType={apiType} onShow={isShow} onClose={handleClose} moviesRank={moviesRank} moviesGenre={moviesGenre} similarUrl={similarUrl} />
+                    <DetailModal detailUrl={url} creditsUrl={creditsUrl} apiType={apiType} onShow={isShow} onClose={handleClose} moviesRank={moviesRank} moviesGenre={moviesGenre} similarUrl={similarUrl} episodesUrl={episodesUrl}/>
                 </div>
                 <div className='flex pl-1.5vw items-center' >
                     <div className=' text-1.2vw text-green-500 font-bold' >Vote: {vote * 10}%</div>

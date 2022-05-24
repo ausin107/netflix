@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import Banner from "./Banner";
-function RelatedVideo({ className, relatedUrl }) {
+function RelatedVideo({ className, relatedUrl, apiType }) {
     const [data, setData] = useState([])
     const [isShow, SetShow] = useState(false)
     const ref = useRef([])
@@ -33,6 +32,9 @@ function RelatedVideo({ className, relatedUrl }) {
             }
         })
     }
+    const handleDate = (item) => {
+        return apiType == 'movieApi' ? item.release_date.slice(0, 4) : item.first_air_date.slice(0,4)
+    }
     return (
         <div className='mx-4vw'>
             <div className='text-2xl text-white mt-2vw mb-1vw font-bold' >
@@ -45,13 +47,13 @@ function RelatedVideo({ className, relatedUrl }) {
                         <div className={className} key={item.id} ref={el => ref.current[index] = el}>
                             <img className=' bg-cover bg-center w-full rounded' style={{ height: '18vh' }} src={(bannerUrl + item.backdrop_path)} alt="Banner Image" />
                             <div className="mx-1vw">
-                                <div className='text-white text-base font-bold mt-0.3vw h-3vw'>{item.title}</div>
+                                <div className='text-white text-base font-bold mt-0.3vw h-3vw'>{item.title || item.name}</div>
                                 <div className="flex flex-row justify-between items-center mt-0.2vw">
                                     <div className="flex flex-col">
                                         <div className='text-base text-green-500 font-bold'>Vote average: {Math.round(item.vote_average * 10)}%</div>
                                         <div className='flex flex-row'>
                                             <div className='text-base text-white font-semibold px-0.3vw mr-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.2rem' }}>{item.adult == true ? '18+' : '16+'}</div>
-                                            <div className='text-base text-white font-semibold'>{item.release_date.slice(0, 4)}</div>
+                                            <div className='text-base text-white font-semibold'>{handleDate(item)}</div>
                                         </div>
                                     </div>
                                     <FontAwesomeIcon icon={faPlus} className=' text-slate-100 p-0.4vw px-0.5vw mr-0.4vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw' />

@@ -3,7 +3,6 @@ import Row from "../Components/Row"
 import Footer from "../Components/Footer"
 import requests from "./request"
 import Banner from "../Components/Banner"
-import DetailModal from "../Components/DetailModal"
 function Home() {
 
     useEffect(() => {
