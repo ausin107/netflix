@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import Button from '../Components/Button'
+import Button from '../components/Button'
 import axios from 'axios'
-import Video from '../Components/Video'
+import Video from '../components/Video'
 import requests, { baseUrl } from '../adapters/request'
 
 

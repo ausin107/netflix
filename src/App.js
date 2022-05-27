@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
-import Home from './Pages/Home';
-import Navbar from './Components/Navbar';
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
 
 
 function App() {

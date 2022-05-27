@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Video from '../Components/Video'
+import Video from '../components/Video'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'

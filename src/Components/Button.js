@@ -1,4 +1,4 @@
-import { PlayIcon, InforIcon } from '../Components/icon'
+import { PlayIcon, InforIcon } from './icon'
 
 function Button({ className, title, icon, onClick }) {
     const buttonClass = `${className}  pl-5 pr-7  flex flex-row p-2 justify-between rounded items-center hover:opacity-75  cursor-pointer`
