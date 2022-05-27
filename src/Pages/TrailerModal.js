@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import Video from './Video'
+import Video from '../Components/Video'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
-import requests, { baseUrl } from '../Pages/request'
+import requests, { baseUrl } from './request'
 import DetailModal from './DetailModal'
 function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, moviesGenre }) {
     const [runtime, setRuntime] = useState()

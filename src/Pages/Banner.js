@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import Button from './Button'
+import Button from '../Components/Button'
 import axios from 'axios'
 import Video from "../Components/Video"
-import requests, { baseUrl } from '../Pages/request'
+import requests, { baseUrl } from './request'
 
 
 function Banner() {

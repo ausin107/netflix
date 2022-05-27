@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
-import Row from "../Components/Row"
-import Footer from "../Components/Footer"
+import Row from "./Row"
+import Footer from "./Footer"
 import requests from "./request"
-import Banner from "../Components/Banner"
+import Banner from "./Banner"
 function Home() {
 
     useEffect(() => {

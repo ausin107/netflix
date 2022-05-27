@@ -1,4 +1,4 @@
-import './Components.css'
+import '../styles/Components.css'
 import { VolumeUpIcon, VolumeOffIcon, ViewGridIcon } from '@heroicons/react/outline'
 import { useReducer, useRef, useState } from "react";
 import ReactPlayer from "react-player";
@@ -18,15 +18,12 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
     setVolume(0.3)
   }
   const handleProgress = () => {
-    // console.log(state.getDuration() - state.getCurrentTime())
     if (state.getDuration() - state.getCurrentTime() < 10) {
       setUrl('')
       overViewRef.classList.remove('bannerOverView')
       textRef.classList.remove('bannerText')
       volumeRef.current.classList.add('hidden')
     }
-    // console.log(state.getCurrentTime())
-    // console.log(state.getDuration())
   }
   const handlePlay = () => {
     // console.log(overViewRef.classList)

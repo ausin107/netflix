@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, } from "react";
 import axios from 'axios'
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
-import './Components.css'
+import '../styles/Components.css'
 import TrailerModal from "./TrailerModal";
 import logo from '../assets/netflixLogo2.png'
 const responsive = {
