@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import ReactDom from 'react-dom'
 import axios from 'axios'
-import Banner from './Banner'
 import Button from '../components/Button'
 import Video from '../components/Video'
 import RelatedVideo from '../components/RelatedVideo'
 import VideoEpisodes from '../components/VideoEpisodes'
 import requests from '../adapters/request'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Top10Icon } from '../components/icon'
-function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRank, moviesGenre, similarUrl, episodesUrl }) {
+function DetailModal({detailData, onClose, onShow }) {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
@@ -28,18 +27,17 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
     useEffect(() => {
         async function getBanner() {
             try {
-                const baseUrl = 'https://api.themoviedb.org/3'
                 const tvVideoUrl = 'https://api.themoviedb.org/3/tv/'
                 const baseVideoEmbed = 'https://www.youtube.com/embed/'
                 const movieVideoUrl = 'https://api.themoviedb.org/3/movie/'
-                const results = await axios.get(detailUrl)
-                const creditsResult = await axios.get(creditsUrl)
-                setRelatedUrl(similarUrl)
+                const results = await axios.get(detailData.detailUrl)
+                const creditsResult = await axios.get(detailData.creditsUrl)
+                setRelatedUrl(detailData.similarUrl)
                 setActors(creditsResult.data.cast)
                 const data = results.data
                 setGenres(data.genres)
                 setBanner(data.backdrop_path)
-                apiType == 'movieApi' ? setTitle(data.title.toUpperCase()) : setTitle(data.name.toUpperCase())
+                detailData.apiType == 'movieApi' ? setTitle(data.title.toUpperCase()) : setTitle(data.name.toUpperCase())
                 setData(data)
                 setOverView(data.overview)
                 const videoResult = await axios.get(movieVideoUrl + data.id + requests.fetchVideoOnly)
@@ -60,7 +58,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
         setVolumeClassName('DetailVolumnClass')
     }
     const handleDate = () => {
-        if (apiType == 'movieApi') {
+        if (detailData.apiType == 'movieApi') {
             releaseDate = data.release_date
         } else {
             releaseDate = data.first_air_date
@@ -71,7 +69,7 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
         else return vote
     }
     const handleTime = () => {
-        if (apiType == 'movieApi') {
+        if (detailData.apiType == 'movieApi') {
             return `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m`
         } else {
             return data.number_of_seasons > 1 ? `${data.number_of_seasons} Seasons` : `${data.number_of_seasons} Seasons`
@@ -132,11 +130,11 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                             <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
                         </div>
                         {
-                            moviesRank < 9 ?
+                            detailData.moviesRank < 9 ?
                                 <div className='flex flex-row my-0.2vw'>
                                     <Top10Icon />
                                     <span className='text-white font-bold'>
-                                        #{moviesRank + 1} in {moviesGenre} Today
+                                        #{detailData.moviesRank + 1} in {detailData.moviesGenre} Today
                                     </span>
                                 </div>
                                 : ''
@@ -181,8 +179,8 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                         </div>
                     </div>
                 </div>
-                {apiType != 'movieApi' ? <VideoEpisodes episodesUrl={episodesUrl} /> : ''}
-                <RelatedVideo relatedUrl={relatedUrl} apiType={apiType} />
+                {detailData.apiType != 'movieApi' ? <VideoEpisodes episodesUrl={detailData.episodesUrl} /> : ''}
+                <RelatedVideo relatedUrl={relatedUrl} apiType={detailData.apiType} />
                 <div className='mx-4vw mt-4vw mb-2vw'>
                     <div className='text-2xl text-white font-semibold'>About
                         <span className='font-bold ml-0.5vw'>

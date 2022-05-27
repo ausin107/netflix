@@ -3,19 +3,30 @@ import Button from '../components/Button'
 import axios from 'axios'
 import Video from '../components/Video'
 import requests, { baseUrl } from '../adapters/request'
-
+import DetailModal from './DetailModal'
 
 function Banner() {
+    const [movieId, setMovieId] = useState(false)
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
     const [videoUrl, setVideoUrl] = useState('')
     const [playVideo, setPlayVideo] = useState(false)
     const [adult, setAdult] = useState('')
+    const [isShow, setIsShow] = useState(false)
+    const [moviesRank, setMovieRank] = useState()
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     const overViewRef = useRef()
     const textRef = useRef()
-    const videoRef = useRef()
+    const detailData = {
+        apiType: 'tvApi',
+        moviesRank: moviesRank,
+        moviesGenre: 'Trending Now',
+        detailUrl: `${baseUrl}/tv/${movieId}${requests.fetchVideoDetail}`,
+        creditsUrl: `${baseUrl}/tv/${movieId}/${requests.fetchCreditsInfo}`,
+        similarUrl: `${baseUrl}/tv/${movieId}/${requests.fetchSimilarVideo}`,
+        episodesUrl: `${baseUrl}/tv/${movieId}/season/1${requests.fetchVideoDetail}`,
+    }
     useEffect(() => {
         async function getBanner() {
             try {
@@ -27,6 +38,8 @@ function Banner() {
                 // const results = await axios.get(baseUrl + requests.fetchTrending)
                 const results = await axios.get(baseUrl + requests.fetchNetflixOriginals)
                 const data = results.data.results[randomBanner]
+                setMovieRank(randomBanner)
+                setMovieId(data.id)
                 const videoDetail = await axios.get(`${baseUrl}/tv/${data.id}${requests.fetchVideoDetail}`)
                 setAdult(videoDetail.data.adult == true ? '18+' : '16+')
                 setBanner(data.backdrop_path)
@@ -53,6 +66,14 @@ function Banner() {
     const handleOverView = () => {
         return overView.length > 150 ? `${overView.slice(0, `150`)}...` : overView
     }
+    const handleInfo = () => {
+        setIsShow(true)
+        document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
+    }
+    const handleClose = () => {
+        setIsShow(false)
+        document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
+    }
     return (
         <div>
             <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
@@ -62,7 +83,14 @@ function Banner() {
                 <div className='flex items-end justify-between' style={{ width: '95vw' }}>
                     <div className='flex flex-row mt-1.5vw'>
                         <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
-                        <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />
+                        <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} onClick={handleInfo} />
+                        {movieId &&
+                            <DetailModal
+                                detailData={detailData}
+                                onShow={isShow}
+                                onClose={handleClose}
+                            />
+                        }
                     </div>
                     <div
                         className='flex items-center w-6vw h-2.5vw text-white font-semibold text-lg border-l-3 pl-0.7vw tracking-wider'

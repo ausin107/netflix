@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Video from '../components/Video'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -13,15 +12,20 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
     const [filmType, setFilmType] = useState([])
     const [onClick, setOnClick] = useState(false)
     const [isShow, setIsShow] = useState(false)
-    const url = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}${requests.fetchVideoDetail}`
-    const creditsUrl = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/credits${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}/credits${requests.fetchVideoDetail}`
-    const similarUrl = apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/similar${requests.fetchSimilarVideo}` : `${baseUrl}/tv/${movieId}/similar${requests.fetchSimilarVideo}`
-    const episodesUrl = `${baseUrl}/tv/${movieId}/season/1${requests.fetchVideoDetail}`
+    const detailData = {
+        apiType: apiType,
+        moviesRank: moviesRank,
+        moviesGenre: moviesGenre,
+        detailUrl: apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}${requests.fetchVideoDetail}` : `${baseUrl}/tv/${movieId}${requests.fetchVideoDetail}`,
+        creditsUrl: apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/${requests.fetchCreditsInfo}` : `${baseUrl}/tv/${movieId}/${requests.fetchCreditsInfo}`,
+        similarUrl: apiType == 'movieApi' ? `${baseUrl}/movie/${movieId}/${requests.fetchSimilarVideo}` : `${baseUrl}/tv/${movieId}/${requests.fetchSimilarVideo}`,
+        episodesUrl: `${baseUrl}/tv/${movieId}/season/1${requests.fetchVideoDetail}`,
+    }
     const newClass = `trailer-modal hidden absolute top-0 h-full w-full ${className}`
     useEffect(() => {
         async function getDetail() {
             try {
-                const results = await axios.get(url)
+                const results = await axios.get(detailData.detailUrl)
                 const data = results.data
                 const finalTime = apiType == 'movieApi' ? `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m` : ''
                 const season = apiType == 'tvApi' ? data.number_of_seasons : ''
@@ -62,15 +66,9 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
                     </div>
                     <FontAwesomeIcon icon={faAngleDown} className=' text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw' onClick={handleClick} />
                     <DetailModal
-                        detailUrl={url}
-                        creditsUrl={creditsUrl}
-                        apiType={apiType}
+                        detailData = {detailData}
                         onShow={isShow}
                         onClose={handleClose}
-                        moviesRank={moviesRank}
-                        moviesGenre={moviesGenre}
-                        similarUrl={similarUrl}
-                        episodesUrl={episodesUrl}
                     />
                 </div>
                 <div className='flex pl-1.5vw items-center' >
