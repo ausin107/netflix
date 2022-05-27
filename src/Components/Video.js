@@ -26,7 +26,6 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
     }
   }
   const handlePlay = () => {
-    // console.log(overViewRef.classList)
     overViewRef.classList.add('bannerOverView')
     textRef.classList.add('bannerText')
     volumeRef.current.classList.remove('hidden')
@@ -60,6 +59,4 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
     </div>
   )
 }
-// const videoRef = forwardRef(Video)
-// export default videoRef
 export default Video

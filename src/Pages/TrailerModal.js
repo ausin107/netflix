@@ -3,7 +3,7 @@ import Video from '../Components/Video'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
-import requests, { baseUrl } from './request'
+import requests, { baseUrl } from '../adapters/request'
 import DetailModal from './DetailModal'
 function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, moviesGenre }) {
     const [runtime, setRuntime] = useState()
@@ -61,11 +61,26 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
                         <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
                     </div>
                     <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" onClick={handleClick} />
-                    <DetailModal detailUrl={url} creditsUrl={creditsUrl} apiType={apiType} onShow={isShow} onClose={handleClose} moviesRank={moviesRank} moviesGenre={moviesGenre} similarUrl={similarUrl} episodesUrl={episodesUrl}/>
+                    <DetailModal
+                        detailUrl={url}
+                        creditsUrl={creditsUrl}
+                        apiType={apiType}
+                        onShow={isShow}
+                        onClose={handleClose}
+                        moviesRank={moviesRank}
+                        moviesGenre={moviesGenre}
+                        similarUrl={similarUrl}
+                        episodesUrl={episodesUrl}
+                    />
                 </div>
                 <div className='flex pl-1.5vw items-center' >
                     <div className=' text-1.2vw text-green-500 font-bold' >Vote: {vote * 10}%</div>
-                    <div className='text-white px-0.5vw mx-0.5vw' style={{border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px'}}>{adult == true ? '18+' : '16+'}</div>
+                    <div
+                        className='text-white px-0.5vw mx-0.5vw'
+                        style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}
+                    >
+                        {adult == true ? '18+' : '16+'}
+                    </div>
                     <div className=' text-1.2vw text-white font-normal tracking-wide' >{runtime || seasons}</div>
                 </div>
                 <ul className='flex pl-1.5vw my-1.5vw' >

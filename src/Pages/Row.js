@@ -22,7 +22,7 @@ const responsive = {
         paritialVisibilityGutter: 30
     }
 };
-function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix}) {
+function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
     const [infinite, setInfinite] = useState(false)
     const [movies, setMovies] = useState([])
     const [classes, setClasses] = useState('')
@@ -71,11 +71,29 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix}) {
                     movies.map((movie, index) => {
                         return (
                             <div key={movie.id} onMouseEnter={() => handleHover(movie.id)} onMouseLeave={() => handleNotHover()}>
-                                <div className={hover == movie.id ? 'image' : ''} style={{position: 'relative'}} >
+                                <div className={hover == movie.id ? 'image' : ''} style={{ position: 'relative' }} >
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
-                                    {isNetflix == true ? <img src={logo} className='absolute top-0 left-0 mx-0.1vw my-0.4vw' style={{width: '1.4vw', height: '1.2vw'}} /> : '' }
+                                    {isNetflix == true ?
+                                        <img
+                                            src={logo}
+                                            className='absolute top-0 left-0 mx-0.1vw my-0.4vw'
+                                            style={{ width: '1.4vw', height: '1.2vw' }}
+                                        />
+                                        : ''
+                                    }
                                 </div>
-                                {hover == movie.id ? <TrailerModal className={classes} imgUrl={imgUrl + movie.backdrop_path} title={movie.title || movie.name} movieId={movie.id} apiType={apiType} moviesRank={index} moviesGenre={moviesGenre} /> : ''}
+                                {hover == movie.id ?
+                                    <TrailerModal
+                                        className={classes}
+                                        imgUrl={imgUrl + movie.backdrop_path}
+                                        title={movie.title || movie.name}
+                                        movieId={movie.id}
+                                        apiType={apiType}
+                                        moviesRank={index}
+                                        moviesGenre={moviesGenre}
+                                    />
+                                    : ''
+                                }
                             </div>
                         )
                     })

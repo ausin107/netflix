@@ -6,7 +6,7 @@ import Button from '../Components/Button'
 import Video from '../Components/Video'
 import RelatedVideo from '../Components/RelatedVideo'
 import VideoEpisodes from '../Components/VideoEpisodes'
-import requests from './request'
+import requests from '../adapters/request'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Top10Icon } from '../Components/icon'
@@ -24,7 +24,6 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
     const bannerUrl = 'https://image.tmdb.org/t/p/original/'
     const overViewRef = useRef()
     const textRef = useRef()
-    const videoRef = useRef()
     let releaseDate
     useEffect(() => {
         async function getBanner() {
@@ -85,23 +84,51 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                 <div className='relative'>
                     <img className='bg-center bg-cover w-full max-h-full rounded' src={bannerUrl + banner} alt='Banner image' />
                     <div className='flex flex-col absolute bottom-1/5 ml-15 z-10'>
-                        <div ref={textRef} className='text-white font-bold w-full title-banner bannerTextA' style={{ fontSize: '2vw' }}>{title}</div>
+                        <div
+                            ref={textRef}
+                            className='text-white font-bold w-full title-banner bannerTextA'
+                            style={{ fontSize: '2vw' }}
+                        >
+                            {title}
+                        </div>
                         <div className='flex flex-row mt-1.5vw items-center'>
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
-                            <FontAwesomeIcon icon={faPlus} className=' text-slate-100 p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw' />
-                            <FontAwesomeIcon icon={faThumbsUp} className=' text-slate-100 p-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw' />
+                            <FontAwesomeIcon
+                                icon={faPlus}
+                                className=' text-slate-100 p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
+                            />
+                            <FontAwesomeIcon
+                                icon={faThumbsUp}
+                                className=' text-slate-100 p-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
+                            />
                         </div>
                     </div>
-                    <FontAwesomeIcon icon={faXmark} onClick={onClose} className='absolute top-0 right-0 text-slate-300 p-0.5vw cursor-pointer hover:opacity-70 bg-black rounded-full z-50' style={{ width: '1.5vw', height: '1.5vw', margin: '1vw' }} />
+                    <FontAwesomeIcon
+                        icon={faXmark}
+                        onClick={onClose}
+                        className='absolute top-0 right-0 text-slate-300 p-0.5vw cursor-pointer hover:opacity-70 bg-black rounded-full z-50'
+                        style={{ width: '1.5vw', height: '1.5vw', margin: '1vw' }}
+                    />
                     <div className='detailModalFade absolute bottom-0 w-full' />
-                    <Video className='customVideo' videoUrl={playVideo ? videoUrl : ''} overViewRef={overViewRef.current} textRef={textRef.current} volumnClass={volumeClassName} />
+                    <Video
+                        className='customVideo'
+                        videoUrl={playVideo ? videoUrl : ''}
+                        overViewRef={overViewRef.current}
+                        textRef={textRef.current}
+                        volumnClass={volumeClassName}
+                    />
                 </div>
                 <div className='z-10 mx-4vw flex flex-row mt-0.5vw'>
                     <div className='w-3/5 h-full flex flex-col justify-evenly'>
                         <div className='flex flex-row my-0.2vw items-center'>
                             <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
                             <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{releaseDate.slice(0, 4)}</div>
-                            <div className='text-white px-0.5vw mx-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}>{data.adult == true ? '18+' : '16+'}</div>
+                            <div
+                                className='text-white px-0.5vw mx-0.5vw'
+                                style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}
+                            >
+                                {data.adult == true ? '18+' : '16+'}
+                            </div>
                             <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
                         </div>
                         {
@@ -140,7 +167,10 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                             <span className='text-white font-normal hover:cursor-pointer'>
                                 {
                                     genres.map((genre, index) => {
-                                        return index != genres.length - 1 ? <span className=' hover:decoration-2 hover:underline' key={index}> {genre.name}, </span> : <span className=' hover:decoration-2 hover:underline' key={index}>{genre.name}</span>
+                                        return index != genres.length - 1 ?
+                                            <span className=' hover:decoration-2 hover:underline' key={index}> {genre.name}, </span>
+                                            :
+                                            <span className=' hover:decoration-2 hover:underline' key={index}>{genre.name}</span>
                                     })
                                 }
                             </span>
@@ -187,7 +217,10 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                             <span className='text-white font-normal hover:cursor-pointer'>
                                 {
                                     genres.map((genre, index) => {
-                                        return index != genres.length - 1 ? <span className=' hover:decoration-2 hover:underline' key={index}> {genre.name}, </span> : <span className=' hover:decoration-2 hover:underline' key={index}>{genre.name}</span>
+                                        return index != genres.length - 1 ?
+                                            <span className=' hover:decoration-2 hover:underline' key={index}> {genre.name}, </span>
+                                            :
+                                            <span className=' hover:decoration-2 hover:underline' key={index}>{genre.name}</span>
                                     })
                                 }
                             </span>
@@ -198,7 +231,12 @@ function DetailModal({ detailUrl, apiType, onClose, onShow, creditsUrl, moviesRa
                         </div>
                         <div className='font-normal my-0.5vw' style={{ color: '#777' }}>
                             Maturity rating:
-                            <span className='text-white px-0.5vw mx-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}>{data.adult == true ? '18+' : '16+'}</span>
+                            <span
+                                className='text-white px-0.5vw mx-0.5vw'
+                                style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}
+                            >
+                                {data.adult == true ? '18+' : '16+'}
+                            </span>
                             <span className='text-white font-normal'>Recommended for ages {data.adult == true ? '18' : '16'} and up</span>
                         </div>
                     </div>

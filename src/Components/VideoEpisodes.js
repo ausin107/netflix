@@ -41,7 +41,12 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
                 {episodes.map((item, index) => {
                     const episodesClass = index > 9 ? 'flex flex-row items-center py-3vw border-b-1 px-2vw hidden' : 'flex flex-row items-center py-3vw border-b-1 px-2vw'
                     return (
-                        <div className={episodesClass} key={item.id} style={{borderColor: '#404040'}} ref={el => Episodesref.current[index] = el}>
+                        <div
+                            className={episodesClass}
+                            key={item.id}
+                            style={{ borderColor: '#404040' }}
+                            ref={el => Episodesref.current[index] = el}
+                        >
                             <div className='text-white text-2xl font-semibold'>{item.episode_number}</div>
                             <img className='bg-cover bg-full ml-1.5vw rounded' style={{ height: '10vh' }} src={bannerUrl + item.still_path} alt='Episodes Image' />
                             <div className='flex flex-col ml-1vw mr-2vw'>
@@ -56,13 +61,17 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
                 })}
             </div>
             {
-                episodes.length > 9 ? 
-                <div className='h-0'>
-                    <div className='h-5vw w-full collapsedBG flex justify-center items-end' ref={buttonRef}>
-                        {isShow == true ? <FontAwesomeIcon icon={faChevronUp} onClick={handleShow} className={buttonClass} /> : <FontAwesomeIcon icon={faChevronDown} onClick={handleShow} className={buttonClass} />}
+                episodes.length > 9 ? (
+                    <div className='h-0'>
+                        <div className='h-5vw w-full collapsedBG flex justify-center items-end' ref={buttonRef}>
+                            {isShow == true ?
+                                <FontAwesomeIcon icon={faChevronUp} onClick={handleShow} className={buttonClass} />
+                                :
+                                <FontAwesomeIcon icon={faChevronDown} onClick={handleShow} className={buttonClass} />
+                            }
+                        </div>
                     </div>
-                </div>
-                : ''
+                ) : ''
             }
         </div>
     )

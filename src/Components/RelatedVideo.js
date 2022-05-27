@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import axios from 'axios';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function RelatedVideo({ className, relatedUrl, apiType }) {
@@ -26,14 +26,14 @@ function RelatedVideo({ className, relatedUrl, apiType }) {
             if (index > 8) {
                 item.classList.toggle('hidden')
                 isShow == false ? SetShow(true) : SetShow(false)
-                if(!isShow){
+                if (!isShow) {
                     buttonRef.current.classList.add('mt-5vw')
-                }else buttonRef.current.classList.remove('mt-5vw')
+                } else buttonRef.current.classList.remove('mt-5vw')
             }
         })
     }
     const handleDate = (item) => {
-        return apiType == 'movieApi' ? item.release_date.slice(0, 4) : item.first_air_date.slice(0,4)
+        return apiType == 'movieApi' ? item.release_date.slice(0, 4) : item.first_air_date.slice(0, 4)
     }
     return (
         <div className='mx-4vw'>
@@ -45,20 +45,40 @@ function RelatedVideo({ className, relatedUrl, apiType }) {
                     const className = index > 8 ? 'rounded bg-detailModalVideoColor h-full hidden' : 'rounded bg-detailModalVideoColor h-full'
                     return (
                         <div className={className} key={item.id} ref={el => ref.current[index] = el}>
-                            <img className=' bg-cover bg-center w-full rounded' style={{ height: '18vh' }} src={(bannerUrl + item.backdrop_path)} alt="Banner Image" />
-                            <div className="mx-1vw">
+                            <img
+                                className='bg-cover bg-center w-full rounded'
+                                style={{ height: '18vh' }}
+                                src={(bannerUrl + item.backdrop_path)}
+                                alt='Banner Image'
+                            />
+                            <div className='mx-1vw'>
                                 <div className='text-white text-base font-bold mt-0.3vw h-3vw'>{item.title || item.name}</div>
-                                <div className="flex flex-row justify-between items-center mt-0.2vw">
-                                    <div className="flex flex-col">
-                                        <div className='text-base text-green-500 font-bold'>Vote average: {Math.round(item.vote_average * 10)}%</div>
+                                <div className='flex flex-row justify-between items-center mt-0.2vw'>
+                                    <div className='flex flex-col'>
+                                        <div className='text-base text-green-500 font-bold'>
+                                            Vote average: {Math.round(item.vote_average * 10)}%
+                                        </div>
                                         <div className='flex flex-row'>
-                                            <div className='text-base text-white font-semibold px-0.3vw mr-0.5vw' style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.2rem' }}>{item.adult == true ? '18+' : '16+'}</div>
+                                            <div
+                                                className='text-base text-white font-semibold px-0.3vw mr-0.5vw'
+                                                style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.2rem' }}
+                                            >
+                                                {item.adult == true ? '18+' : '16+'}
+                                            </div>
                                             <div className='text-base text-white font-semibold'>{handleDate(item)}</div>
                                         </div>
                                     </div>
-                                    <FontAwesomeIcon icon={faPlus} className=' text-slate-100 p-0.4vw px-0.5vw mr-0.4vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw' />
+                                    <FontAwesomeIcon
+                                        icon={faPlus}
+                                        className=' text-slate-100 p-0.4vw px-0.5vw mr-0.4vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
+                                    />
                                 </div>
-                                <div className='text-base pt-0.7vw pb-3vw font-normal leading-tight' style={{ color: '#d2d2d2' }}>{`${item.overview.slice(0, 100)}...`}</div>
+                                <div
+                                    className='text-base pt-0.7vw pb-3vw font-normal leading-tight'
+                                    style={{ color: '#d2d2d2' }}
+                                >
+                                    {`${item.overview.slice(0, 100)}...`}
+                                </div>
                             </div>
                         </div>
                     )
@@ -66,7 +86,10 @@ function RelatedVideo({ className, relatedUrl, apiType }) {
             </div>
             <div className='h-0'>
                 <div className='h-5vw w-full collapsedBG flex justify-center items-end' ref={buttonRef}>
-                    {isShow == true ? <FontAwesomeIcon icon={faChevronUp} onClick={handleShow} className={buttonClass} /> : <FontAwesomeIcon icon={faChevronDown} onClick={handleShow} className={buttonClass} />}
+                    {isShow == true ?
+                        <FontAwesomeIcon icon={faChevronUp} onClick={handleShow} className={buttonClass} />
+                        :
+                        <FontAwesomeIcon icon={faChevronDown} onClick={handleShow} className={buttonClass} />}
                 </div>
             </div>
         </div>
