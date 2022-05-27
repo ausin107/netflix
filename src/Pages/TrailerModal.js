@@ -55,12 +55,12 @@ function TrailerModal({ className, imgUrl, title, movieId, apiType, moviesRank, 
                 <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw'>{handleTitle()}</div>
                 <div className='flex w-full p-1.5vw' >
                     <div className=' w-full'>
-                        <FontAwesomeIcon icon={faPlay} className=" text-black p-0.5vw px-0.7vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn bg-white text-1.5vw" />
-                        <FontAwesomeIcon icon={faPlus} className=" text-white p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
-                        <FontAwesomeIcon icon={faThumbsUp} className=" text-white p-0.5vw px-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
-                        <FontAwesomeIcon icon={faThumbsDown} className=" text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" />
+                        <FontAwesomeIcon icon={faPlay} className='text-black p-0.5vw px-0.7vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn bg-white text-1.5vw' />
+                        <FontAwesomeIcon icon={faPlus} className='text-white p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw' />
+                        <FontAwesomeIcon icon={faThumbsUp} className='text-white p-0.5vw px-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw' />
+                        <FontAwesomeIcon icon={faThumbsDown} className='text-white p-0.5vw px-0.5vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw' />
                     </div>
-                    <FontAwesomeIcon icon={faAngleDown} className=" text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw" onClick={handleClick} />
+                    <FontAwesomeIcon icon={faAngleDown} className=' text-white p-0.5vw px-0.7vw cursor-pointer hover:opacity-70 traileModalBtn text-1.5vw' onClick={handleClick} />
                     <DetailModal
                         detailUrl={url}
                         creditsUrl={creditsUrl}

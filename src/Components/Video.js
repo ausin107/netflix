@@ -1,7 +1,7 @@
 import '../styles/Components.css'
 import { VolumeUpIcon, VolumeOffIcon, ViewGridIcon } from '@heroicons/react/outline'
-import { useReducer, useRef, useState } from "react";
-import ReactPlayer from "react-player";
+import { useReducer, useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
 
 function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
   const [mute, setMute] = useState(true);
@@ -37,7 +37,7 @@ function Video({ videoUrl, className, overViewRef, textRef, volumnClass }) {
     <div className={containerClass} >
       <ReactPlayer
         ref={videoRef}
-        className="absolute react-player pointer-events-none"
+        className='absolute react-player pointer-events-none'
         url={url ?? videoUrl}
         playing={true}
         muted={mute}

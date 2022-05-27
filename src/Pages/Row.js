@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef, } from "react";
+import { useEffect, useState, useRef, } from 'react';
 import axios from 'axios'
-import Carousel from "react-multi-carousel";
+import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../styles/Components.css'
-import TrailerModal from "./TrailerModal";
+import TrailerModal from './TrailerModal';
 import logo from '../assets/netflixLogo2.png'
 const responsive = {
     desktop: {
@@ -54,18 +54,18 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
     }
     return (
         <div className={className} >
-            <h1 className="text-neutral-200 text-xl pl-15 font-bold">{title}</h1>
+            <h1 className='text-neutral-200 text-xl pl-15 font-bold'>{title}</h1>
             <Carousel
                 ssr={true}
                 // ref={traileModalRef}
                 slidesToSlide={5.75}
-                containerClass="mt-4"
+                containerClass='mt-4'
                 // infinite={true}
-                itemClass="image-item movie"
+                itemClass='image-item movie'
                 responsive={responsive}
-                className="pl-3.4vw"
+                className='pl-3.4vw'
                 // swipeable
-                removeArrowOnDeviceType={["tablet", "mobile"]}
+                removeArrowOnDeviceType={['tablet', 'mobile']}
             >
                 {
                     movies.map((movie, index) => {

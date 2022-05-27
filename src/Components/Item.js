@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react'
 
 
 function Item({itemPoster}){
     
     return (
-        <div className="">
+        <div className=''>
             <img src={itemPoster} alt='Poster'/>
         </div>
     )

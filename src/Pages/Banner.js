@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Button from '../Components/Button'
 import axios from 'axios'
-import Video from "../Components/Video"
+import Video from '../Components/Video'
 import requests, { baseUrl } from '../adapters/request'
 
 
@@ -36,7 +36,7 @@ function Banner() {
                 const videoResult = await axios.get(tvVideoUrl + data.id + requests.fetchVideoOnly)
                 // const videoResult = await axios.get(movieVideoUrl + data.id + requests.fetchVideoOnly)
                 const trailerItem = videoResult.data.results.find((item, index) => {
-                    if (item.type == "Trailer") return item.type
+                    if (item.type == 'Trailer') return item.type
                     else return videoResult.data.results[0]
                 })
                 setVideoUrl(baseVideoEmbed + trailerItem.key)
@@ -56,11 +56,11 @@ function Banner() {
     return (
         <div>
             <img className='bg-center bg-cover w-full max-h-full' src={bannerUrl + banner} alt='Banner image' />
-            <div className="flex flex-col absolute bottom-1/3 ml-15 z-10">
-                <div ref={textRef} className="text-white text-5.5 font-bold w-5/12 title-banner bannerTextA">{title}</div>
-                <div ref={overViewRef} className="text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA">{handleOverView()}</div>
+            <div className='flex flex-col absolute bottom-1/3 ml-15 z-10'>
+                <div ref={textRef} className='text-white text-5.5 font-bold w-5/12 title-banner bannerTextA'>{title}</div>
+                <div ref={overViewRef} className='text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA'>{handleOverView()}</div>
                 <div className='flex items-end justify-between' style={{ width: '95vw' }}>
-                    <div className="flex flex-row mt-1.5vw">
+                    <div className='flex flex-row mt-1.5vw'>
                         <Button className='bg-white text-black font-bold mr-4' title='Play' icon={1} onClick={handlePlay} />
                         <Button className='text-white bg-buttonColor font-semibold' title='More Info' icon={2} />
                     </div>
@@ -72,7 +72,7 @@ function Banner() {
                     </div>
                 </div>
             </div>
-            <div className="banner-fade absolute bottom-0 w-full" />
+            <div className='banner-fade absolute bottom-0 w-full' />
             <Video
                 className='bottom-4vw' videoUrl={playVideo ? videoUrl : ''}
                 overViewRef={overViewRef.current}

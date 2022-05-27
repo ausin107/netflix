@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
-import Row from "./Row"
-import Footer from "./Footer"
-import requests from "../adapters/request"
-import Banner from "./Banner"
+import { useEffect, useRef, useState } from 'react'
+import Row from './Row'
+import Footer from './Footer'
+import requests from '../adapters/request'
+import Banner from './Banner'
 function Home() {
 
     useEffect(() => {
@@ -12,10 +12,10 @@ function Home() {
 
     return (
         <>
-            <div className="relative" id="container">
+            <div className='relative' id='container'>
                 <Banner />
-                <div className="absolute w-full overflow-hidden" style={{ top: '40vw' }}>
-                    <div className="w-full absolute h-full bg-backgroundColor -z-10" />
+                <div className='absolute w-full overflow-hidden' style={{ top: '40vw' }}>
+                    <div className='w-full absolute h-full bg-backgroundColor -z-10' />
                     <Row
                         title='Trending Now'
                         fetchUrl={requests.fetchTrending}
@@ -76,7 +76,7 @@ function Home() {
                     <Footer />
                 </div>
             </div>
-            <div id="DetailModal" className="relative z-50" />
+            <div id='DetailModal' className='relative z-50' />
         </>
     )
 }

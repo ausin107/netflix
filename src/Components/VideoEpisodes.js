@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import axios from 'axios';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function VideoEpisodes({ className, apiType, episodesUrl }) {
