@@ -8,8 +8,8 @@ import VideoEpisodes from '../components/VideoEpisodes'
 import requests from '../adapters/request'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { Top10Icon } from '../components/icon'
-function DetailModal({detailData, onClose, onShow }) {
+import { Top10Icon, CircleIcon } from '../components/icon'
+function DetailModal({ detailData, onClose, onShow }) {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
@@ -91,14 +91,8 @@ function DetailModal({detailData, onClose, onShow }) {
                         </div>
                         <div className='flex flex-row mt-1.5vw items-center'>
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
-                            <FontAwesomeIcon
-                                icon={faPlus}
-                                className=' text-slate-100 p-0.5vw px-0.6vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
-                            />
-                            <FontAwesomeIcon
-                                icon={faThumbsUp}
-                                className=' text-slate-100 p-0.5vw mr-0.5vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
-                            />
+                            <CircleIcon iconType={faPlus} className='px-0.6vw mr-0.5vw traileModalBtn text-slate-100' tooltipText='Add To My List' tooltipClass='-left-88%' />
+                            <CircleIcon iconType={faThumbsUp} className='text-slate-100 px-0.5vw mr-0.5vw traileModalBtn' tooltipText='I like this' tooltipClass='-left-46%' />
                         </div>
                     </div>
                     <FontAwesomeIcon

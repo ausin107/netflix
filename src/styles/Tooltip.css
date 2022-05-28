@@ -1,0 +1,11 @@
+.tooltip::after{
+    content: "";
+    display: block;
+    position: absolute;
+    border-top: 0.8rem solid rgb(230, 230, 230);
+    border-left: 0.8rem solid transparent;
+    border-right: 0.8rem solid transparent;
+    left: 46%;
+    transform: translateX(-50%);
+    top: 95%;
+}

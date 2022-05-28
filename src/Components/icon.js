@@ -1,5 +1,9 @@
 import { InformationCircleIcon } from '@heroicons/react/solid'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
+import Tooltip from './Tooltip'
+import { useState } from 'react'
+const IconClass = 'p-0.5vw cursor-pointer hover:opacity-70 text-1.5vw'
 export function PlayIcon() {
     return (
         <svg width='24' height='24'>
@@ -11,6 +15,22 @@ export function PlayIcon() {
 export function InforIcon() {
     return (
         <InformationCircleIcon style={{ width: '24px', height: '24px' }} />
+    )
+}
+export function CircleIcon({className, iconType, tooltipText, tooltipClass, onShowInfo }) {
+    const [isHover, setHover] = useState(false)
+    const newClass = `${IconClass} ${className}`
+    const handleMouseEnter = () => {
+        setHover(true)
+    }
+    const handleMouseLeave = () => {
+        setHover(false)
+    }
+    return (
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='relative' onClick={onShowInfo}>
+            {isHover && <Tooltip text={tooltipText} className={tooltipClass} />}
+            <FontAwesomeIcon icon={iconType} className={newClass} />
+        </div>
     )
 }
 export function Top10Icon() {

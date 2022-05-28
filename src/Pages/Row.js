@@ -30,6 +30,7 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
     const traileModalRef = useRef([])
     const [hover, setHover] = useState(false)
     const imgUrl = 'https://image.tmdb.org/t/p/original/'
+    const itemRef = useRef([])
     useEffect(() => {
         async function fetchMovie() {
             try {
@@ -43,11 +44,17 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
         fetchMovie()
     }, [fetchUrl])
 
-    const handleHover = (movieId) => {
+    const handleHover = (movieId, index) => {
         setHandleDelay(setTimeout(() => {
             setHover(movieId)
         }, 600))
-
+        const itemX = itemRef.current[index].getBoundingClientRect().x
+        if(itemX < 287){
+            setClasses('ml-2.5vw')
+        }
+        else if(itemX > 1204 && itemX < 1434){
+            setClasses('!-left-38%')
+        }else setClasses('')
     }
     const handleNotHover = () => {
         clearTimeout(handleDelay)
@@ -69,8 +76,17 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
             >
                 {
                     movies.map((movie, index) => {
+                        const videoData = {
+                            className: classes,
+                            imgUrl: `${imgUrl}${movie.backdrop_path}`,
+                            title: movie.title || movie.name,
+                            movieId: movie.id,
+                            apiType: apiType,
+                            moviesRank: index,
+                            moviesGenre: moviesGenre
+                        }
                         return (
-                            <div key={movie.id} onMouseEnter={() => handleHover(movie.id)} onMouseLeave={() => handleNotHover()}>
+                            <div key={movie.id} onMouseEnter={() => handleHover(movie.id, index)} onMouseLeave={() => handleNotHover()} ref={el => itemRef.current[index] = el}>
                                 <div className={hover == movie.id ? 'image' : ''} style={{ position: 'relative' }} >
                                     <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
                                     {isNetflix == true ?
@@ -82,18 +98,7 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
                                         : ''
                                     }
                                 </div>
-                                {hover == movie.id ?
-                                    <TrailerModal
-                                        className={classes}
-                                        imgUrl={imgUrl + movie.backdrop_path}
-                                        title={movie.title || movie.name}
-                                        movieId={movie.id}
-                                        apiType={apiType}
-                                        moviesRank={index}
-                                        moviesGenre={moviesGenre}
-                                    />
-                                    : ''
-                                }
+                                {hover == movie.id ? <TrailerModal videoData={videoData} /> : ''}
                             </div>
                         )
                     })
