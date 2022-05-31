@@ -5,13 +5,14 @@ import { faPlay, faCheck, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '
 import requests, { baseUrl } from '../adapters/request'
 import DetailModal from './DetailModal'
 import { CircleIcon } from '../components/icon'
-function TrailerModal({ videoData }) {
+function TrailerModal({videoData}) {
     const [runtime, setRuntime] = useState()
     const [seasons, setSeasons] = useState()
     const [vote, setVote] = useState()
     const [adult, setAdult] = useState()
     const [filmType, setFilmType] = useState([])
     const [isShow, setIsShow] = useState(false)
+    // const [detailModalClass, setClasses] = useState()
     const modalRef = useRef()
     const detailData = {
         apiType: videoData.apiType,
@@ -64,8 +65,9 @@ function TrailerModal({ videoData }) {
                         <CircleIcon iconType={faThumbsUp} className='text-white px-0.5vw mr-0.5vw traileModalBtn' tooltipText='I like this' tooltipClass='-left-46%'/>
                         <CircleIcon iconType={faThumbsDown} className='text-white px-0.5vw traileModalBtn' tooltipText='Not for me' tooltipClass='-left-75%'/>
                     </div>
-                    <CircleIcon iconType={faAngleDown} className='text-white p-0.5vw px-0.7vw traileModalBtn' onShowInfo={handleClick} tooltipText='Episodes & info' tooltipClass='-left-108%'/>
+                    <CircleIcon iconType={faAngleDown} className='text-white p-0.5vw px-0.7vw traileModalBtn ' onShowInfo={handleClick} tooltipText='Episodes & info' tooltipClass='-left-108%'/>
                     <DetailModal
+                        // className={detailModalClass}
                         detailData={detailData}
                         onShow={isShow}
                         onClose={handleClose}

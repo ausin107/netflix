@@ -54,12 +54,7 @@
         transform: scale(0.5);
     }
 }
-.test{
-    transform-origin: center center;
-    animation: trailerModalClose ease .3s;
-    will-change: transform,opacity;
 
-}
 .image-item:hover .trailer-modal{
     display: block ;
     
@@ -102,10 +97,6 @@
     border-radius: 40px;
     position: absolute;
 }
-.DetailVolumnClass{
-    bottom: 6.5vw;
-    display: block;
-}
 .bannerOverView{
     visibility: hidden !important;
     display: none;
@@ -124,7 +115,6 @@
 }
 .bannerTextA{
     transition: font-size .6s linear, width .6s linear;
-
 }
 .traileModalBtn{
     /* padding: 4px 6px; */
@@ -133,13 +123,7 @@
     border: rgba(255,255,255,.5) solid 2px;
     border-radius: 25px;
 }
-.detailModalBtn{
-    /* padding: 4px 6px; */
-    /* border: rgba(255,255,255,.5) solid 2px; */
-    /* background-color: rgba(42,42,42,.6); */
-    border: rgba(255,255,255,.5) solid 2px;
-    border-radius: 25px;
-}
+
 .customVideo{
     bottom: 0;
 }

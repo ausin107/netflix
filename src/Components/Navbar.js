@@ -26,7 +26,7 @@ function Navbar() {
                 <Link to='/browse' className='mr-1'>
                     <img className='h-7 w-24' src={logo} />
                 </Link>
-                <Link to='/browse' className='ml-4 text-white'>Home</Link>
+                <Link to='/browse/genre/83' className='ml-4 text-white'>Home</Link>
                 <Link to='/browse' className='ml-4'>TV Shows</Link>
                 <Link to='/browse' className='ml-4'>Movies</Link>
                 <Link to='/browse' className='ml-4'>New & Popular</Link>

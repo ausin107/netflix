@@ -3,6 +3,7 @@ import Row from './Row'
 import Footer from './Footer'
 import requests from '../adapters/request'
 import Banner from './Banner'
+import '../styles/DetailModal.css'
 function Home() {
 
     useEffect(() => {

@@ -1,0 +1,47 @@
+
+@keyframes detailModalGrow{
+    from{
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes detailModalClose{
+    from{
+        opacity: 1;
+        transform: scale(1);
+    }
+    to{
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+.detailModalFade{
+    height: 100%;
+    background: linear-gradient(to top,#181818,transparent 50%);
+    z-index: 0;
+  }
+.detailModalBtn{
+    /* padding: 4px 6px; */
+    /* border: rgba(255,255,255,.5) solid 2px; */
+    /* background-color: rgba(42,42,42,.6); */
+    border: rgba(255,255,255,.5) solid 2px;
+    border-radius: 25px;
+}
+.detail-modal-open{
+    transform-origin: center center;
+    animation: detailModalGrow ease-out .3s;
+    will-change: transform,opacity;
+}
+.detail-modal-close{
+    transform-origin: center center;
+    animation: detailModalClose ease .5s;
+    will-change: transform,opacity;
+}
+.DetailVolumnClass{
+    bottom: 6.5vw;
+    display: block;
+}

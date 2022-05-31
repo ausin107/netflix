@@ -17,9 +17,10 @@ export function InforIcon() {
         <InformationCircleIcon style={{ width: '24px', height: '24px' }} />
     )
 }
-export function CircleIcon({className, iconType, tooltipText, tooltipClass, onShowInfo }) {
+export function CircleIcon({containerClass, className, iconType, tooltipText, tooltipClass, onShowInfo, onClose }) {
     const [isHover, setHover] = useState(false)
     const newClass = `${IconClass} ${className}`
+    const containerClassName = `${containerClass} relative`
     const handleMouseEnter = () => {
         setHover(true)
     }
@@ -27,7 +28,7 @@ export function CircleIcon({className, iconType, tooltipText, tooltipClass, onSh
         setHover(false)
     }
     return (
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='relative' onClick={onShowInfo}>
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={containerClassName} onClick={onShowInfo || onClose}>
             {isHover && <Tooltip text={tooltipText} className={tooltipClass} />}
             <FontAwesomeIcon icon={iconType} className={newClass} />
         </div>

@@ -14,7 +14,7 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
         async function getVideo() {
             try {
                 const episodes = await axios.get(episodesUrl)
-                console.log(episodes.data.episodes)
+                // console.log(episodes.data.episodes)
                 setData(episodes.data)
                 setEpisodes(episodes.data.episodes)
             } catch (error) {

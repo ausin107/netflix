@@ -6,10 +6,12 @@ import Video from '../components/Video'
 import RelatedVideo from '../components/RelatedVideo'
 import VideoEpisodes from '../components/VideoEpisodes'
 import requests from '../adapters/request'
+import '../styles/DetailModal.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Top10Icon, CircleIcon } from '../components/icon'
-function DetailModal({ detailData, onClose, onShow }) {
+import Netflix_BG from '../assets/Netflix_BG.jpg'
+function DetailModal({ detailData, onClose, onShow, className }) {
     const [banner, setBanner] = useState([])
     const [overView, setOverView] = useState('')
     const [title, setTitle] = useState('')
@@ -24,6 +26,7 @@ function DetailModal({ detailData, onClose, onShow }) {
     const overViewRef = useRef()
     const textRef = useRef()
     let releaseDate
+    const newClass = `w-3/5vw mt-2vw flex relative top-0 h-fit flex-col rounded-md bg-detailModalBGColor detail-modal-open ${className}`
     useEffect(() => {
         async function getBanner() {
             try {
@@ -34,13 +37,13 @@ function DetailModal({ detailData, onClose, onShow }) {
                 const creditsResult = await axios.get(detailData.creditsUrl)
                 setRelatedUrl(detailData.similarUrl)
                 setActors(creditsResult.data.cast)
-                const data = results.data
-                setGenres(data.genres)
-                setBanner(data.backdrop_path)
+                const data = results?.data
+                setGenres(data?.genres)
+                setBanner(data?.backdrop_path)
                 detailData.apiType == 'movieApi' ? setTitle(data.title.toUpperCase()) : setTitle(data.name.toUpperCase())
                 setData(data)
-                setOverView(data.overview)
-                const videoResult = await axios.get(movieVideoUrl + data.id + requests.fetchVideoOnly)
+                setOverView(data?.overview)
+                const videoResult = await axios.get(movieVideoUrl + data?.id + requests.fetchVideoOnly)
                 const trailerItem = videoResult.data.results.find((item, index) => {
                     if (item.type == 'Trailer') return item.type
                     else return videoResult.data.results[0]
@@ -59,28 +62,31 @@ function DetailModal({ detailData, onClose, onShow }) {
     }
     const handleDate = () => {
         if (detailData.apiType == 'movieApi') {
-            releaseDate = data.release_date
+            releaseDate = data?.release_date
         } else {
-            releaseDate = data.first_air_date
+            releaseDate = data?.first_air_date
         }
         const d = new Date()
-        const vote = `Vote average: ${data.vote_average * 10}%`
-        if (d.getFullYear() == parseInt(releaseDate.slice(0, 4))) return 'New'
+        const vote = `Vote average: ${data?.vote_average || 0 * 10}%`
+        if (d.getFullYear() == parseInt(releaseDate?.slice(0, 4))) return 'New'
         else return vote
     }
     const handleTime = () => {
         if (detailData.apiType == 'movieApi') {
-            return `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m`
+            return `${Math.floor(data?.runtime / 60)}h${data?.runtime - Math.floor(data?.runtime / 60) * 60}m`
         } else {
-            return data.number_of_seasons > 1 ? `${data.number_of_seasons} Seasons` : `${data.number_of_seasons} Seasons`
+            return data?.number_of_seasons > 1 ? `${data?.number_of_seasons} Seasons` : `${data?.number_of_seasons} Seasons`
         }
+    }
+    const handleBanner = () => {
+        return banner != '' ? (bannerUrl + banner) : Netflix_BG
     }
     if (!onShow) return null
     return ReactDom.createPortal(
         <div className='fixed top-0 w-screen h-screen flex justify-center bg-backgroundColorOpa overflow-y-scroll' onClick={onClose}>
-            <div className='w-3/5vw mt-2vw flex relative top-0 h-fit flex-col rounded-md bg-detailModalBGColor ' onClick={(e) => e.stopPropagation(e)}>
+            <div className={newClass} onClick={(e) => e.stopPropagation(e)}>
                 <div className='relative'>
-                    <img className='bg-center bg-cover w-full max-h-full rounded' src={bannerUrl + banner} alt='Banner image' />
+                    <img className='bg-center bg-cover w-full max-h-full rounded' src={handleBanner()} alt='Banner image' />
                     <div className='flex flex-col absolute bottom-1/5 ml-15 z-10'>
                         <div
                             ref={textRef}
@@ -91,15 +97,25 @@ function DetailModal({ detailData, onClose, onShow }) {
                         </div>
                         <div className='flex flex-row mt-1.5vw items-center'>
                             <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
-                            <CircleIcon iconType={faPlus} className='px-0.6vw mr-0.5vw traileModalBtn text-slate-100' tooltipText='Add To My List' tooltipClass='-left-88%' />
-                            <CircleIcon iconType={faThumbsUp} className='text-slate-100 px-0.5vw mr-0.5vw traileModalBtn' tooltipText='I like this' tooltipClass='-left-46%' />
+                            <CircleIcon
+                                iconType={faPlus}
+                                className='px-0.6vw mr-0.5vw traileModalBtn text-slate-100'
+                                tooltipText='Add To My List'
+                                tooltipClass='-left-88%'
+                            />
+                            <CircleIcon
+                                iconType={faThumbsUp}
+                                className='text-slate-100 px-0.5vw mr-0.5vw traileModalBtn'
+                                tooltipText='I like this'
+                                tooltipClass='-left-46%'
+                            />
                         </div>
                     </div>
-                    <FontAwesomeIcon
-                        icon={faXmark}
-                        onClick={onClose}
-                        className='absolute top-0 right-0 text-slate-300 p-0.5vw cursor-pointer hover:opacity-70 bg-black rounded-full z-50'
-                        style={{ width: '1.5vw', height: '1.5vw', margin: '1vw' }}
+                    <CircleIcon
+                        iconType={faXmark}
+                        onClose={onClose}
+                        containerClass='!absolute top-0 right-0 z-50'
+                        className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw'
                     />
                     <div className='detailModalFade absolute bottom-0 w-full' />
                     <Video
@@ -114,12 +130,12 @@ function DetailModal({ detailData, onClose, onShow }) {
                     <div className='w-3/5 h-full flex flex-col justify-evenly'>
                         <div className='flex flex-row my-0.2vw items-center'>
                             <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
-                            <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{releaseDate.slice(0, 4)}</div>
+                            <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{releaseDate?.slice(0, 4)}</div>
                             <div
                                 className='text-white px-0.5vw mx-0.5vw'
                                 style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}
                             >
-                                {data.adult == true ? '18+' : '16+'}
+                                {data?.adult == true ? '18+' : '16+'}
                             </div>
                             <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
                         </div>
@@ -134,7 +150,7 @@ function DetailModal({ detailData, onClose, onShow }) {
                                 : ''
                         }
                         <div className='text-white font-normal my-0.2vw'>
-                            {overView}
+                            {overView || 'Maybe this movie is new that we don\'t have data to render yet and apologize for the inconvenience.'}
                         </div>
                     </div>
                     <div className='w-1/3 h-full ml-5vw flex flex-col justify-between'>
@@ -227,13 +243,12 @@ function DetailModal({ detailData, onClose, onShow }) {
                                 className='text-white px-0.5vw mx-0.5vw'
                                 style={{ border: 'rgba(255,255,255,.5) solid 1px', lineHeight: '1.1vw', paddingBottom: '1px' }}
                             >
-                                {data.adult == true ? '18+' : '16+'}
+                                {data?.adult == true ? '18+' : '16+'}
                             </span>
-                            <span className='text-white font-normal'>Recommended for ages {data.adult == true ? '18' : '16'} and up</span>
+                            <span className='text-white font-normal'>Recommended for ages {data?.adult == true ? '18' : '16'} and up</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>, document.getElementById('DetailModal')
     )
