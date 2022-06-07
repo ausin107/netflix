@@ -28,7 +28,7 @@ function Banner() {
         episodesUrl: `${baseUrl}/tv/${movieId}/season/1${requests.fetchVideoDetail}`,
     }
     useEffect(() => {
-        async function getBanner() {
+        async function getBanner({className, apiType, fetchUrl}) {
             try {
                 const randomBanner = Math.floor(Math.random() * 20)
                 const baseUrl = 'https://api.themoviedb.org/3'
