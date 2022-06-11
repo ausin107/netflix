@@ -41,7 +41,7 @@ function Banner() {
                 setMovieRank(randomBanner)
                 setMovieId(data.id)
                 const videoDetail = await axios.get(`${baseUrl}/tv/${data.id}${requests.fetchVideoDetail}`)
-                setAdult(videoDetail.data.adult == true ? '18+' : '17+')
+                setAdult(videoDetail.data.adult == true ? '18+' : '16+')
                 setBanner(data.backdrop_path)
                 // setTitle(data.title?.toUpperCase()) // Trường hợp movie api
                 setTitle(data.name.toUpperCase()) //trường hợp Netflix original
