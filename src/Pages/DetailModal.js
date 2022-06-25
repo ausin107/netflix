@@ -45,15 +45,15 @@ function DetailModal({ detailData, onClose, onShow, className }) {
           : setTitle(data.name.toUpperCase())
         setData(data)
         setOverView(data?.overview)
-        const videoResult = await axios.get(
-          movieVideoUrl + data?.id + LinkRequest.fetchVideoOnly
-        )
+        const videoResult = await axios.get(movieVideoUrl + data?.id + LinkRequest.fetchVideoOnly)
         const trailerItem = videoResult.data.results.find((item, index) => {
           if (item.type == 'Trailer') return item.type
           else return videoResult.data.results[0]
         })
         setVideoUrl(baseVideoEmbed + trailerItem.key)
-      } catch (error) {}
+      } catch (error) {
+        console.error(error)
+      }
     }
     getBanner()
   }, [])
@@ -69,14 +69,14 @@ function DetailModal({ detailData, onClose, onShow, className }) {
       releaseDate = data?.first_air_date
     }
     const d = new Date()
-    const vote = `Vote average: ${data?.vote_average || 0 * 10}%`
+    const vote = `Vote average: ${Math.floor(data?.vote_average) * 10 || 10 * 10}%`
     if (d.getFullYear() == parseInt(releaseDate?.slice(0, 4))) return 'New'
     else return vote
   }
   const handleTime = () => {
     if (detailData.apiType == 'movieApi') {
       return `${Math.floor(data?.runtime / 60)}h${
-        data?.runtime - Math.floor(data?.runtime / 60) * 60
+        Math.floor(data?.runtime) - Math.floor(data?.runtime / 60) * 60
       }m`
     } else {
       return data?.number_of_seasons > 1
@@ -147,9 +147,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
         <div className='z-10 mx-4vw flex flex-row mt-0.5vw'>
           <div className='w-3/5 h-full flex flex-col justify-evenly'>
             <div className='flex flex-row my-0.2vw items-center'>
-              <div className='text-green-600 text-1.2vw font-bold'>
-                {handleDate()}
-              </div>
+              <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
               <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>
                 {releaseDate?.slice(0, 4)}
               </div>
@@ -163,9 +161,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
               >
                 {data?.adult == true ? '18+' : '16+'}
               </div>
-              <div className=' text-white text-1.2vw font-semibold'>
-                {handleTime()}
-              </div>
+              <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
             </div>
             {detailData.moviesRank < 9 ? (
               <div className='flex flex-row my-0.2vw'>
@@ -190,20 +186,13 @@ function DetailModal({ detailData, onClose, onShow, className }) {
                   if (index == 2) {
                     return (
                       <div key={index}>
-                        <span className=' hover:decoration-2 hover:underline'>
-                          {actor.name},{' '}
-                        </span>
-                        <i className=' hover:decoration-2 hover:underline'>
-                          more
-                        </i>
+                        <span className=' hover:decoration-2 hover:underline'>{actor.name}, </span>
+                        <i className=' hover:decoration-2 hover:underline'>more</i>
                       </div>
                     )
                   } else if (index < 3)
                     return (
-                      <span
-                        className=' hover:decoration-2 hover:underline'
-                        key={index}
-                      >
+                      <span className=' hover:decoration-2 hover:underline' key={index}>
                         {' '}
                         {actor.name},{' '}
                       </span>
@@ -216,18 +205,12 @@ function DetailModal({ detailData, onClose, onShow, className }) {
               <span className='text-white font-normal hover:cursor-pointer'>
                 {genres.map((genre, index) => {
                   return index != genres.length - 1 ? (
-                    <span
-                      className=' hover:decoration-2 hover:underline'
-                      key={index}
-                    >
+                    <span className=' hover:decoration-2 hover:underline' key={index}>
                       {' '}
                       {genre.name},{' '}
                     </span>
                   ) : (
-                    <span
-                      className=' hover:decoration-2 hover:underline'
-                      key={index}
-                    >
+                    <span className=' hover:decoration-2 hover:underline' key={index}>
                       {genre.name}
                     </span>
                   )
@@ -255,10 +238,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             <span className='font-bold ml-0.5vw'>{title}</span>
           </div>
           <div className='w-full h-full flex flex-col justify-between'>
-            <div
-              className='font-normal mb-0.5vw mt-1vw'
-              style={{ color: '#777' }}
-            >
+            <div className='font-normal mb-0.5vw mt-1vw' style={{ color: '#777' }}>
               Director:
               <span className='text-white font-normal hover:cursor-pointer hover:decoration-2 hover:underline'>
                 {' Null'}
@@ -271,20 +251,13 @@ function DetailModal({ detailData, onClose, onShow, className }) {
                   if (index == 9) {
                     return (
                       <span key={index}>
-                        <span className=' hover:decoration-2 hover:underline'>
-                          {actor.name},{' '}
-                        </span>
-                        <i className=' hover:decoration-2 hover:underline'>
-                          more
-                        </i>
+                        <span className=' hover:decoration-2 hover:underline'>{actor.name}, </span>
+                        <i className=' hover:decoration-2 hover:underline'>more</i>
                       </span>
                     )
                   } else if (index < 10)
                     return (
-                      <span
-                        className=' hover:decoration-2 hover:underline'
-                        key={index}
-                      >
+                      <span className=' hover:decoration-2 hover:underline' key={index}>
                         {' '}
                         {actor.name},{' '}
                       </span>
@@ -297,18 +270,12 @@ function DetailModal({ detailData, onClose, onShow, className }) {
               <span className='text-white font-normal hover:cursor-pointer'>
                 {genres.map((genre, index) => {
                   return index != genres.length - 1 ? (
-                    <span
-                      className=' hover:decoration-2 hover:underline'
-                      key={index}
-                    >
+                    <span className=' hover:decoration-2 hover:underline' key={index}>
                       {' '}
                       {genre.name},{' '}
                     </span>
                   ) : (
-                    <span
-                      className=' hover:decoration-2 hover:underline'
-                      key={index}
-                    >
+                    <span className=' hover:decoration-2 hover:underline' key={index}>
                       {genre.name}
                     </span>
                   )

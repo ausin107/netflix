@@ -18,15 +18,8 @@ function Movies() {
   return (
     <>
       <div className='relative' id='container'>
-        <Banner
-          className=''
-          apiType='movieApi'
-          fetchUrl={randomBannerUrl(MoviesRequests)}
-        />
-        <div
-          className='absolute w-full overflow-hidden'
-          style={{ top: '40vw' }}
-        >
+        <Banner className='' apiType='movieApi' fetchUrl={randomBannerUrl(MoviesRequests)} />
+        <div className='absolute w-full overflow-hidden' style={{ top: '40vw' }}>
           <div className='w-full absolute h-full bg-backgroundColor -z-10' />
           <Row
             title='Children & Family Movies'
@@ -50,6 +43,13 @@ function Movies() {
             className='my-9 w-screen'
           />
           <Row
+            title='Western Movie'
+            fetchUrl={MoviesRequests.fetchWesternMovies}
+            apiType='movieApi'
+            moviesGenre='Western Movies'
+            className='my-9 w-screen'
+          />
+          <Row
             title='Horror Movies'
             fetchUrl={MoviesRequests.fetchHorrorMovies}
             apiType='movieApi'
@@ -62,7 +62,41 @@ function Movies() {
             apiType='movieApi'
             moviesGenre='Comedies Movies'
             className='my-9 w-screen'
-            isNetflix={true}
+          />
+          <Row
+            title='Crime Movie'
+            fetchUrl={MoviesRequests.fetchCrimeMovies}
+            apiType='movieApi'
+            moviesGenre='Crime Movies'
+            className='my-9 w-screen'
+          />
+          <Row
+            title='Documentary Movie'
+            fetchUrl={MoviesRequests.fetchDocumentaryMovies}
+            apiType='movieApi'
+            moviesGenre='Documentary Movies'
+            className='my-9 w-screen'
+          />
+          <Row
+            title='Wars Movie'
+            fetchUrl={MoviesRequests.fetchWarMovies}
+            apiType='movieApi'
+            moviesGenre='Wars Movies'
+            className='my-9 w-screen'
+          />
+          <Row
+            title='Musics Movie'
+            fetchUrl={MoviesRequests.fetchMusicMovies}
+            apiType='movieApi'
+            moviesGenre='Musics Movies'
+            className='my-9 w-screen'
+          />
+          <Row
+            title='Romance Movie'
+            fetchUrl={MoviesRequests.fetchRomanceMovies}
+            apiType='movieApi'
+            moviesGenre='Romance Movies'
+            className='my-9 w-screen'
           />
           <Row
             title='Action Movies'

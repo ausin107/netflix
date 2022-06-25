@@ -12,7 +12,7 @@ function Navbar() {
   const searchTag = [
     {
       searchTagName: 'Home',
-      className: 'ml-4',
+      className: 'ml-4 text-white font-bold',
       searchLink: '/browse',
     },
     {

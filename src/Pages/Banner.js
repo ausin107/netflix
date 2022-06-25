@@ -18,14 +18,26 @@ function Banner({ className, apiType, fetchUrl }) {
   const bannerUrl = 'https://image.tmdb.org/t/p/original/'
   const overViewRef = useRef()
   const textRef = useRef()
-  const detailData = {
-    apiType: apiType,
-    moviesRank: moviesRank,
-    moviesGenre: 'Trending Now',
-    detailUrl: `${baseUrl}/tv/${movieId}${LinkRequest.fetchVideoDetail}`,
-    creditsUrl: `${baseUrl}/tv/${movieId}/${LinkRequest.fetchCreditsInfo}`,
-    similarUrl: `${baseUrl}/tv/${movieId}/${LinkRequest.fetchSimilarVideo}`,
-    episodesUrl: `${baseUrl}/tv/${movieId}/season/1${LinkRequest.fetchVideoDetail}`,
+  let detailData = {}
+  if (apiType == 'tvApi') {
+    detailData = {
+      apiType: apiType,
+      moviesRank: moviesRank,
+      moviesGenre: 'Netflix Tv Shows',
+      detailUrl: `${baseUrl}/tv/${movieId}${LinkRequest.fetchVideoDetail}`,
+      creditsUrl: `${baseUrl}/tv/${movieId}/${LinkRequest.fetchCreditsInfo}`,
+      similarUrl: `${baseUrl}/tv/${movieId}/${LinkRequest.fetchSimilarVideo}`,
+      episodesUrl: `${baseUrl}/tv/${movieId}/season/1${LinkRequest.fetchVideoDetail}`,
+    }
+  } else {
+    detailData = {
+      apiType: apiType,
+      moviesRank: moviesRank,
+      moviesGenre: 'Netflix Movies',
+      detailUrl: `${baseUrl}/movie/${movieId}${LinkRequest.fetchVideoDetail}`,
+      creditsUrl: `${baseUrl}/movie/${movieId}/${LinkRequest.fetchCreditsInfo}`,
+      similarUrl: `${baseUrl}/movie/${movieId}/${LinkRequest.fetchSimilarVideo}`,
+    }
   }
   useEffect(() => {
     async function getBanner(apiType, fetchUrl) {
@@ -41,21 +53,15 @@ function Banner({ className, apiType, fetchUrl }) {
         setMovieId(data.id)
         let videoDetail, videoResult
         if (apiType == 'tvApi') {
-          videoDetail = await axios.get(
-            `${baseUrl}/tv/${data.id}${LinkRequest.fetchVideoDetail}`
-          )
+          videoDetail = await axios.get(`${baseUrl}/tv/${data.id}${LinkRequest.fetchVideoDetail}`)
           setTitle(data.name.toUpperCase())
-          videoResult = await axios.get(
-            tvVideoUrl + data.id + LinkRequest.fetchVideoOnly
-          )
+          videoResult = await axios.get(tvVideoUrl + data.id + LinkRequest.fetchVideoOnly)
         } else {
           videoDetail = await axios.get(
             `${baseUrl}/movie/${data.id}${LinkRequest.fetchVideoDetail}`
           )
           setTitle(data.title.toUpperCase())
-          videoResult = await axios.get(
-            movieVideoUrl + data.id + LinkRequest.fetchVideoOnly
-          )
+          videoResult = await axios.get(movieVideoUrl + data.id + LinkRequest.fetchVideoOnly)
         }
         setAdult(videoDetail.data.adult == true ? '18+' : '16+')
         setBanner(data.backdrop_path)
@@ -79,15 +85,11 @@ function Banner({ className, apiType, fetchUrl }) {
   }
   const handleInfo = () => {
     setIsShow(true)
-    document
-      .getElementById('container')
-      .classList.add('overflow-y-hidden', 'h-screen')
+    document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
   }
   const handleClose = () => {
     setIsShow(false)
-    document
-      .getElementById('container')
-      .classList.remove('overflow-y-hidden', 'h-screen')
+    document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
   }
   return (
     <div>
@@ -109,10 +111,7 @@ function Banner({ className, apiType, fetchUrl }) {
         >
           {handleOverView()}
         </div>
-        <div
-          className='flex items-end justify-between'
-          style={{ width: '95vw' }}
-        >
+        <div className='flex items-end justify-between' style={{ width: '95vw' }}>
           <div className='flex flex-row mt-1.5vw'>
             <Button
               className='bg-white text-black font-bold mr-4'
@@ -126,12 +125,8 @@ function Banner({ className, apiType, fetchUrl }) {
               icon={2}
               onClick={handleInfo}
             />
-            {movieId && (
-              <DetailModal
-                detailData={detailData}
-                onShow={isShow}
-                onClose={handleClose}
-              />
+            {!!movieId && (
+              <DetailModal detailData={detailData} onShow={isShow} onClose={handleClose} />
             )}
           </div>
           <div

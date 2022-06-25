@@ -59,9 +59,9 @@ function TrailerModal({ videoData }) {
         setAdult(data.adult)
         setFilmType(data.genres)
         setRuntime(finalTime)
-        setVote(data.vote_average)
+        setVote(Math.round(data.vote_average))
       } catch (error) {
-        // console.log(error)
+        console.error(error)
       }
     }
     getDetail()
