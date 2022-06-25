@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import '../styles/Components.css'
 import TrailerModal from './TrailerModal';
 import logo from '../assets/netflixLogo2.png'
+import ErrorMovie from '../assets/Netflix_Error_Movie.png'
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -59,6 +60,9 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
     const handleNotHover = () => {
         clearTimeout(handleDelay)
     }
+    const getMovieBannerSrc = (movie) => {
+        return movie.poster_path != null ? (imgUrl + movie.poster_path) : ErrorMovie
+    }
     return (
         <div className={className} >
             <h1 className='text-neutral-200 text-xl pl-15 font-bold'>{title}</h1>
@@ -88,7 +92,7 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
                         return (
                             <div key={movie.id} onMouseEnter={() => handleHover(movie.id, index)} onMouseLeave={() => handleNotHover()} ref={el => itemRef.current[index] = el}>
                                 <div className={hover == movie.id ? 'image' : ''} style={{ position: 'relative' }} >
-                                    <img src={imgUrl + movie.poster_path} className='rounded-md cursor-pointer' />
+                                    <img src={getMovieBannerSrc(movie)} className='rounded-md cursor-pointer' />
                                     {isNetflix == true ?
                                         <img
                                             src={logo}
