@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css'
 import '../styles/Components.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import AllRowVideoModal from '../components/AllRowVideoModal'
+import AllRowVideoModal from './AllRowVideoModal'
 import RowBanner from '../components/RowBanner'
 const responsive = {
   desktop: {

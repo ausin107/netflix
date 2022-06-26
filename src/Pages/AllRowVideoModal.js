@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortDown, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { CircleIcon } from '../components/icon'
 import ErrorMovie from '../assets/Netflix_Error_Movie.png'
-import RowBanner from './RowBanner'
+import RowBanner from '../components/RowBanner'
 function AllRowVideoModal({
   title,
   allMovie,
@@ -15,10 +15,6 @@ function AllRowVideoModal({
   onGenreVideoShow,
   onGenreVideoClose,
 }) {
-  const imgUrl = 'https://image.tmdb.org/t/p/original/'
-  const getMovieBannerSrc = (movie) => {
-    return movie.poster_path != null ? imgUrl + movie.poster_path : ErrorMovie
-  }
   if (!onGenreVideoShow) return null
   return ReactDom.createPortal(
     <div
@@ -38,22 +34,22 @@ function AllRowVideoModal({
         <div className='flex items-center justify-center m-5vw'>
           <div className=' text-3vw text-white font-bold'>{title}</div>
         </div>
-        <div className='flex justify-end items-center text-white mb-4vw mx-4vw'>
+        {/* <div className='flex justify-end items-center text-white mb-4vw mx-4vw'>
           <div className='text-1vw text-white mr-0.5vw'>Sort by</div>
           <div className='px-0.7vw py-0.15vw border-1 border-white border-solid flex items-baseline font-semibold cursor-pointer bg-black tracking-wide'>
             Suggestions For You
             <FontAwesomeIcon icon={faSortDown} className='text-xs ml-3vw' />
           </div>
-        </div>
+        </div> */}
+        {/*Trường hợp có MultiSelect*/}
         <div
           className='grid gap-y-0.7vw gap-x-1vw mx-4vw mb-4vw'
           style={{ gridTemplateColumns: 'auto auto auto auto' }}
         >
           {allMovie.map((movie, index) => {
             return (
-              <div className='image-item movie relative'>
+              <div className='image-item movie relative' key={movie.id}>
                 <RowBanner
-                  key={movie.id}
                   bannerData={movie}
                   apiType={apiType}
                   index={index}
