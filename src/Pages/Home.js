@@ -118,7 +118,7 @@ function Home() {
           <Footer />
         </div>
       </div>
-      <div id='DetailModal' className='relative z-50' />
+      <div id='Modal' className='relative z-50' />
     </>
   )
 }

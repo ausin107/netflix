@@ -137,3 +137,12 @@
     top: -5vw;
     border-bottom: 2px solid #404040;
 }
+.allRowVideo{
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+.rowTitle:hover .allRowVideo{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}

@@ -1,0 +1,5 @@
+.all-genre-video-open{
+    transform-origin: center center;
+    animation: detailModalGrow ease-out .3s;
+    will-change: transform,opacity;
+}

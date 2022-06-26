@@ -306,7 +306,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
         </div>
       </div>
     </div>,
-    document.getElementById('DetailModal')
+    document.getElementById('Modal')
   )
 }
 

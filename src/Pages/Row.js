@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import '../styles/Components.css'
-import TrailerModal from './TrailerModal'
-import logo from '../assets/netflixLogo2.png'
-import ErrorMovie from '../assets/Netflix_Error_Movie.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import AllRowVideoModal from '../components/AllRowVideoModal'
+import RowBanner from '../components/RowBanner'
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -24,14 +25,8 @@ const responsive = {
   },
 }
 function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
-  const [infinite, setInfinite] = useState(false)
   const [movies, setMovies] = useState([])
-  const [classes, setClasses] = useState('')
-  const [handleDelay, setHandleDelay] = useState()
-  const traileModalRef = useRef([])
-  const [hover, setHover] = useState(false)
-  const imgUrl = 'https://image.tmdb.org/t/p/original/'
-  const itemRef = useRef([])
+  const [onGenreVideoShow, setGenreVideoShow] = useState(false)
   useEffect(() => {
     async function fetchMovie() {
       try {
@@ -44,72 +39,55 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
     }
     fetchMovie()
   }, [fetchUrl])
-
-  const handleHover = (movieId, index) => {
-    setHandleDelay(
-      setTimeout(() => {
-        setHover(movieId)
-      }, 600)
-    )
-    const itemX = itemRef.current[index].getBoundingClientRect().x
-    if (itemX < 287) {
-      setClasses('ml-2.5vw')
-    } else if (itemX > 1204 && itemX < 1434) {
-      setClasses('!-left-38%')
-    } else setClasses('')
+  const handleShowAll = () => {
+    setGenreVideoShow(true)
+    document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
   }
-  const handleNotHover = () => {
-    clearTimeout(handleDelay)
-  }
-  const getMovieBannerSrc = (movie) => {
-    return movie.poster_path != null ? imgUrl + movie.poster_path : ErrorMovie
+  const handleClose = () => {
+    setGenreVideoShow(false)
+    document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
   }
   return (
     <div className={className}>
-      <h1 className='text-neutral-200 text-xl pl-15 font-bold'>{title}</h1>
+      <div
+        className='flex items-baseline text-neutral-200 text-xl pl-15 font-bold rowTitle cursor-pointer'
+        onClick={handleShowAll}
+      >
+        {title}
+        <div className='text-allRelatedVideoColor flex text-sm leading-3 ml-0.5vw font-bold invisible allRowVideo'>
+          Explore All
+          <FontAwesomeIcon icon={faChevronRight} className='text-xs ml-0.2vw' />
+        </div>
+      </div>
+      <AllRowVideoModal
+        title={title}
+        apiType={apiType}
+        moviesGenre={moviesGenre}
+        isNetflix={isNetflix}
+        allMovie={movies}
+        onGenreVideoShow={onGenreVideoShow}
+        onGenreVideoClose={handleClose}
+      />
       <Carousel
         ssr={true}
-        // ref={traileModalRef}
         slidesToSlide={5.75}
         containerClass='mt-4'
-        // infinite={true}
         itemClass='image-item movie'
         responsive={responsive}
         className='pl-3.4vw'
-        // swipeable
         removeArrowOnDeviceType={['tablet', 'mobile']}
       >
         {movies.map((movie, index) => {
-          const videoData = {
-            className: classes,
-            imgUrl: `${imgUrl}${movie.backdrop_path}`,
-            title: movie.title || movie.name,
-            movieId: movie.id,
-            apiType: apiType,
-            moviesRank: index,
-            moviesGenre: moviesGenre,
-          }
           return (
-            <div
+            <RowBanner
               key={movie.id}
-              onMouseEnter={() => handleHover(movie.id, index)}
-              onMouseLeave={() => handleNotHover()}
-              ref={(el) => (itemRef.current[index] = el)}
-            >
-              <div className={hover == movie.id ? 'image' : ''} style={{ position: 'relative' }}>
-                <img src={getMovieBannerSrc(movie)} className='rounded-md cursor-pointer' />
-                {isNetflix == true ? (
-                  <img
-                    src={logo}
-                    className='absolute top-0 left-0 mx-0.1vw my-0.4vw'
-                    style={{ width: '1.4vw', height: '1.2vw' }}
-                  />
-                ) : (
-                  ''
-                )}
-              </div>
-              {hover == movie.id ? <TrailerModal videoData={videoData} /> : ''}
-            </div>
+              bannerData={movie}
+              apiType={apiType}
+              index={index}
+              moviesGenre={moviesGenre}
+              isNetflix={isNetflix}
+              isRow={true} //Th là row bên ngoài home không phải allRow nên cần thêm pl và pr cho trailerBanner
+            />
           )
         })}
       </Carousel>

@@ -51,11 +51,8 @@ function TrailerModal({ videoData }) {
                 data.runtime - Math.floor(data.runtime / 60) * 60
               }m`
             : ''
-        const season =
-          videoData.apiType == 'tvApi' ? data.number_of_seasons : ''
-        season > 1
-          ? setSeasons(`${season} Seasons`)
-          : setSeasons(`${season} Season`)
+        const season = videoData.apiType == 'tvApi' ? data.number_of_seasons : ''
+        season > 1 ? setSeasons(`${season} Seasons`) : setSeasons(`${season} Season`)
         setAdult(data.adult)
         setFilmType(data.genres)
         setRuntime(finalTime)
@@ -68,15 +65,11 @@ function TrailerModal({ videoData }) {
   }, [videoData.movieId])
   const handleClick = () => {
     setIsShow(true)
-    document
-      .getElementById('container')
-      .classList.add('overflow-y-hidden', 'h-screen')
+    document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
   }
   const handleClose = () => {
     setIsShow(false)
-    document
-      .getElementById('container')
-      .classList.remove('overflow-y-hidden', 'h-screen')
+    document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
   }
   const handleTitle = () => {
     return videoData.title
@@ -84,15 +77,8 @@ function TrailerModal({ videoData }) {
   return (
     <div className={newClass} ref={modalRef}>
       <div className='w-full rounded bg-black h-fit flex flex-col'>
-        <img
-          src={videoData.imgUrl}
-          className='w-full rounded h-fit '
-          onClick={handleClick}
-        />
-        <div
-          className='text-white text-1.5vw font-sans font-bold pl-1.5vw'
-          onClick={handleClick}
-        >
+        <img src={videoData.imgUrl} className='w-full rounded h-fit ' onClick={handleClick} />
+        <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw' onClick={handleClick}>
           {handleTitle()}
         </div>
         <div className='flex w-full p-1.5vw'>
@@ -135,9 +121,7 @@ function TrailerModal({ videoData }) {
           />
         </div>
         <div className='flex pl-1.5vw items-center' onClick={handleClick}>
-          <div className=' text-1.2vw text-green-500 font-bold'>
-            Vote: {vote * 10}%
-          </div>
+          <div className=' text-1.2vw text-green-500 font-bold'>Vote: {vote * 10}%</div>
           <div
             className='text-white px-0.5vw mx-0.5vw'
             style={{
@@ -156,10 +140,7 @@ function TrailerModal({ videoData }) {
           {filmType.map((item, index) => {
             if (index < 3)
               return (
-                <li
-                  className='text-1vw text-white font-semibold mr-1 tracking-wide'
-                  key={item.id}
-                >
+                <li className='text-1vw text-white font-semibold mr-1 tracking-wide' key={item.id}>
                   {item.name}
                   <span className='text-1vw text-white font-semibold'>
                     {index != filmType.length - 1 && index != 2 && ' -'}
