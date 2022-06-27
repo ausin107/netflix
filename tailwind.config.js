@@ -6,6 +6,18 @@ module.exports = {
       2: '2px',
       3: '3px',
     },
+    fontFamily: {
+      sans: [
+        'Segoe UI',
+        'Roboto',
+        'Oxygen',
+        'Ubuntu',
+        'Cantarell',
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+      ],
+    },
     extend: {
       width: {
         '7/20': '35%',

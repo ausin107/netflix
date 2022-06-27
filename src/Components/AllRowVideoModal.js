@@ -3,9 +3,9 @@ import ReactDom from 'react-dom'
 import '../styles/AllRowVideoModal.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortDown, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { CircleIcon } from '../components/icon'
+import { CircleIcon } from './icon'
 import ErrorMovie from '../assets/Netflix_Error_Movie.png'
-import RowBanner from '../components/RowBanner'
+import RowBanner from './RowBanner'
 function AllRowVideoModal({
   title,
   allMovie,

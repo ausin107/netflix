@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import Row from './Row'
-import Footer from './Footer'
+import Row from '../components/Row'
+import Footer from '../components/Footer'
 import { LinkRequest, HomeRequests } from '../adapters/homeRequests'
-import Banner from './Banner'
+import Banner from '../components/Banner'
 import '../styles/DetailModal.css'
 function Home() {
   const [bannerUrl, setBannerUrl] = useState()

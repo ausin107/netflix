@@ -28,12 +28,12 @@ function Navbar() {
     {
       searchTagName: 'New & Popular',
       className: 'ml-4',
-      searchLink: '/browse',
+      searchLink: '/genre/new-popular',
     },
     {
       searchTagName: 'My List',
       className: 'ml-4',
-      searchLink: '/browse',
+      searchLink: '/my-list',
     },
   ]
   useLayoutEffect(() => {
@@ -47,6 +47,13 @@ function Navbar() {
     } else ref.current.classList.remove('navbar-color')
     return () => window.removeEventListener('scroll', updatePosition) // tránh memory leak
   }, [height])
+  useEffect(() => {
+    searchTagRef.current.map((item) => {
+      item.href == window.location.href
+        ? item.classList.add('text-white', 'font-bold')
+        : item.classList.remove('text-white', 'font-bold')
+    })
+  }, [])
   const handleClick = (index) => {
     searchTagRef.current.map((item) => {
       item.classList.remove('text-white', 'font-bold')

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import TrailerModal from '../pages/TrailerModal'
+import TrailerModal from '../components/TrailerModal'
 import logo from '../assets/netflixLogo2.png'
 import ErrorMovie from '../assets/Netflix_Error_Movie.png'
 

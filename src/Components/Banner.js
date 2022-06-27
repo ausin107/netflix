@@ -4,6 +4,7 @@ import axios from 'axios'
 import Video from '../components/Video'
 import { baseUrl, HomeRequests, LinkRequest } from '../adapters/homeRequests'
 import DetailModal from './DetailModal'
+import NetflixBG from '../assets/Netflix_BG.jpg'
 
 function Banner({ className, apiType, fetchUrl }) {
   const [movieId, setMovieId] = useState(false)
@@ -91,17 +92,20 @@ function Banner({ className, apiType, fetchUrl }) {
     setIsShow(false)
     document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
   }
+  const handelBannerImg = (ImgSrc) => {
+    return !!ImgSrc == false ? NetflixBG : `${bannerUrl}${ImgSrc}`
+  }
   return (
     <div>
       <img
         className='bg-center bg-cover w-full max-h-full'
-        src={bannerUrl + banner}
+        src={handelBannerImg(banner)}
         alt='Banner image'
       />
       <div className='flex flex-col absolute bottom-1/3 ml-15 z-10'>
         <div
           ref={textRef}
-          className='text-white text-4vw font-bold w-5/12 title-banner bannerTextA'
+          className='text-white text-4vw font-bold w-5/12 title-banner bannerTextA font-sans'
         >
           {title}
         </div>

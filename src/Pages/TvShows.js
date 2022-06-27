@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import Row from './Row'
-import Footer from './Footer'
-import Banner from './Banner'
+import Row from '../components/Row'
+import Footer from '../components/Footer'
+import Banner from '../components/Banner'
 import { TvShowRequests } from '../adapters/tvShowRequests'
 import '../styles/DetailModal.css'
 

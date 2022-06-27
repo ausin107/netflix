@@ -3,12 +3,12 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPlay,
-  faCheck,
   faThumbsUp,
   faThumbsDown,
   faAngleDown,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons'
+import NetflixBG from '../assets/Netflix_BG.jpg'
 import { baseUrl, LinkRequest, HomeRequests } from '../adapters/homeRequests'
 import DetailModal from './DetailModal'
 import { CircleIcon } from '../components/icon'
@@ -19,7 +19,6 @@ function TrailerModal({ videoData }) {
   const [adult, setAdult] = useState()
   const [filmType, setFilmType] = useState([])
   const [isShow, setIsShow] = useState(false)
-  // const [detailModalClass, setClasses] = useState()
   const modalRef = useRef()
   const detailData = {
     apiType: videoData.apiType,
@@ -74,10 +73,17 @@ function TrailerModal({ videoData }) {
   const handleTitle = () => {
     return videoData.title
   }
+  const handleImgSrc = (ImgSrc) => {
+    return ImgSrc.includes('null') == true ? NetflixBG : ImgSrc
+  }
   return (
     <div className={newClass} ref={modalRef}>
       <div className='w-full rounded bg-black h-fit flex flex-col'>
-        <img src={videoData.imgUrl} className='w-full rounded h-fit ' onClick={handleClick} />
+        <img
+          src={handleImgSrc(videoData.imgUrl)}
+          className='w-full rounded h-fit '
+          onClick={handleClick}
+        />
         <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw' onClick={handleClick}>
           {handleTitle()}
         </div>
