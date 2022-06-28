@@ -65,10 +65,7 @@ function Navbar() {
     window.location.reload()
   }
   return (
-    <nav
-      ref={ref}
-      className='fixed z-30 px-15 flex w-screen h-17 navbar-background justify-between'
-    >
+    <nav ref={ref} className='fixed z-30 px-15 flex w-screen h-17 navbar-background justify-between'>
       <div className='flex items-center text-neutral-200 text-base'>
         <div className='mr-1' onClick={handleLogoClick}>
           <img className='h-7 w-24 cursor-pointer' src={logo} />
