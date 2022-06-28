@@ -1,15 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faPlay,
-  faThumbsUp,
-  faThumbsDown,
-  faAngleDown,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faThumbsUp, faThumbsDown, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
 import NetflixBG from '../assets/Netflix_BG.jpg'
-import { baseUrl, LinkRequest, HomeRequests } from '../adapters/homeRequests'
+import { baseUrl, LinkRequest } from '../adapters/homeRequests'
 import DetailModal from './DetailModal'
 import { CircleIcon } from '../components/icon'
 function TrailerModal({ videoData }) {
@@ -46,9 +39,7 @@ function TrailerModal({ videoData }) {
         const data = results.data
         const finalTime =
           videoData.apiType == 'movieApi'
-            ? `${Math.floor(data.runtime / 60)}h${
-                data.runtime - Math.floor(data.runtime / 60) * 60
-              }m`
+            ? `${Math.floor(data.runtime / 60)}h${data.runtime - Math.floor(data.runtime / 60) * 60}m`
             : ''
         const season = videoData.apiType == 'tvApi' ? data.number_of_seasons : ''
         season > 1 ? setSeasons(`${season} Seasons`) : setSeasons(`${season} Season`)
@@ -79,11 +70,7 @@ function TrailerModal({ videoData }) {
   return (
     <div className={newClass} ref={modalRef}>
       <div className='w-full rounded bg-black h-fit flex flex-col'>
-        <img
-          src={handleImgSrc(videoData.imgUrl)}
-          className='w-full rounded h-fit '
-          onClick={handleClick}
-        />
+        <img src={handleImgSrc(videoData.imgUrl)} className='w-full rounded h-fit ' onClick={handleClick} />
         <div className='text-white text-1.5vw font-sans font-bold pl-1.5vw' onClick={handleClick}>
           {handleTitle()}
         </div>
@@ -92,6 +79,7 @@ function TrailerModal({ videoData }) {
             <CircleIcon
               iconType={faPlay}
               className='text-black px-0.7vw mr-0.5vw traileModalBtn bg-white'
+              onClick={handleClick}
             />
             <CircleIcon
               iconType={faPlus}
@@ -104,18 +92,20 @@ function TrailerModal({ videoData }) {
               className='text-white px-0.5vw mr-0.5vw traileModalBtn'
               tooltipText='I like this'
               tooltipClass='-left-46%'
+              iconOnClickColor='text-sky-500 !border-sky-500 animate-wiggleV2'
             />
             <CircleIcon
               iconType={faThumbsDown}
               className='text-white px-0.5vw traileModalBtn'
               tooltipText='Not for me'
               tooltipClass='-left-75%'
+              iconOnClickColor='text-red-500 !border-red-500'
             />
           </div>
           <CircleIcon
             iconType={faAngleDown}
             className='text-white p-0.5vw px-0.7vw traileModalBtn '
-            onShowInfo={handleClick}
+            onClick={handleClick}
             tooltipText='Episodes & info'
             tooltipClass='-left-108%'
           />
@@ -138,9 +128,7 @@ function TrailerModal({ videoData }) {
           >
             {adult == true ? '18+' : '16+'}
           </div>
-          <div className=' text-1.2vw text-white font-normal tracking-wide'>
-            {runtime || seasons}
-          </div>
+          <div className=' text-1.2vw text-white font-normal tracking-wide'>{runtime || seasons}</div>
         </div>
         <ul className='flex pl-1.5vw my-1.5vw' onClick={handleClick}>
           {filmType.map((item, index) => {

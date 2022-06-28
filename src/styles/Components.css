@@ -117,9 +117,6 @@
     transition: font-size .6s linear, width .6s linear;
 }
 .traileModalBtn{
-    /* padding: 4px 6px; */
-    /* border: rgba(255,255,255,.5) solid 2px; */
-    /* background-color: rgba(42,42,42,.6); */
     border: rgba(255,255,255,.5) solid 2px;
     border-radius: 25px;
 }

@@ -7,18 +7,27 @@ module.exports = {
       3: '3px',
     },
     fontFamily: {
-      sans: [
-        'Segoe UI',
-        'Roboto',
-        'Oxygen',
-        'Ubuntu',
-        'Cantarell',
-        'Fira Sans',
-        'Droid Sans',
-        'Helvetica Neue',
-      ],
+      sans: ['Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'],
     },
     extend: {
+      animation: {
+        wiggleV2: 'wiggleV2 1.2s',
+      },
+      keyframes: {
+        bounceV2: {
+          '0%': { transform: 'translateY(-15px)' },
+          '40%': { transform: 'translateY(0px)' },
+          '90%': { transform: 'translateY(-7px)' },
+          '100%': { transform: 'translateY(0px)' },
+        },
+        wiggleV2: {
+          '0%': { transform: 'rotate(10deg)' },
+          '25%': { transform: 'rotate(-10deg)' },
+          '50%': { transform: 'rotate(20deg)' },
+          '75%': { transform: 'rotate(-5deg)' },
+          '100%': { transform: 'rotate(0deg)' },
+        },
+      },
       width: {
         '7/20': '35%',
       },

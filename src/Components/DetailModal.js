@@ -40,9 +40,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
         const data = results?.data
         setGenres(data?.genres)
         setBanner(data?.backdrop_path)
-        detailData.apiType == 'movieApi'
-          ? setTitle(data.title.toUpperCase())
-          : setTitle(data.name.toUpperCase())
+        detailData.apiType == 'movieApi' ? setTitle(data.title.toUpperCase()) : setTitle(data.name.toUpperCase())
         setData(data)
         setOverView(data?.overview)
         const videoResult = await axios.get(movieVideoUrl + data?.id + LinkRequest.fetchVideoOnly)
@@ -75,13 +73,9 @@ function DetailModal({ detailData, onClose, onShow, className }) {
   }
   const handleTime = () => {
     if (detailData.apiType == 'movieApi') {
-      return `${Math.floor(data?.runtime / 60)}h${
-        Math.floor(data?.runtime) - Math.floor(data?.runtime / 60) * 60
-      }m`
+      return `${Math.floor(data?.runtime / 60)}h${Math.floor(data?.runtime) - Math.floor(data?.runtime / 60) * 60}m`
     } else {
-      return data?.number_of_seasons > 1
-        ? `${data?.number_of_seasons} Seasons`
-        : `${data?.number_of_seasons} Seasons`
+      return data?.number_of_seasons > 1 ? `${data?.number_of_seasons} Seasons` : `${data?.number_of_seasons} Seasons`
     }
   }
   const handleBanner = () => {
@@ -95,12 +89,8 @@ function DetailModal({ detailData, onClose, onShow, className }) {
     >
       <div className={newClass} onClick={(e) => e.stopPropagation(e)}>
         <div className='relative'>
-          <img
-            className='bg-center bg-cover w-full max-h-full rounded'
-            src={handleBanner()}
-            alt='Banner image'
-          />
-          <div className='flex flex-col absolute bottom-1/5 ml-15 z-10'>
+          <img className='bg-center bg-cover w-full max-h-full rounded' src={handleBanner()} alt='Banner image' />
+          <div className='flex flex-col absolute bottom-1/5 ml-15 z-10 font-sans'>
             <div
               ref={textRef}
               className='text-white font-bold w-full title-banner bannerTextA'
@@ -109,12 +99,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
               {title}
             </div>
             <div className='flex flex-row mt-1.5vw items-center'>
-              <Button
-                className='bg-white text-black font-bold mr-4'
-                title='Phát'
-                icon={1}
-                onClick={handlePlay}
-              />
+              <Button className='bg-white text-black font-bold mr-4' title='Phát' icon={1} onClick={handlePlay} />
               <CircleIcon
                 iconType={faPlus}
                 className='px-0.6vw mr-0.5vw traileModalBtn text-slate-100'
@@ -126,12 +111,13 @@ function DetailModal({ detailData, onClose, onShow, className }) {
                 className='text-slate-100 px-0.5vw mr-0.5vw traileModalBtn'
                 tooltipText='I like this'
                 tooltipClass='-left-46%'
+                iconOnClickColor='text-sky-500 !border-sky-500 animate-wiggleV2'
               />
             </div>
           </div>
           <CircleIcon
             iconType={faXmark}
-            onClose={onClose}
+            onClick={onClose}
             containerClass='!absolute top-0 right-0 z-50'
             className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw'
           />
@@ -148,9 +134,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
           <div className='w-3/5 h-full flex flex-col justify-evenly'>
             <div className='flex flex-row my-0.2vw items-center'>
               <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
-              <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>
-                {releaseDate?.slice(0, 4)}
-              </div>
+              <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>{releaseDate?.slice(0, 4)}</div>
               <div
                 className='text-white px-0.5vw mx-0.5vw'
                 style={{
@@ -226,11 +210,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             </div>
           </div>
         </div>
-        {detailData.apiType != 'movieApi' ? (
-          <VideoEpisodes episodesUrl={detailData.episodesUrl} />
-        ) : (
-          ''
-        )}
+        {detailData.apiType != 'movieApi' ? <VideoEpisodes episodesUrl={detailData.episodesUrl} /> : ''}
         <RelatedVideo relatedUrl={relatedUrl} apiType={detailData.apiType} />
         <div className='mx-4vw mt-4vw mb-2vw'>
           <div className='text-2xl text-white font-semibold'>

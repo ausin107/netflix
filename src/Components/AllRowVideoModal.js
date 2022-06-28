@@ -27,7 +27,7 @@ function AllRowVideoModal({
       >
         <CircleIcon
           iconType={faXmark}
-          onClose={onGenreVideoClose}
+          onClick={onGenreVideoClose}
           containerClass='!absolute top-0 right-0 z-50'
           className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw'
         />

@@ -1,16 +1,8 @@
 import { InformationCircleIcon } from '@heroicons/react/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faPlay,
-  faCheck,
-  faThumbsUp,
-  faThumbsDown,
-  faAngleDown,
-  faPlus,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons'
+import {} from '@fortawesome/free-solid-svg-icons'
 import Tooltip from './Tooltip'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 const IconClass = 'p-0.5vw cursor-pointer hover:opacity-70 text-1.5vw'
 export function PlayIcon() {
   return (
@@ -28,27 +20,34 @@ export function CircleIcon({
   iconType,
   tooltipText,
   tooltipClass,
-  onShowInfo,
-  onClose,
+  onClick,
+  iconOnClickColor,
 }) {
   const [isHover, setHover] = useState(false)
   const newClass = `${IconClass} ${className}`
+  const [iconClasses, setIconClasses] = useState(newClass)
   const containerClassName = `${containerClass} relative`
+  const iconRef = useRef()
   const handleMouseEnter = () => {
     setHover(true)
   }
   const handleMouseLeave = () => {
     setHover(false)
   }
+  const handleClick = () => {
+    setIconClasses((old) =>
+      old.includes(iconOnClickColor) == true ? old.replace(iconOnClickColor, ' ') : `${old} ${iconOnClickColor}`
+    )
+  }
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={containerClassName}
-      onClick={onShowInfo || onClose}
+      onClick={onClick}
     >
       {isHover && <Tooltip text={tooltipText} className={tooltipClass} />}
-      <FontAwesomeIcon icon={iconType} className={newClass} />
+      <FontAwesomeIcon icon={iconType} onClick={handleClick} className={iconClasses} />
     </div>
   )
 }
