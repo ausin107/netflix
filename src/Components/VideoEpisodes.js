@@ -3,12 +3,14 @@ import { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import RelatedVideoBG from '../assets/Netflix_BG.jpg'
+import LazyLoadingImg from './LazyLoadingImg'
 
 function VideoEpisodes({ className, apiType, episodesUrl }) {
   const [data, setData] = useState()
   const [isShow, SetShow] = useState(false)
   const [episodes, setEpisodes] = useState([])
   const Episodesref = useRef([])
+  const imgRef = useRef([])
   const buttonRef = useRef()
   const buttonClass =
     'text-slate-100 p-0.7vw px-0.8vw cursor-pointer hover:opacity-70 detailModalBtn text-1vw absolute top-4vw z-10'
@@ -33,6 +35,19 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
       }
     })
   }
+  useEffect(() => {
+    // imgRef.current.map((item) => {
+    //   let imgClasses = item.getAttribute('lazy-src')
+    //   let observer = new IntersectionObserver((entries) => {
+    //     if (entries[0].isIntersecting) {
+    //       item.setAttribute('src', imgClasses)
+    //       item.removeAttribute('lazy-src')
+    //     }
+    //   })
+    //   if (item) observer.observe(item)
+    // })
+    console.log(imgRef.current)
+  }, [])
   return (
     <div className='mx-4vw'>
       <div className=' mt-2vw mb-1vw flex justify-between items-center'>
@@ -45,13 +60,15 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
             index > 9
               ? 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor hidden'
               : 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor'
+          const handleImgSrc = (imgData) => {
+            return !!imgData.still_path == true ? bannerUrl + imgData.still_path : RelatedVideoBG
+          }
           return (
             <div className={episodesClass} key={item.id} ref={(el) => (Episodesref.current[index] = el)}>
               <div className='text-white text-2xl font-semibold'>{item.episode_number}</div>
-              <img
-                className='bg-cover bg-full ml-1.5vw rounded'
-                style={{ height: '10vh' }}
-                src={!!item.still_path == true ? bannerUrl + item.still_path : RelatedVideoBG}
+              <LazyLoadingImg
+                imgSrc={handleImgSrc(item)}
+                className='bg-cover bg-full ml-1.5vw rounded h-10vh'
                 alt='Episodes Image'
               />
               <div className='flex flex-col ml-1vw mr-2vw'>

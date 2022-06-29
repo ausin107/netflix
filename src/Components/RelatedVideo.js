@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import RelatedVideoBG from '../assets/Netflix_BG.jpg'
+import LazyLoadingImg from './LazyLoadingImg'
 function RelatedVideo({ className, relatedUrl, apiType }) {
   const [data, setData] = useState([])
   const [isShow, SetShow] = useState(false)
@@ -42,21 +43,19 @@ function RelatedVideo({ className, relatedUrl, apiType }) {
       <div className='grid w-full gap-1.2vw' style={{ gridTemplateColumns: 'auto auto auto' }}>
         {data.map((item, index) => {
           const className =
-            index > 8
-              ? 'rounded bg-detailModalVideoColor h-full hidden'
-              : 'rounded bg-detailModalVideoColor h-full'
+            index > 8 ? 'rounded bg-detailModalVideoColor h-full hidden' : 'rounded bg-detailModalVideoColor h-full'
+          const handleImgSrc = (imgData) => {
+            return !!imgData.backdrop_path == true ? bannerUrl + imgData.backdrop_path : RelatedVideoBG
+          }
           return (
             <div className={className} key={item.id} ref={(el) => (ref.current[index] = el)}>
-              <img
-                className='bg-cover bg-center w-full rounded'
-                style={{ height: '18vh' }}
-                src={!!item.backdrop_path == true ? bannerUrl + item.backdrop_path : RelatedVideoBG}
+              <LazyLoadingImg
+                imgSrc={handleImgSrc(item)}
+                className='bg-cover bg-center w-full rounded h-18vh'
                 alt='Banner Image'
               />
               <div className='mx-1vw'>
-                <div className='text-white text-base font-bold mt-0.3vw h-3vw'>
-                  {item.title || item.name}
-                </div>
+                <div className='text-white text-base font-bold mt-0.3vw h-3vw'>{item.title || item.name}</div>
                 <div className='flex flex-row justify-between items-center mt-0.2vw'>
                   <div className='flex flex-col'>
                     <div className='text-base text-green-500 font-bold'>
@@ -80,10 +79,7 @@ function RelatedVideo({ className, relatedUrl, apiType }) {
                     className=' text-slate-100 p-0.4vw px-0.5vw mr-0.4vw cursor-pointer hover:opacity-70 detailModalBtn text-1.5vw'
                   />
                 </div>
-                <div
-                  className='text-base pt-0.7vw pb-3vw font-normal leading-tight'
-                  style={{ color: '#d2d2d2' }}
-                >
+                <div className='text-base pt-0.7vw pb-3vw font-normal leading-tight' style={{ color: '#d2d2d2' }}>
                   {!!item.overview == true
                     ? `${item.overview.slice(0, 100)}...`
                     : 'This Tv Show maybe new that we dont have data for showing information yet. Sory for the inconvenient.'}
