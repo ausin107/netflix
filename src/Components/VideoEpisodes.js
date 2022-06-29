@@ -43,15 +43,10 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
         {episodes.map((item, index) => {
           const episodesClass =
             index > 9
-              ? 'flex flex-row items-center py-3vw border-b-1 px-2vw hidden'
-              : 'flex flex-row items-center py-3vw border-b-1 px-2vw'
+              ? 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor hidden'
+              : 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor'
           return (
-            <div
-              className={episodesClass}
-              key={item.id}
-              style={{ borderColor: '#404040' }}
-              ref={(el) => (Episodesref.current[index] = el)}
-            >
+            <div className={episodesClass} key={item.id} ref={(el) => (Episodesref.current[index] = el)}>
               <div className='text-white text-2xl font-semibold'>{item.episode_number}</div>
               <img
                 className='bg-cover bg-full ml-1.5vw rounded'
@@ -61,12 +56,8 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
               />
               <div className='flex flex-col ml-1vw mr-2vw'>
                 <div className='flex flex-row justify-between'>
-                  <div className='text-white text-base font-bold'>
-                    Episode {item.episode_number}
-                  </div>
-                  <div className='text-white text-base font-bold tracking-wide'>
-                    {item.runtime || 45}m
-                  </div>
+                  <div className='text-white text-base font-bold'>Episode {item.episode_number}</div>
+                  <div className='text-white text-base font-bold tracking-wide'>{item.runtime || 45}m</div>
                 </div>
                 <div className='text-white text-base leading-tight mt-0.5vw border-borderColor'>
                   {item.overview ||

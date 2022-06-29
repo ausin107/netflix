@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import TrailerModal from '../components/TrailerModal'
 import logo from '../assets/netflixLogo2.png'
 import ErrorMovie from '../assets/Netflix_Error_Movie.png'
-
+import '../styles/RowBanner.css'
 function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow }) {
   const [hoverId, setHoverId] = useState()
   const [itemClasses, setItemClasses] = useState('')
   const [handleDelay, setHandleDelay] = useState()
   const itemRef = useRef()
+  const imgRef = useRef()
   const imgUrl = 'https://image.tmdb.org/t/p/original/'
   const getMovieBannerSrc = (movie) => {
     return movie.poster_path != null ? imgUrl + movie.poster_path : ErrorMovie
@@ -39,14 +40,29 @@ function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow }
     moviesRank: index,
     moviesGenre: moviesGenre,
   }
+  useEffect(() => {
+    const img = imgRef.current
+    const imgSrc = img.getAttribute('lazy-src')
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        img.setAttribute('src', imgSrc)
+        img.removeAttribute('lazy-src')
+        img.classList.remove('skeleton')
+      }
+    })
+    if (img) observer.observe(img)
+    return () => {
+      if (img) observer.unobserve(img)
+    }
+  }, [])
   return (
-    <div
-      onMouseEnter={() => handleHover(bannerData.id)}
-      onMouseLeave={() => handleNotHover()}
-      ref={itemRef}
-    >
+    <div onMouseEnter={() => handleHover(bannerData.id)} onMouseLeave={() => handleNotHover()} ref={itemRef}>
       <div className={hoverId == bannerData.id ? 'image' : ''} style={{ position: 'relative' }}>
-        <img src={getMovieBannerSrc(bannerData)} className='rounded-md cursor-pointer' />
+        <img
+          lazy-src={getMovieBannerSrc(bannerData)}
+          className='rounded-md cursor-pointer skeleton h-full'
+          ref={imgRef}
+        />
         {isNetflix == true ? (
           <img
             src={logo}

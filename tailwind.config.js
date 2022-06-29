@@ -126,6 +126,7 @@ module.exports = {
         borderColor: '#d2d2d2',
         allRelatedVideoColor: '#54b9c5',
         plusColor: '#808080',
+        borderEpisodeColor: '#404040',
       },
     },
   },
