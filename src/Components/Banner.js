@@ -6,7 +6,7 @@ import { baseUrl, HomeRequests, LinkRequest } from '../adapters/homeRequests'
 import DetailModal from './DetailModal'
 import NetflixBG from '../assets/Netflix_BG.jpg'
 
-function Banner({ className, apiType, fetchUrl }) {
+function Banner({ className, apiType, fetchUrl, containerId }) {
   const [movieId, setMovieId] = useState(false)
   const [banner, setBanner] = useState([])
   const [overView, setOverView] = useState('')
@@ -67,10 +67,10 @@ function Banner({ className, apiType, fetchUrl }) {
         setAdult(videoDetail.data.adult == true ? '18+' : '16+')
         setBanner(data.backdrop_path)
         setOverView(data.overview)
-        const trailerItem = videoResult.data.results.find((item, index) => {
-          if (item.type == 'Trailer') return item.type
-          else return videoResult.data.results[0]
+        let trailerItem = videoResult.data.results.find((item) => {
+          if (item.name.includes('Official Trailer') == true || item.type == 'Trailer') return item
         })
+        trailerItem = !!trailerItem == false ? videoResult.data.results[0] : trailerItem
         setVideoUrl(baseVideoEmbed + trailerItem.key)
       } catch (error) {
         console.error(error)

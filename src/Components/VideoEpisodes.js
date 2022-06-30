@@ -35,19 +35,6 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
       }
     })
   }
-  useEffect(() => {
-    // imgRef.current.map((item) => {
-    //   let imgClasses = item.getAttribute('lazy-src')
-    //   let observer = new IntersectionObserver((entries) => {
-    //     if (entries[0].isIntersecting) {
-    //       item.setAttribute('src', imgClasses)
-    //       item.removeAttribute('lazy-src')
-    //     }
-    //   })
-    //   if (item) observer.observe(item)
-    // })
-    console.log(imgRef.current)
-  }, [])
   return (
     <div className='mx-4vw'>
       <div className=' mt-2vw mb-1vw flex justify-between items-center'>
@@ -64,7 +51,11 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
             return !!imgData.still_path == true ? bannerUrl + imgData.still_path : RelatedVideoBG
           }
           return (
-            <div className={episodesClass} key={item.id} ref={(el) => (Episodesref.current[index] = el)}>
+            <div
+              className={episodesClass}
+              key={item.id}
+              ref={(el) => (Episodesref.current[index] = el)}
+            >
               <div className='text-white text-2xl font-semibold'>{item.episode_number}</div>
               <LazyLoadingImg
                 imgSrc={handleImgSrc(item)}
@@ -73,8 +64,12 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
               />
               <div className='flex flex-col ml-1vw mr-2vw'>
                 <div className='flex flex-row justify-between'>
-                  <div className='text-white text-base font-bold'>Episode {item.episode_number}</div>
-                  <div className='text-white text-base font-bold tracking-wide'>{item.runtime || 45}m</div>
+                  <div className='text-white text-base font-bold'>
+                    Episode {item.episode_number}
+                  </div>
+                  <div className='text-white text-base font-bold tracking-wide'>
+                    {item.runtime || 45}m
+                  </div>
                 </div>
                 <div className='text-white text-base leading-tight mt-0.5vw border-borderColor'>
                   {item.overview ||

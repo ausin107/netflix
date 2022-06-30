@@ -24,7 +24,7 @@ const responsive = {
     paritialVisibilityGutter: 30,
   },
 }
-function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
+function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix, containerId }) {
   const [movies, setMovies] = useState([])
   const [onGenreVideoShow, setGenreVideoShow] = useState(false)
   useEffect(() => {
@@ -41,11 +41,11 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
   }, [fetchUrl])
   const handleShowAll = () => {
     setGenreVideoShow(true)
-    document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
+    document.getElementById(containerId).classList.add('overflow-y-hidden', 'h-screen')
   }
   const handleClose = () => {
     setGenreVideoShow(false)
-    document.getElementById('container').classList.remove('overflow-y-hidden', 'h-screen')
+    document.getElementById(containerId).classList.remove('overflow-y-hidden', 'h-screen')
   }
   return (
     <div className={className}>

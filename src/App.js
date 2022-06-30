@@ -17,7 +17,6 @@ function App() {
         <Route path='/genre/tvShows' element={<TvShows />} />
         <Route path='/genre/movies' element={<Movies />} />
         <Route path='/genre/new-popular' element={<NewPopular />} />
-        {/* <Route path='/my-list' element={<MyList />} /> */}
       </Routes>
     </>
   )

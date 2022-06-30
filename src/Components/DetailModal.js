@@ -48,10 +48,10 @@ function DetailModal({ detailData, onClose, onShow, className }) {
           detailData.apiType == 'movieApi'
             ? await axios.get(movieVideoUrl + data?.id + LinkRequest.fetchVideoOnly)
             : await axios.get(tvVideoUrl + data?.id + LinkRequest.fetchVideoOnly)
-        const trailerItem = videoResult.data.results.find((item) => {
-          if (item.type == 'Trailer') return item.type
-          else return videoResult.data.results[0]
+        let trailerItem = videoResult.data.results.find((item) => {
+          if (item.name.includes('Official Trailer') == true || item.type == 'Trailer') return item
         })
+        trailerItem = !!trailerItem == false ? videoResult.data.results[0] : trailerItem
         setVideoUrl(baseVideoEmbed + trailerItem.key)
       } catch (error) {
         console.error(error)
