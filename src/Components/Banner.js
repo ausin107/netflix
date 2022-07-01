@@ -96,45 +96,49 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
     return !!ImgSrc == false ? NetflixBG : `${bannerUrl}${ImgSrc}`
   }
   return (
-    <div>
+    <div className='w-full'>
       <img
         className='bg-center bg-cover w-full max-h-full'
         src={handelBannerImg(banner)}
         alt='Banner image'
       />
-      <div className='flex flex-col absolute bottom-1/3 ml-15 z-10'>
+      <div className='flex flex-col absolute bottom-1/3 z-10 w-full info-container'>
         <div
           ref={textRef}
-          className='text-white text-4vw font-bold w-5/12 title-banner bannerTextA font-sans'
+          className='text-white text-4vw font-bold w-5/12 title-banner ml-4vw bannerTextA font-sans'
         >
           {title}
         </div>
         <div
           ref={overViewRef}
-          className='text-white font-normal w-1/3 text-1.4 mt-1vw bannerOverViewA'
+          className='text-white font-normal w-1/3 text-1.4vw mt-1vw ml-4vw bannerOverViewA'
         >
           {handleOverView()}
         </div>
-        <div className='flex items-end justify-between' style={{ width: '95vw' }}>
+        <div className='flex items-end justify-between ml-4vw'>
           <div className='flex flex-row mt-1.5vw'>
             <Button
-              className='bg-white text-black font-bold mr-4'
+              className='bg-white text-black font-bold mr-4 w-8vw h-3vw play-button'
               title='Play'
               icon={1}
               onClick={handlePlay}
+              titleClasses='opacity-100 ml-0.7vw text-1.4vw button-tittle'
+              iconClasses='w-1.5vw h-1.5vw icon-classes'
             />
             <Button
-              className='text-white bg-buttonColor font-semibold'
+              className='text-white bg-buttonColor font-semibold w-11vw h-3vw info-button'
               title='More Info'
               icon={2}
               onClick={handleInfo}
+              titleClasses='opacity-100 ml-0.6vw text-1.3vw'
+              iconClasses='w-1.9vw h-1.9vw'
             />
             {!!movieId && (
               <DetailModal detailData={detailData} onShow={isShow} onClose={handleClose} />
             )}
           </div>
           <div
-            className='flex items-center w-6vw h-2.5vw text-white font-semibold text-lg border-l-3 pl-0.7vw tracking-wider'
+            className='flex items-center w-6vw h-2.5vw text-white font-semibold text-1.2vw border-l-3 pl-0.7vw tracking-wider age-tag'
             style={{
               backgroundColor: 'rgba(51,51,51,.6)',
               borderColor: '#dcdcdc',

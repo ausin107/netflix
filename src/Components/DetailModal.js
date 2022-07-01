@@ -112,10 +112,11 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             </div>
             <div className='flex flex-row mt-1.5vw items-center'>
               <Button
-                className='bg-white text-black font-bold mr-4'
+                className='bg-white text-black font-bold mr-4 w-8vw h-3vw'
                 title='Phát'
                 icon={1}
                 onClick={handlePlay}
+                titleClasses='opacity-100 ml-0.7vw text-1.4vw'
               />
               <CircleIcon
                 iconType={faPlus}

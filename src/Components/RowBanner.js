@@ -3,7 +3,7 @@ import TrailerModal from '../components/TrailerModal'
 import logo from '../assets/netflixLogo2.png'
 import ErrorMovie from '../assets/Netflix_Error_Movie.png'
 import '../styles/RowBanner.css'
-function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow }) {
+function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow, className }) {
   const [hoverId, setHoverId] = useState()
   const [itemClasses, setItemClasses] = useState('')
   const [handleDelay, setHandleDelay] = useState()
@@ -56,7 +56,12 @@ function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow }
     }
   }, [])
   return (
-    <div onMouseEnter={() => handleHover(bannerData.id)} onMouseLeave={() => handleNotHover()} ref={itemRef}>
+    <div
+      className={className}
+      onMouseEnter={() => handleHover(bannerData.id)}
+      onMouseLeave={() => handleNotHover()}
+      ref={itemRef}
+    >
       <div className={hoverId == bannerData.id ? 'image' : ''} style={{ position: 'relative' }}>
         <img
           lazy-src={getMovieBannerSrc(bannerData)}
