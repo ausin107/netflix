@@ -25,7 +25,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
   const overViewRef = useRef()
   const textRef = useRef()
   let releaseDate
-  const newClass = `w-3/5vw mt-2vw flex relative top-0 h-fit flex-col rounded-md bg-detailModalBGColor detail-modal-open ${className}`
+  const newClass = `w-3/5vw mt-2vw flex relative top-0 h-fit flex-col rounded-md bg-detailModalBGColor detail-modal-open detail-modal ${className}`
   useEffect(() => {
     async function getBanner() {
       try {
@@ -105,18 +105,18 @@ function DetailModal({ detailData, onClose, onShow, className }) {
           <div className='flex flex-col absolute bottom-1/5 ml-15 z-10 font-sans'>
             <div
               ref={textRef}
-              className='text-white font-bold w-full title-banner bannerTextA'
-              style={{ fontSize: '2vw' }}
+              className='text-white font-bold w-full title-banner bannerTextA text-[2vw]'
             >
               {title}
             </div>
-            <div className='flex flex-row mt-1.5vw items-center'>
+            <div className='flex flex-row mt-1.5vw items-center icon-modal'>
               <Button
-                className='bg-white text-black font-bold mr-4 w-8vw h-3vw'
-                title='Phát'
+                className='bg-white text-black font-bold mr-4 w-8vw h-3vw play-button'
+                title='Play'
                 icon={1}
                 onClick={handlePlay}
-                titleClasses='opacity-100 ml-0.7vw text-1.4vw'
+                titleClasses='opacity-100 ml-0.7vw text-1.4vw button-tittle'
+                iconClasses='w-1.5vw h-1.5vw icon-classes'
               />
               <CircleIcon
                 iconType={faPlus}
@@ -137,7 +137,7 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             iconType={faXmark}
             onClick={onClose}
             containerClass='!absolute top-0 right-0 z-50'
-            className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw'
+            className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw close-icon'
           />
           <div className='detailModalFade absolute bottom-0 w-full' />
           <Video
@@ -148,24 +148,23 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             volumnClass={volumeClassName}
           />
         </div>
-        <div className='z-10 mx-4vw flex flex-row mt-0.5vw'>
-          <div className='w-3/5 h-full flex flex-col justify-evenly'>
-            <div className='flex flex-row my-0.2vw items-center'>
-              <div className='text-green-600 text-1.2vw font-bold'>{handleDate()}</div>
-              <div className=' text-white text-1.2vw font-semibold ml-0.5vw'>
+        <div className='z-10 mx-4vw flex flex-row mt-0.5vw info-container'>
+          <div className='w-3/5 h-full flex flex-col justify-evenly about-container'>
+            <div className='text-white font-bold text-[6vw] mb-1vw sm:hidden'>{title}</div>
+            <div className='flex flex-row sm:my-0.2vw items-center my-1vw'>
+              <div className='text-green-600 text-1.2vw font-bold new-info'>{handleDate()}</div>
+              <div className=' text-white text-1.2vw font-semibold ml-0.5vw date-info'>
                 {releaseDate?.slice(0, 4)}
               </div>
               <div
-                className='text-white px-0.5vw mx-0.5vw'
+                className='text-white px-0.5vw mx-0.5vw sm:pb-[1px] sm:leading-[1.1vw] adult-info'
                 style={{
                   border: 'rgba(255,255,255,.5) solid 1px',
-                  lineHeight: '1.1vw',
-                  paddingBottom: '1px',
                 }}
               >
                 {data?.adult == true ? '18+' : '16+'}
               </div>
-              <div className=' text-white text-1.2vw font-semibold'>{handleTime()}</div>
+              <div className=' text-white text-1.2vw font-semibold time-info'>{handleTime()}</div>
             </div>
             {detailData.moviesRank < 9 ? (
               <div className='flex flex-row my-0.2vw'>
@@ -177,12 +176,20 @@ function DetailModal({ detailData, onClose, onShow, className }) {
             ) : (
               ''
             )}
+            <Button
+              className='bg-white text-black font-bold my-2vw w-full h-[4vh] sm:h-[6vh] lg:hidden'
+              title='Play'
+              icon={1}
+              onClick={handlePlay}
+              titleClasses='opacity-100 ml-0.7vw text-1.4vw button-tittle'
+              iconClasses='icon-classes'
+            />
             <div className='text-white font-normal my-0.2vw'>
               {overView ||
                 "Maybe this movie is new that we don't have data to render yet and apologize for the inconvenience."}
             </div>
           </div>
-          <div className='w-1/3 h-full ml-5vw flex flex-col justify-between'>
+          <div className='w-1/3 h-full ml-5vw flex flex-col justify-between cast-container'>
             <div className='font-normal' style={{ color: '#777' }}>
               Cast:
               <span className='text-white font-normal hover:cursor-pointer'>
@@ -236,10 +243,10 @@ function DetailModal({ detailData, onClose, onShow, className }) {
           ''
         )}
         <RelatedVideo relatedUrl={relatedUrl} apiType={detailData.apiType} />
-        <div className='mx-4vw mt-4vw mb-2vw'>
+        <div className='mx-4vw mt-4vw mb-2vw '>
           <div className='text-2xl text-white font-semibold'>
             About
-            <span className='font-bold ml-0.5vw'>{title}</span>
+            <span className='font-bold sm:ml-0.5vw ml-2vw'>{title}</span>
           </div>
           <div className='w-full h-full flex flex-col justify-between'>
             <div className='font-normal mb-0.5vw mt-1vw' style={{ color: '#777' }}>

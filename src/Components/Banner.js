@@ -65,7 +65,9 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
           videoResult = await axios.get(movieVideoUrl + data.id + LinkRequest.fetchVideoOnly)
         }
         setAdult(videoDetail.data.adult == true ? '18+' : '16+')
-        setBanner(data.backdrop_path)
+        if (window.innerWidth < 800) {
+          setBanner(data.poster_path)
+        } else setBanner(data.backdrop_path)
         setOverView(data.overview)
         let trailerItem = videoResult.data.results.find((item) => {
           if (item.name.includes('Official Trailer') == true || item.type == 'Trailer') return item
@@ -79,7 +81,9 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
     getBanner(apiType, fetchUrl)
   }, [])
   const handlePlay = () => {
-    setPlayVideo(true)
+    if (window.innerWidth > 500) {
+      setPlayVideo(true)
+    } else handleInfo()
   }
   const handleOverView = () => {
     return overView.length > 150 ? `${overView.slice(0, `150`)}...` : overView
@@ -102,7 +106,10 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
         src={handelBannerImg(banner)}
         alt='Banner image'
       />
-      <div className='flex flex-col absolute bottom-1/3 z-10 w-full info-container'>
+      <div
+        className='flex flex-col absolute bottom-1/3 z-10 w-full info-container'
+        onClick={handleInfo}
+      >
         <div
           ref={textRef}
           className='text-white text-4vw font-bold w-5/12 title-banner ml-4vw bannerTextA font-sans'

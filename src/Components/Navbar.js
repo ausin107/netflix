@@ -90,7 +90,7 @@ function Navbar() {
         <div className='relative flex flex-col'>
           <FontAwesomeIcon icon={faBars} className='mr-5vw menu-navbar' onClick={handleShowMenu} />
           <div
-            className=' navbar-color top-[6vh] fixed left-0 flex flex-col item-center w-[65%] invisible'
+            className=' navbar-color top-[6vh] sm:top-[8vh] fixed left-0 flex flex-col rounded item-center w-[65%] invisible'
             ref={menuRef}
           >
             <div className='pl-2vw border-b border-plusColor'>

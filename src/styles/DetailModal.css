@@ -45,3 +45,134 @@
     bottom: 6.5vw;
     display: block;
 }
+/* Big Tablet Responsive  */
+@media only screen and (min-width: 801px ) and (max-width: 1024px) {
+    .detail-modal{
+        width: 95%;
+        margin-top: 0;
+    }
+    .close-icon{
+        width: 4vw;
+        height: 4vw;
+        margin: 3vw;
+    }
+    .date-info, .time-info, .new-info{
+        font-size: 2vw;
+        margin-right: 1.5vw;
+        opacity: 0.6;
+        color: white;
+    }
+    .adult-info{
+        font-size: 2vw;
+        padding: 0.7vw 1vw;
+        background-color: #333;
+        border-radius: 0.5vw;
+        margin-right: 1.5vw;
+        border: 0 !important;
+        opacity: 0.7;
+    }
+    .icon-modal{
+        display: none;
+    }
+}
+/* Tablet Responsive  */
+@media only screen and (min-width: 501px ) and (max-width: 800px) {
+.detail-modal{
+    width: 100%;
+    margin-top: 0;
+}
+.close-icon{
+    width: 4vw;
+    height: 4vw;
+    margin: 3vw;
+}
+.info-container{
+    flex-direction: column;
+}
+.about-container{
+    width: 100%;
+}
+.cast-container{
+    width: 100%;
+    margin: 0;
+}
+.date-info, .time-info, .new-info{
+    font-size: 3vw;
+    margin-right: 1.5vw;
+    opacity: 0.6;
+    color: white;
+}
+
+.adult-info{
+    font-size: 3vw;
+    padding: 1vw 1vw;
+    background-color: #333;
+    border-radius: 0.5vw;
+    margin-right: 1.5vw;
+    border: 0 !important;
+    opacity: 0.7;
+}
+.icon-modal{
+    display: none;
+}
+.video-container{
+    top: 150vw;
+}
+.detail-container{
+    display: none;
+}
+.DetailVolumnClass{
+    bottom: 9vw;
+    display: block;
+}
+}
+/* Mobile Responsive  */
+@media only screen and (min-width: 0 ) and (max-width: 500px) {
+    .video-container{
+        top: 145vw;
+    }
+    .detail-modal{
+        width: 100%;
+        margin-top: 0;
+    }
+    .close-icon{
+        width: 6vw;
+        height: 6vw;
+        margin: 4vw;
+    }
+    .info-container{
+        flex-direction: column;
+    }
+    .about-container{
+        width: 100%;
+    }
+    .cast-container{
+        width: 100%;
+        margin: 0;
+    }
+    .date-info, .time-info, .new-info{
+        font-size: 3vw;
+        margin-right: 1.5vw;
+        opacity: 0.6;
+        color: white;
+    }
+    
+    .adult-info{
+        font-size: 3vw;
+        padding: 0vw 1vw;
+        background-color: #333;
+        border-radius: 0.5vw;
+        margin-right: 1.5vw;
+        border: 0 !important;
+        opacity: 0.7;
+    }
+    .icon-modal{
+        display: none;
+    }
+    .video-container{
+        grid-template-columns: auto auto !important;
+    }
+    .detail-container{
+        display: none;
+    }
+}

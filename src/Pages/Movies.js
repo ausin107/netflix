@@ -19,7 +19,7 @@ function Movies() {
     <>
       <div className='relative' id='container'>
         <Banner className='' apiType='movieApi' fetchUrl={randomBannerUrl(MoviesRequests)} />
-        <div className='absolute w-full overflow-hidden' style={{ top: '40vw' }}>
+        <div className='absolute w-full overflow-hidden video-container top-[40vw]'>
           <div className='w-full absolute h-full bg-backgroundColor -z-10' />
           <Row
             title='Children & Family Movies'
@@ -113,7 +113,7 @@ function Movies() {
             className='my-9 w-screen pb-7vw'
             isNetflix={true}
           />
-          <Footer />
+          {window.innerWidth > 500 ? <Footer /> : ''}
         </div>
       </div>
       <div id='Modal' className='relative z-50' />

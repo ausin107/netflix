@@ -3,3 +3,16 @@
     animation: detailModalGrow ease-out .3s;
     will-change: transform,opacity;
 }
+@media screen and (min-width: 0 ) and (max-width: 500px){
+    .all-row-video {
+        grid-template-columns: auto auto !important;
+        margin-bottom: 50vw;
+    }
+    .all-row-title{
+        font-size: 5.5vw;
+    }
+    .close-icon{
+        width: 5vw;
+        height: 5vw;
+    }
+}

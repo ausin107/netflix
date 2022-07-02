@@ -45,8 +45,8 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
         {episodes.map((item, index) => {
           const episodesClass =
             index > 9
-              ? 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor hidden'
-              : 'flex flex-row items-center py-3vw border-b-1 px-2vw border-borderEpisodeColor'
+              ? 'flex flex-col sm:flex-row items-center py-3vw border-b-1 sm:px-2vw border-borderEpisodeColor hidden'
+              : 'flex flex-col sm:flex-row items-center py-3vw border-b-1 sm:px-2vw border-borderEpisodeColor'
           const handleImgSrc = (imgData) => {
             return !!imgData.still_path == true ? bannerUrl + imgData.still_path : RelatedVideoBG
           }
@@ -56,18 +56,35 @@ function VideoEpisodes({ className, apiType, episodesUrl }) {
               key={item.id}
               ref={(el) => (Episodesref.current[index] = el)}
             >
-              <div className='text-white text-2xl font-semibold'>{item.episode_number}</div>
+              <div className='text-white text-2xl font-semibold hidden sm:block'>
+                {item.episode_number}
+              </div>
               <LazyLoadingImg
                 imgSrc={handleImgSrc(item)}
-                className='bg-cover bg-full ml-1.5vw rounded h-10vh'
+                className='bg-cover bg-full ml-1.5vw rounded h-10vh hidden sm:block'
                 alt='Episodes Image'
               />
-              <div className='flex flex-col ml-1vw mr-2vw'>
-                <div className='flex flex-row justify-between'>
-                  <div className='text-white text-base font-bold'>
+              <div className='flex flex-row w-full sm:hidden'>
+                <LazyLoadingImg
+                  imgSrc={handleImgSrc(item)}
+                  className='bg-cover bg-full ml-1.5vw rounded h-10vh'
+                  alt='Episodes Image'
+                />
+                <div className='flex flex-col ml-3vw'>
+                  <div className='text-white text-base font-bold sm:hidden block'>
                     Episode {item.episode_number}
                   </div>
-                  <div className='text-white text-base font-bold tracking-wide'>
+                  <div className='text-white text-base font-bold tracking-wide sm:hidden block mt-8vw'>
+                    {item.runtime || 45}m
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-col ml-1vw mr-2vw'>
+                <div className='flex flex-row justify-between'>
+                  <div className='text-white text-base font-bold hidden sm:block'>
+                    Episode {item.episode_number}
+                  </div>
+                  <div className='text-white text-base font-bold tracking-wide hidden sm:block'>
                     {item.runtime || 45}m
                   </div>
                 </div>

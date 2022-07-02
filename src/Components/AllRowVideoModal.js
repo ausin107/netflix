@@ -29,10 +29,10 @@ function AllRowVideoModal({
           iconType={faXmark}
           onClick={onGenreVideoClose}
           containerClass='!absolute top-0 right-0 z-50'
-          className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw'
+          className='bg-black rounded-full text-slate-300 w-1.5vw h-1.5vw m-1vw close-icon'
         />
         <div className='flex items-center justify-center m-5vw'>
-          <div className=' text-3vw text-white font-bold'>{title}</div>
+          <div className=' text-3vw text-white font-bold all-row-title'>{title}</div>
         </div>
         {/* <div className='flex justify-end items-center text-white mb-4vw mx-4vw'>
           <div className='text-1vw text-white mr-0.5vw'>Sort by</div>
@@ -43,7 +43,7 @@ function AllRowVideoModal({
         </div> */}
         {/*Trường hợp có MultiSelect*/}
         <div
-          className='grid gap-y-0.7vw gap-x-1vw mx-4vw mb-4vw'
+          className='grid gap-y-0.7vw gap-x-1vw mx-4vw mb-4vw all-row-video'
           style={{ gridTemplateColumns: 'auto auto auto auto' }}
         >
           {allMovie.map((movie, index) => {
