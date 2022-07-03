@@ -105,6 +105,7 @@
 .bannerOverViewA{
     visibility: visible;
     opacity: 1;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
 }
 .bannerText{
     font-size: 3vw;
@@ -113,7 +114,10 @@
     transition: font-size .6s linear, width .6s linear;
 }
 .bannerTextA{
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: black;
     transition: font-size .6s linear, width .6s linear;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
 }
 .traileModalBtn{
     border: rgba(255,255,255,.5) solid 2px;

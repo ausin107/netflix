@@ -78,7 +78,7 @@ function TrailerModal({ videoData }) {
   }
   return (
     <div className={newClass} ref={modalRef}>
-      <div className='w-full rounded bg-black h-fit flex flex-col'>
+      <div className='w-fit rounded bg-black h-fit flex flex-col'>
         <img
           src={handleImgSrc(videoData.imgUrl)}
           className='w-full rounded h-fit '
@@ -145,7 +145,7 @@ function TrailerModal({ videoData }) {
             {runtime || seasons}
           </div>
         </div>
-        <ul className='flex pl-1.5vw my-1.5vw' onClick={handleClick}>
+        <ul className='flex pl-1.5vw my-1.5vw w-max' onClick={handleClick}>
           {filmType.map((item, index) => {
             if (index < 3)
               return (

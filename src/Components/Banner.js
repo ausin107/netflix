@@ -53,6 +53,9 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
         setMovieRank(randomBanner)
         setMovieId(data.id)
         let videoDetail, videoResult
+        if (apiType == 'complexApi') {
+          apiType = data.media_type + 'Api'
+        }
         if (apiType == 'tvApi') {
           videoDetail = await axios.get(`${baseUrl}/tv/${data.id}${LinkRequest.fetchVideoDetail}`)
           setTitle(data.name.toUpperCase())

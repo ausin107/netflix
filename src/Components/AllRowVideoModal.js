@@ -47,11 +47,16 @@ function AllRowVideoModal({
           style={{ gridTemplateColumns: 'auto auto auto auto' }}
         >
           {allMovie.map((movie, index) => {
+            const handleApiType = () => {
+              if (apiType == 'complexApi') {
+                return movie.media_type + 'Api'
+              } else return apiType
+            }
             return (
               <div className='image-item movie relative' key={movie.id}>
                 <RowBanner
                   bannerData={movie}
-                  apiType={apiType}
+                  apiType={handleApiType()}
                   index={index}
                   moviesGenre={moviesGenre}
                   isNetflix={isNetflix}

@@ -53,8 +53,10 @@ function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow, 
     clearTimeout(handleDelay)
   }
   const handelMobileShow = () => {
-    setShow(true)
-    document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
+    if (window.innerWidth < 1024) {
+      setShow(true)
+      document.getElementById('container').classList.add('overflow-y-hidden', 'h-screen')
+    }
   }
   const handleClose = () => {
     setShow(false)
@@ -108,7 +110,7 @@ function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow, 
         )}
       </div>
       {hoverId == bannerData.id ? <TrailerModal videoData={videoData} /> : ''}
-      {isShow == true ? (
+      {isShow == true && window.innerWidth < 1024 ? (
         <DetailModal detailData={detailData} onShow={isShow} onClose={handleClose} />
       ) : (
         ''

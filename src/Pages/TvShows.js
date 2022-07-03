@@ -15,7 +15,11 @@ function TvShows() {
     keys = keys.sort(() => Math.random - 0.5)
     const banner = keys[((keys.length - 1) * Math.random()) >> 0]
     setBannerUrl(banner)
-    banner.includes('tv') == true ? setApiType('tvApi') : setApiType('movieApi')
+    if (banner.includes('trending') == true) {
+      setApiType('complexApi')
+    } else if (banner.includes('tv') == true) {
+      setApiType('tvApi')
+    } else setApiType('movieApi')
   }, [])
   return (
     <>
@@ -33,7 +37,7 @@ function TvShows() {
           <Row
             title='Trending Now'
             fetchUrl={TvShowRequests.fetchTrending}
-            apiType='movieApi'
+            apiType='complexApi'
             moviesGenre='Trending TV Shows'
             className='my-9 w-screen pt-4'
           />

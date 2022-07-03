@@ -22,7 +22,6 @@ export const HomeRequests = {
   fetchWesternMovies: `/discover/movie?api_key=${API_KEY}&with_genres=37`,
   fetchComedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
   fetchSienceFictionMovies: `/discover/movie?api_key=${API_KEY}&with_genres=878`,
-  fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&with_networks=213`,
   fetchActionAdventureTvShows: `/discover/tv?api_key=${API_KEY}&with_genres=10759`,
   fetchKidsTvShows: `/discover/tv?api_key=${API_KEY}&with_genres=10762`,

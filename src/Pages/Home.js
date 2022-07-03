@@ -15,7 +15,11 @@ function Home() {
     const randomNumber = ((keys.length - 1) * Math.random()) >> 0
     const banner = keys[randomNumber]
     setBannerUrl(banner)
-    banner.includes('tv') == true ? setApiType('tvApi') : setApiType('movieApi')
+    if (banner.includes('trending') == true) {
+      setApiType('complexApi')
+    } else if (banner.includes('tv') == true) {
+      setApiType('tvApi')
+    } else setApiType('movieApi')
   }, [])
   return (
     <>
@@ -26,7 +30,7 @@ function Home() {
           <Row
             title='Trending Now'
             fetchUrl={HomeRequests.fetchTrending}
-            apiType='movieApi'
+            apiType='complexApi'
             moviesGenre='Trending Movie'
             className='my-9 w-screen pt-4'
           />

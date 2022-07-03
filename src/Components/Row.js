@@ -83,12 +83,17 @@ function Row({ title, fetchUrl, className, apiType, moviesGenre, isNetflix }) {
         removeArrowOnDeviceType={['bigTablet', 'tablet', 'mobile']}
       >
         {movies.map((movie, index) => {
+          const handleApiType = () => {
+            if (apiType == 'complexApi') {
+              return movie.media_type + 'Api'
+            } else return apiType
+          }
           return (
             <RowBanner
               className=''
               key={movie.id}
               bannerData={movie}
-              apiType={apiType}
+              apiType={handleApiType()}
               index={index}
               moviesGenre={moviesGenre}
               isNetflix={isNetflix}

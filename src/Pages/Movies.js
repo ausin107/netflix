@@ -6,19 +6,25 @@ import { MoviesRequests } from '../adapters/moviesRequests'
 import '../styles/DetailModal.css'
 
 function Movies() {
+  const [bannerUrl, setBannerUrl] = useState()
+  const [apiType, setApiType] = useState()
   useEffect(() => {
     const title = 'Movies'
     document.title = `${title} - Netflix`
-  }, [])
-  let randomBannerUrl = (obj) => {
-    let keys = Object.values(obj)
+    let keys = Object.values(MoviesRequests)
     keys = keys.sort(() => Math.random - 0.5)
-    return keys[((keys.length - 1) * Math.random()) >> 0]
-  }
+    const banner = keys[((keys.length - 1) * Math.random()) >> 0]
+    setBannerUrl(banner)
+    if (banner.includes('trending') == true) {
+      setApiType('complexApi')
+    } else if (banner.includes('tv') == true) {
+      setApiType('tvApi')
+    } else setApiType('movieApi')
+  }, [])
   return (
     <>
       <div className='relative' id='container'>
-        <Banner className='' apiType='movieApi' fetchUrl={randomBannerUrl(MoviesRequests)} />
+        {!!bannerUrl && <Banner className='' apiType={apiType} fetchUrl={bannerUrl} />}
         <div className='absolute w-full overflow-hidden video-container top-[40vw]'>
           <div className='w-full absolute h-full bg-backgroundColor -z-10' />
           <Row
@@ -31,7 +37,7 @@ function Movies() {
           <Row
             title='Trending Now'
             fetchUrl={MoviesRequests.fetchTrending}
-            apiType='movieApi'
+            apiType='complexApi'
             moviesGenre='Trending Movies'
             className='my-9 w-screen pt-4'
           />
