@@ -41,6 +41,7 @@ export const LinkRequest = {
   fetchVideoDetail: `?api_key=${API_KEY}&language=en-US`,
   fetchSimilarVideo: `similar?api_key=${API_KEY}&language=en-US&page=20`,
   fetchCreditsInfo: `/credits?api_key=${API_KEY}&language=en-US`,
+  fetchMultiSearch: `/search/multi?api_key=${API_KEY}&language=en-US&query=`,
 }
 export default {
   HomeRequests,

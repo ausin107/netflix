@@ -1,4 +1,4 @@
-import { ChevronDownIcon, SearchIcon, BellIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon, BellIcon } from '@heroicons/react/solid'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -6,6 +6,7 @@ import { useRef, useState, useEffect, useLayoutEffect } from 'react'
 import logo from '../assets/Netflix_logo.png'
 import user from '../assets/user_accout.png'
 import '../styles/Components.css'
+import Search from './Search'
 function Navbar() {
   const [height, setHeight] = useState(0)
   const [isShow, setShow] = useState(false)
@@ -147,8 +148,8 @@ function Navbar() {
           )
         })}
       </div>
-      <div className='flex items-center text-neutral-200 justify-end w-80 right-navbar'>
-        <SearchIcon className='font-bold h-7 mr-4' />
+      <div className='flex items-center text-neutral-200 justify-end w-fit right-navbar'>
+        <Search />
         <Link to='/browse' className='mr-4'>
           Kids
         </Link>
