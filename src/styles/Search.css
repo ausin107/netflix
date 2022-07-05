@@ -1,38 +1,17 @@
-/* .search-icon{
-    height: 2vw;
-    width: 2vw;
-    background-color: transparent;
-    position: absolute;
-    z-index: 1;
-} */
-/* .search-box{
-    width: 15vw;
-    height: 2.2vw;
-    background-color: black;
-    padding: 0.2vw 2vw;
-    border: 1px solid white;
-    position: relative;
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-} */
-
-/* .search-result{
-    height: 0;
-    width: 0;
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    background-color: black;
-    border-radius: 0.5vw;
-    flex-direction: column;
-    position: absolute;
-    visibility: hidden;
-    top: 3.5vw;
-}*/
-/* .search-box:focus ~ .search-result{
-    height: fit-content;
-    width: fit-content;
-    visibility: visible;
-} */
-/* .search-item{
-    padding: 0.5vw 1vw;
-} */
+@media  only screen and (min-width: 0 ) and (max-width: 800px) {
+    .search-box{
+        height: fit-content;
+        width: fit-content;
+        color: white;
+    }
+    .search-icon{
+        width: 5vw;
+        height: 5vw;
+        color: white; 
+        padding-right: 0;
+    }
+    .search-results{
+        top: 7vw;
+        z-index: 1;
+    }
+}

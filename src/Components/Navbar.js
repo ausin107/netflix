@@ -106,6 +106,7 @@ function Navbar() {
                   </div>
                 </div>
               </div>
+              <Search className='md:hidden w-fit' />
               <div className='text-plusColor text-4vw sm:text-[3.5vw] font-bold p-2vw opacity-60'>
                 Account
               </div>

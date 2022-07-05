@@ -30,7 +30,6 @@
 .react-multiple-carousel__arrow:hover:before{
     transform: scale(2);
     font-weight: bold;
-    /* font-size: 40px; */
     color: white;
 }
 @keyframes trailerModalGrow{
@@ -84,10 +83,6 @@
 .image{
     height: 100%;
 }
-/* .react-player{
-    width: 100% !important;
-    height: 100% !important;
-} */
 .soundClass{
     right: 7vw;
     bottom: 14.5vw;
@@ -109,8 +104,7 @@
 }
 .bannerText{
     font-size: 3vw;
-    width: 100%;
-    /* transform: translateY(10vw); */
+    width: 45%;
     transition: font-size .6s linear, width .6s linear;
 }
 .bannerTextA{

@@ -86,7 +86,9 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
   const handlePlay = () => {
     if (window.innerWidth > 500) {
       setPlayVideo(true)
-    } else handleInfo()
+    } else {
+      handleInfo()
+    }
   }
   const handleOverView = () => {
     return overView.length > 150 ? `${overView.slice(0, `150`)}...` : overView
@@ -109,10 +111,7 @@ function Banner({ className, apiType, fetchUrl, containerId }) {
         src={handelBannerImg(banner)}
         alt='Banner image'
       />
-      <div
-        className='flex flex-col absolute bottom-1/3 z-10 w-full info-container'
-        onClick={handleInfo}
-      >
+      <div className='flex flex-col absolute bottom-1/3 z-10 w-full info-container'>
         <div
           ref={textRef}
           className='text-white text-4vw font-bold w-5/12 title-banner ml-4vw bannerTextA font-sans'

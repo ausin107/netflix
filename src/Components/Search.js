@@ -6,13 +6,14 @@ import LazyLoadingImg from './LazyLoadingImg'
 import '../styles/Search.css'
 import Netflix_BG from '../assets/Netflix_BG.jpg'
 import DetailModal from './DetailModal'
-function Search() {
+function Search({ className }) {
   const [isShow, setIsShow] = useState(false)
   const [movieId, setMovieId] = useState('')
   const [movie, setMovie] = useState('')
   const [moviesData, setMoviesData] = useState('')
   const boxSearchRef = useRef()
   const bannerUrl = 'https://image.tmdb.org/t/p/original/'
+  const newClasses = `${className} mr-4 flex flex-row items-center bg-black border pr-1vw relative`
   useEffect(() => {
     async function getMovie() {
       try {
@@ -35,23 +36,23 @@ function Search() {
     boxSearchRef.current.focus()
   }
   return (
-    <div className='mr-4 flex flex-row items-center bg-black border pr-1vw'>
+    <div className={newClasses}>
       <input
         placeholder='Type movie name...'
-        className='w-[15vw] h-[2.2vw] bg-transparent py-0.2vw px-1vw outline-none'
+        className='w-[15vw] h-[2.2vw] bg-transparent py-0.2vw px-1vw outline-none search-box'
         type='text'
         value={movie}
         onChange={(e) => setMovie(e.target.value)}
         ref={boxSearchRef}
       />
-      <button className='h-2vw w-2vw bg-transparent cursor-pointer'>
+      <button className='h-2vw w-2vw bg-transparent cursor-pointer search-icon'>
         {movie.length === 0 ? (
           <SearchIcon className='font-bold' />
         ) : (
           <XIcon className='font-bold' onClick={handleClear} />
         )}
       </button>
-      <div className='h-fit w-fit flex bg-black rounded flex-col absolute top-[3.5vw]'>
+      <div className='h-fit w-fit flex bg-black rounded flex-col absolute top-[2.3vw] search-results'>
         {movie.length != 0 &&
           !!moviesData &&
           moviesData.map((item, index) => {
@@ -92,7 +93,7 @@ function Search() {
             if (index < 5) {
               return (
                 <div
-                  className='flex flex-row py-0.5vw px-1vw border-b cursor-pointer'
+                  className='flex flex-row py-0.5vw px-1vw border-b cursor-pointer w-max'
                   key={item.id}
                   onClick={() => handleShow(item.id)}
                 >
