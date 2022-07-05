@@ -29,7 +29,7 @@ function NewPopular() {
           <Row
             title='Up Coming Movies'
             fetchUrl={NewPopularRequest.fetchMovieUpComing}
-            apiType='tvApi'
+            apiType='movieApi'
             moviesGenre='Movie Up Coming'
             className='my-9 w-screen '
           />
