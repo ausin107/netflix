@@ -97,7 +97,7 @@ function RowBanner({ bannerData, apiType, index, moviesGenre, isNetflix, isRow, 
       <div className={hoverId == bannerData.id ? 'image' : ''} style={{ position: 'relative' }}>
         <img
           lazy-src={getMovieBannerSrc(bannerData)}
-          className='rounded-md cursor-pointer skeleton h-full'
+          className='rounded-md cursor-pointer skeleton'
           ref={imgRef}
         />
         {isNetflix == true ? (

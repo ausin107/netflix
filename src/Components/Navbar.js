@@ -61,8 +61,8 @@ function Navbar() {
     })
     menuTagRef.current.map((item) => {
       item.href == window.location.href
-        ? item.classList.add('text-white', 'font-bold')
-        : item.classList.remove('text-white', 'font-bold')
+        ? item.classList.add('!text-white', 'font-bold')
+        : item.classList.remove('!text-white', 'font-bold')
     })
   }, [])
   const handleClick = (index) => {
